@@ -1,0 +1,35 @@
+{
+  "name": "Pizza Maker",
+  "short_name": "Pizza 🍕",
+  "description": "Crée ta pizza comme un vrai chef ! Un jeu de cuisine pour enfants.",
+  "start_url": "/pizza.html",
+  "id": "/pizza.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FFF8EE",
+  "theme_color": "#E8232A",
+  "lang": "fr",
+  "categories": ["games", "kids", "education"],
+  "icons": [
+    {
+      "src": "/pizza-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/pizza-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/pizza-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}

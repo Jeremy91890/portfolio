@@ -65,6 +65,32 @@
   width: 100%;
 }
 
+.navbar__divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  align-self: center;
+}
+
+.navbar__link--game {
+  color: var(--accent-primary);
+  border: 1px solid rgba(100, 220, 255, 0.25);
+  border-radius: 6px;
+  padding: 0.25rem 0.65rem;
+  font-weight: 600;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.navbar__link--game::after {
+  display: none;
+}
+
+.navbar__link--game:hover {
+  color: var(--text-primary);
+  background: rgba(100, 220, 255, 0.08);
+  border-color: var(--accent-primary);
+}
+
 @media (max-width: 600px) {
   .navbar__links {
     gap: 1.2rem;

@@ -8,6 +8,8 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
+const gameLinks = [{ href: "/pizza.html", label: "🍕 Pizza" }];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("");
@@ -26,7 +28,7 @@ export default function Navbar() {
           if (e.isIntersecting) setActive("#" + e.target.id);
         });
       },
-      { rootMargin: "-40% 0px -55% 0px" }
+      { rootMargin: "-40% 0px -55% 0px" },
     );
     sections.forEach((s) => s && obs.observe(s));
     return () => obs.disconnect();
@@ -42,7 +44,18 @@ export default function Navbar() {
       <ul className="navbar__links">
         {links.map((l) => (
           <li key={l.href}>
-            <a href={l.href} className={`navbar__link ${active === l.href ? "navbar__link--active" : ""}`}>
+            <a
+              href={l.href}
+              className={`navbar__link ${active === l.href ? "navbar__link--active" : ""}`}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))}
+        <li className="navbar__divider" aria-hidden="true" />
+        {gameLinks.map((l) => (
+          <li key={l.href}>
+            <a href={l.href} className="navbar__link navbar__link--game">
               {l.label}
             </a>
           </li>
