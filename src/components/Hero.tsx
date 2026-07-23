@@ -78,6 +78,9 @@ export default function Hero() {
           <a href="#experience" className="hero__btn hero__btn--primary">
             Voir mon parcours
           </a>
+          <a href="#services" className="hero__btn hero__btn--ghost">
+            Voir mes offres
+          </a>
           <a href="#contact" className="hero__btn hero__btn--ghost">
             Me contacter
           </a>

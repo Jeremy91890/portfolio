@@ -5,10 +5,9 @@ const links = [
   { href: "#about", label: "À propos" },
   { href: "#skills", label: "Compétences" },
   { href: "#experience", label: "Expérience" },
+  { href: "#services", label: "Offres" },
   { href: "#contact", label: "Contact" },
 ];
-
-const gameLinks = [{ href: "/pizza.html", label: "🍕 Pizza" }];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -48,14 +47,6 @@ export default function Navbar() {
               href={l.href}
               className={`navbar__link ${active === l.href ? "navbar__link--active" : ""}`}
             >
-              {l.label}
-            </a>
-          </li>
-        ))}
-        <li className="navbar__divider" aria-hidden="true" />
-        {gameLinks.map((l) => (
-          <li key={l.href}>
-            <a href={l.href} className="navbar__link navbar__link--game">
               {l.label}
             </a>
           </li>
