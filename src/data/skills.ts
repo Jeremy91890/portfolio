@@ -1,13 +1,11 @@
 export type SkillGroup = {
   label: string;
-  color: string;
   skills: string[];
 };
 
 export const skillGroups: SkillGroup[] = [
   {
     label: "Frontend",
-    color: "#6C63FF",
     skills: [
       "React.js",
       "Next.js",
@@ -21,7 +19,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: "Mobile",
-    color: "#00D9C0",
     skills: [
       "React Native",
       "Swift",
@@ -33,7 +30,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: "Backend",
-    color: "#FF6B6B",
     skills: [
       "Node.js",
       "NestJS",
@@ -46,7 +42,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: "Cloud & DevOps",
-    color: "#FFB347",
     skills: [
       "Google Cloud Platform",
       "Microsoft Azure",
@@ -58,7 +53,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     label: "Intelligence Artificielle",
-    color: "#C084FC",
     skills: ["GitHub Copilot", "Speckit", "Claude", "Prompt Engineering"],
   },
 ];

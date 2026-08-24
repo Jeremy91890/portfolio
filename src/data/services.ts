@@ -4,7 +4,6 @@ export type Offer = {
   description: string;
   deliverable: string;
   note?: string;
-  color: string;
 };
 
 export const offers: Offer[] = [
@@ -15,7 +14,6 @@ export const offers: Offer[] = [
       "Correction d'un bug ciblé en moins de 48h, sur une base de code existante.",
     deliverable: "Correctif appliqué + bref résumé de ce qui a été fait.",
     note: "Périmètre conseillé : 1 bug principal, hors refonte.",
-    color: "#FF6B6B",
   },
 
   {
@@ -26,7 +24,6 @@ export const offers: Offer[] = [
     deliverable:
       "Rapport synthétique avec points bloquants, risques et recommandations.",
     note: "Très adapté pour les sites déjà en production qui veulent avancer vite sur la conformité.",
-    color: "#FFB347",
   },
   {
     title: "Maintenance applicative mensuelle",
@@ -36,7 +33,6 @@ export const offers: Offer[] = [
     deliverable:
       "En fin de mois, un fichier récapitulatif détaille les dates et tâches réalisées. Si 2 jours de travail ne sont pas atteints, la facturation est ajustée au prorata du temps passé.",
     note: "Une bonne formule pour les clients qui veulent de la continuité sans recruter.",
-    color: "#C084FC",
   },
   {
     title: "Atelier de sensibilisation à l'accessibilité numérique",
@@ -45,7 +41,6 @@ export const offers: Offer[] = [
       "Atelier à destination des développeurs, designers, CP ou PO, uniquement sur l'accessibilité numérique : bonnes pratiques, erreurs fréquentes, impact produit et collaboration entre métiers.",
     deliverable: "Session animée + supports remis aux participants.",
     note: "Adapté pour sensibiliser une équipe et lancer une dynamique d'amélioration durable.",
-    color: "#00D9C0",
   },
   {
     title: "Packaging et déploiement d'app mobile",
@@ -55,7 +50,6 @@ export const offers: Offer[] = [
     deliverable:
       "Build prêt à publier, fiches stores créées ou optimisées, accompagnement du process de mise en ligne et vérification finale.",
     note: "Le périmètre est ajusté selon l'état du projet, la stack et les accès aux comptes développeur.",
-    color: "#FF6B6B",
   },
   {
     title: "Évolution / nouvelle feature",
@@ -64,6 +58,5 @@ export const offers: Offer[] = [
       "Ajout d'une fonctionnalité ou évolution sur un projet existant, avec cadrage court en amont.",
     deliverable: "Fonctionnalité livrée, intégrée proprement dans l'existant.",
     note: "Idéal pour les besoins ponctuels ou les petites roadmaps.",
-    color: "#6C63FF",
   },
 ];

@@ -4,15 +4,14 @@ import { version } from "../../package.json";
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="container footer__inner">
-        <span className="footer__logo">
-          <span className="footer__bracket">&lt;</span>JD
-          <span className="footer__bracket">/&gt;</span>
+      <div className="shell footer__inner">
+        <span className="footer__mark" aria-hidden="true">
+          JD
         </span>
         <p className="footer__copy">
           © {new Date().getFullYear()} Jérémy Debelleix — Développeur Full Stack
         </p>
-        <span className="footer__version">v{version}</span>
+        <p className="footer__version">v{version}</p>
       </div>
     </footer>
   );

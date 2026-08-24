@@ -1,37 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+/* ============================================================
+   Jérémy Debelleix — charte « Marine »
+   Répartition visée : 60 % neutre · 30 % marine · 10 % menthe.
+   Contraste : WCAG AA au minimum sur tous les couples utilisés.
+   ============================================================ */
 
 :root {
-  /* Colors */
-  --bg-base: #070710;
-  --bg-surface: #0f0f1a;
-  --bg-elevated: #1a1a2e;
-  --border: rgba(255, 255, 255, 0.07);
-  --border-hover: rgba(255, 255, 255, 0.15);
+  /* --- Marine (30 %) --- */
+  --navy: #1b3a5c;
+  --navy-deep: #142c46;          /* pied de page, aplats profonds */
+  --navy-line: rgba(255, 255, 255, 0.14);
 
-  --accent-primary: #6C63FF;
-  --accent-secondary: #00D9C0;
-  --accent-warm: #FF6B6B;
-  --accent-orange: #FFB347;
+  /* --- Neutres (60 %) --- */
+  --bg: #f8f9fb;
+  --surface: #ffffff;
+  --border: #e3e8ef;             /* filet décoratif, jamais porteur de sens */
+  --border-strong: #cbd5e1;
 
-  --text-primary: #f0f0ff;
-  --text-secondary: #8888aa;
-  --text-muted: #555570;
-  --text-code: #a8ff78;
+  /* --- Texte --- */
+  --text: #1f2933;               /* 14,0:1 sur --bg */
+  --text-2: #5c6772;             /* 5,5:1 sur --bg */
+  --on-navy: #ffffff;            /* 11,6:1 sur --navy */
+  --on-navy-2: #b6c4d6;          /* 6,6:1 sur --navy */
 
-  /* Fonts */
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  /* --- Menthe (10 %) ---
+     L'aplat ne porte JAMAIS de label blanc (2,4:1). Son étiquette est
+     --text (6,2:1). Pour du texte vert sur fond clair, --mint-ink. */
+  --mint: #2fbf71;
+  --mint-hover: #29ac66;
+  --mint-ink: #177544;           /* 5,4:1 sur --bg */
+  --mint-soft: #e8f8ef;
 
-  /* Spacing */
-  --section-padding: clamp(1.5rem, 3vw, 2.5rem) 0;
-  --container-width: min(1100px, 90vw);
+  /* --- Formes --- */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-pill: 999px;
 
-  /* Transitions */
-  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Élévation : repos / survol / pièce maîtresse. Ombres douces et
+     largement diffusées — jamais d'ombre dure. */
+  --shadow-sm: 0 1px 2px rgba(31, 41, 51, 0.04), 0 2px 6px rgba(31, 41, 51, 0.05);
+  --shadow-md: 0 2px 4px rgba(31, 41, 51, 0.04), 0 10px 24px rgba(31, 41, 51, 0.08);
+  --shadow-lg: 0 4px 10px rgba(27, 58, 92, 0.07), 0 20px 48px rgba(27, 58, 92, 0.15);
+
+  /* Lumière venant du haut : liseré interne clair sur les surfaces. */
+  --sheen: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --sheen-navy: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  /* --- Mesures --- */
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --shell: 1200px;
+  --band-y: clamp(3.5rem, 7vw, 6rem);
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -39,32 +66,26 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background-color: var(--bg-base);
-  color: var(--text-primary);
-  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.6;
+  letter-spacing: -0.006em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-::selection {
-  background: rgba(108, 99, 255, 0.35);
-  color: #fff;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg-base);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--accent-primary);
-  border-radius: 3px;
+img,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
 a {
@@ -72,43 +93,247 @@ a {
   text-decoration: none;
 }
 
-img {
-  display: block;
-  max-width: 100%;
+ul,
+ol {
+  list-style: none;
 }
 
-.container {
-  width: var(--container-width);
-  margin: 0 auto;
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.section {
-  padding: var(--section-padding);
+::selection {
+  background: var(--mint-soft);
+  color: var(--text);
 }
 
-/* Gradient text utility */
-.gradient-text {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ---------- Focus : indicateur unique, jamais masqué ----------
+   Le sélecteur est doublé et forcé pour qu'aucune ombre de
+   composant ne puisse le recouvrir.                           */
+:focus-visible:focus-visible {
+  outline: 3px solid var(--navy);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba(27, 58, 92, 0.18) !important;
+  border-radius: var(--r-sm);
 }
 
-/* Glass card utility */
-.glass {
-  background: rgba(15, 15, 26, 0.7);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+.band--navy :focus-visible:focus-visible,
+.footer :focus-visible:focus-visible {
+  outline-color: var(--on-navy);
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.22) !important;
 }
 
-/* Noise overlay */
-.noise::after {
-  content: '';
+/* ---------- Lien d'évitement ---------- */
+.skip {
+  position: fixed;
+  top: 0.75rem;
+  left: var(--gutter);
+  z-index: 100;
+  transform: translateY(calc(-100% - 1.5rem));
+  background: var(--navy);
+  color: var(--on-navy);
+  padding: 0.7rem 1.15rem;
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-lg);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: transform 0.18s var(--ease);
+}
+
+.skip:focus-visible {
+  transform: translateY(0);
+}
+
+/* ---------- Structure ---------- */
+.shell {
+  width: 100%;
+  max-width: var(--shell);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.band {
+  padding-block: var(--band-y);
+}
+
+.band--surface {
+  background: var(--surface);
+  border-block: 1px solid var(--border);
+}
+
+.band--navy {
+  position: relative;
+  isolation: isolate;
+  background: var(--navy);
+  color: var(--on-navy);
+}
+
+/* Halo diffus : donne du volume à l'aplat sans ajouter de teinte. */
+.band--navy::before {
+  content: "";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  z-index: -1;
+  background:
+    radial-gradient(60rem 26rem at 12% 0%, rgba(255, 255, 255, 0.09), transparent 70%),
+    radial-gradient(38rem 22rem at 92% 100%, rgba(47, 191, 113, 0.13), transparent 70%);
   pointer-events: none;
-  opacity: 0.4;
+}
+
+/* ---------- En-tête de section ---------- */
+.head {
+  max-width: 46rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.head__label {
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mint-ink);
+  margin-bottom: 0.75rem;
+}
+
+.head__title {
+  font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+  color: var(--navy);
+}
+
+.band--navy .head__label {
+  color: var(--mint);
+}
+
+.band--navy .head__title {
+  color: var(--on-navy);
+}
+
+.head__lede {
+  margin-top: 0.85rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.band--navy .head__lede {
+  color: var(--on-navy-2);
+}
+
+/* ---------- Carte ---------- */
+.card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-sm), var(--sheen);
+  transition:
+    box-shadow 0.24s var(--ease),
+    border-color 0.24s var(--ease),
+    transform 0.24s var(--ease);
+}
+
+/* Élévation au survol : la carte se rapproche. */
+.card--lift:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md), var(--sheen);
+}
+
+/* ---------- Étiquette technique ---------- */
+.chip {
+  display: inline-block;
+  box-shadow: var(--sheen);
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.band--navy .chip {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--navy-line);
+  color: var(--on-navy);
+}
+
+/* ---------- Boutons ----------
+   L'aplat menthe porte une étiquette --text (6,2:1), jamais blanche. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.35rem;
+  border-radius: var(--r-sm);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  transition:
+    background-color 0.16s var(--ease),
+    border-color 0.16s var(--ease),
+    color 0.16s var(--ease),
+    box-shadow 0.16s var(--ease),
+    transform 0.16s var(--ease);
+}
+
+.btn--primary {
+  background: var(--mint);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:hover {
+  background: var(--mint-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--secondary {
+  background: var(--surface);
+  color: var(--navy);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--secondary:hover {
+  border-color: var(--navy);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.band--navy .btn--secondary {
+  background: transparent;
+  color: var(--on-navy);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+}
+
+.band--navy .btn--secondary:hover {
+  border-color: var(--on-navy);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- Mouvement réduit ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

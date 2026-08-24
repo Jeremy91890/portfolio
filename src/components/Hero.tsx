@@ -1,122 +1,68 @@
-import { motion } from "framer-motion";
-import { useTypewriter } from "../hooks/useTypewriter";
+import { motion, useReducedMotion } from "framer-motion";
+import PageAudit from "./PageAudit";
 import "./Hero.css";
 
-const words = ["React.js", "Next.js", "React Native", "NestJS"];
+const stack = ["React.js", "Next.js", "React Native", "NestJS"];
 
 export default function Hero() {
-  const typed = useTypewriter(words);
+  const reduced = useReducedMotion();
+
+  const rise = (delay: number) =>
+    reduced
+      ? {}
+      : {
+          initial: { opacity: 0, y: 16 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.5, delay, ease: [0.4, 0, 0.2, 1] as const },
+        };
 
   return (
-    <section id="hero" className="hero noise">
-      {/* Animated orbs background */}
-      <div className="hero__orb hero__orb--1" />
-      <div className="hero__orb hero__orb--2" />
-      <div className="hero__orb hero__orb--3" />
-
-      <div className="hero__content container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-        >
-          <span className="hero__tag">
-            <span className="hero__tag-dot" />
+    <section id="hero" className="hero">
+      <div className="hero__inner shell">
+        <div className="hero__lede">
+          <motion.p className="hero__status" {...rise(0)}>
+            <span className="hero__status-dot" aria-hidden="true" />
             Disponible pour de nouveaux projets
-          </span>
-        </motion.div>
+          </motion.p>
 
-        <motion.h1
-          className="hero__title"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.7,
-            delay: 0.1,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-        >
-          Jérémy
-          <br />
-          <span className="gradient-text">Debelleix</span>
-        </motion.h1>
+          <motion.h1 className="hero__title" {...rise(0.06)}>
+            Jérémy Debelleix,
+            <br />
+            <span className="hero__title-accent">Lead Developer</span>
+            <br />
+            full stack.
+          </motion.h1>
 
-        <motion.div
-          className="hero__subtitle"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.7,
-            delay: 0.2,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-        >
-          <span className="hero__subtitle-static">Lead Developer · </span>
-          <span className="hero__typewriter">
-            {typed}
-            <span className="hero__cursor">|</span>
-          </span>
-        </motion.div>
+          <motion.p className="hero__desc" {...rise(0.12)}>
+            7 ans d'expérience en développement web &amp; mobile. Je conçois des
+            applications performantes, accessibles et scalables.
+          </motion.p>
 
-        <motion.p
-          className="hero__desc"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.35 }}
-        >
-          7 ans d'expérience en développement web & mobile.
-          <br />
-          Je conçois des applications performantes, accessibles et scalables.
-        </motion.p>
+          <motion.ul className="hero__stack" {...rise(0.18)}>
+            {stack.map((tech) => (
+              <li key={tech} className="chip">
+                {tech}
+              </li>
+            ))}
+          </motion.ul>
 
-        <motion.div
-          className="hero__actions"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <a href="#experience" className="hero__btn hero__btn--primary">
-            Voir mon parcours
-          </a>
-          <a href="#services" className="hero__btn hero__btn--ghost">
-            Voir mes offres
-          </a>
-          <a href="#contact" className="hero__btn hero__btn--ghost">
-            Me contacter
-          </a>
-        </motion.div>
+          <motion.div className="hero__actions" {...rise(0.24)}>
+            <a href="#services" className="btn btn--primary">
+              Voir mes offres
+            </a>
+            <a href="#experience" className="btn btn--secondary">
+              Voir mon parcours
+            </a>
+            <a href="#contact" className="btn btn--secondary">
+              Me contacter
+            </a>
+          </motion.div>
+        </div>
 
-        {/* Decorative code snippet */}
-        <motion.div
-          className="hero__code"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <div className="hero__code-dots">
-            <span />
-            <span />
-            <span />
-          </div>
-          <pre>{`const stack = {
-  frontend: ["React", "Next.js"],
-  mobile:   ["React Native", "Swift"],
-  backend:  ["Node.js", "NestJS"],
-  cloud:    ["GCP", "Azure"],
-};`}</pre>
+        <motion.div className="hero__panel" {...rise(0.2)}>
+          <PageAudit />
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="hero__scroll"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-      >
-        <div className="hero__scroll-line" />
-        <span>scroll</span>
-      </motion.div>
     </section>
   );
 }

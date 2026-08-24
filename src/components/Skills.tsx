@@ -1,72 +1,37 @@
-import { useState } from "react";
 import { skillGroups } from "../data/skills";
-import AnimatedSection from "./ui/AnimatedSection";
-import SectionTitle from "./ui/SectionTitle";
+import Reveal from "./ui/Reveal";
+import SectionHead from "./ui/SectionHead";
 import "./Skills.css";
 
 export default function Skills() {
-  const [activeGroup, setActiveGroup] = useState<string | null>(null);
-
   return (
-    <section id="skills" className="section skills">
-      <div className="container">
-        <AnimatedSection>
-          <SectionTitle label="// Compétences" title="Ma stack technique" />
-        </AnimatedSection>
+    <section id="skills" className="band skills">
+      <div className="shell">
+        <SectionHead
+          label="Compétences"
+          title="Ma stack technique"
+          lede="Les technologies que j'utilise au quotidien, du front à la mise en production."
+        />
 
-        {/* Filter tabs */}
-        <AnimatedSection delay={0.1}>
-          <div className="skills__filters">
-            <button
-              className={`skills__filter ${activeGroup === null ? "skills__filter--active" : ""}`}
-              onClick={() => setActiveGroup(null)}
-            >
-              Toutes
-            </button>
-            {skillGroups.map((g) => (
-              <button
-                key={g.label}
-                className={`skills__filter ${activeGroup === g.label ? "skills__filter--active" : ""}`}
-                style={activeGroup === g.label ? { background: `${g.color}22`, borderColor: `${g.color}60`, color: g.color } : {}}
-                onClick={() => setActiveGroup(activeGroup === g.label ? null : g.label)}
-              >
-                {g.label}
-              </button>
-            ))}
-          </div>
-        </AnimatedSection>
-
-        <div className="skills__groups">
-          {skillGroups
-            .filter((g) => activeGroup === null || g.label === activeGroup)
-            .map((group, gi) => (
-              <AnimatedSection key={group.label} delay={gi * 0.08}>
-                <div className="skills__group">
-                  <div className="skills__group-header">
-                    <span
-                      className="skills__group-dot"
-                      style={{ background: group.color }}
-                    />
-                    <h3 className="skills__group-label">{group.label}</h3>
-                  </div>
-                  <div className="skills__pills">
-                    {group.skills.map((skill, si) => (
-                      <span
-                        key={skill}
-                        className="skills__pill"
-                        style={{
-                          animationDelay: `${si * 40}ms`,
-                          ["--pill-color" as string]: group.color,
-                        }}
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </AnimatedSection>
-            ))}
-        </div>
+        <dl className="skills__list">
+          {skillGroups.map((group, i) => (
+            <Reveal key={group.label} delay={i * 0.06} className="skills__group">
+              <dt className="skills__group-label">
+                {group.label}
+                <span className="skills__count">{group.skills.length}</span>
+              </dt>
+              <dd>
+                <ul className="skills__items">
+                  {group.skills.map((skill) => (
+                    <li key={skill} className="chip">
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </Reveal>
+          ))}
+        </dl>
       </div>
     </section>
   );

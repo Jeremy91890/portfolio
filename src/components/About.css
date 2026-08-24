@@ -1,66 +1,70 @@
-.about__grid {
+.about__statements {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
-.about__card {
-  padding: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+.about__statement {
+  padding: clamp(1.35rem, 2.5vw, 1.75rem);
 }
 
-.about__card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(108, 99, 255, 0.15);
-  border-color: rgba(108, 99, 255, 0.3);
+.about__statement-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
 }
 
-.about__card-icon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 1rem;
-}
-
-.about__card-title {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 0.75rem;
-}
-
-.about__card-text {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  line-height: 1.65;
+.about__statement-text {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--text-2);
 }
 
 .about__stats {
-  display: flex;
-  justify-content: space-around;
-  padding: 2rem;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  background: var(--bg);
 }
 
 .about__stat {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-left: 1px solid var(--border);
+}
+
+.about__stat:first-child {
+  border-left: none;
 }
 
 .about__stat-value {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  line-height: 1;
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--navy);
+  font-variant-numeric: tabular-nums;
 }
 
 .about__stat-label {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  font-family: var(--font-mono);
-  letter-spacing: 0.05em;
+  margin-top: 0.3rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--text-2);
+}
+
+@media (max-width: 860px) {
+  .about__statements {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .about__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .about__stat:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--border);
+  }
+  .about__stat:nth-child(odd) {
+    border-left: none;
+  }
 }

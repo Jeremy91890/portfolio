@@ -6,7 +6,6 @@ export type Experience = {
   location?: string;
   description: string[];
   tags: string[];
-  accent: string;
 };
 
 export const experiences: Experience[] = [
@@ -24,7 +23,6 @@ export const experiences: Experience[] = [
       "Management d'une équipe agile et gestion de la maintenance adaptative",
     ],
     tags: ["React", "Next.js", "React Native", "Node.js", "NestJS", "MongoDB", "Azure", "GCP", "Agile"],
-    accent: "#6C63FF",
   },
   {
     id: "openclassrooms",
@@ -37,7 +35,6 @@ export const experiences: Experience[] = [
       "Évaluation lors de soutenances avec grilles d'évaluation",
     ],
     tags: ["Pédagogie", "React.js", "JavaScript", "Communication", "Évaluation"],
-    accent: "#00D9C0",
   },
   {
     id: "leka",
@@ -51,7 +48,6 @@ export const experiences: Experience[] = [
       "Mise en place d'une base de données Firebase en temps réel",
     ],
     tags: ["Swift", "iOS", "Bluetooth", "Firebase", "Xcode"],
-    accent: "#FF6B6B",
   },
   {
     id: "wittyfit",
@@ -64,6 +60,15 @@ export const experiences: Experience[] = [
       "Développement avec le framework PHP Zend et création d'une app Android",
     ],
     tags: ["PHP Zend", "Bootstrap", "SQL", "Android"],
-    accent: "#FFB347",
   },
 ];
+
+export const education = {
+  id: "etna",
+  school: "ETNA — École des Technologies Numériques Appliquées",
+  degree: "Ingénieur Architecte Logiciel",
+  period: "2016 — 2019",
+  description: [
+    "Formation en alternance · Architecture logicielle & développement",
+  ],
+};

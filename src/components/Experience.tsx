@@ -1,79 +1,65 @@
-import { experiences } from "../data/experience";
-import AnimatedSection from "./ui/AnimatedSection";
-import SectionTitle from "./ui/SectionTitle";
-import TechTag from "./ui/TechTag";
+import { experiences, education } from "../data/experience";
+import Reveal from "./ui/Reveal";
+import SectionHead from "./ui/SectionHead";
 import "./Experience.css";
 
 export default function Experience() {
   return (
-    <section id="experience" className="section experience">
-      <div className="container">
-        <AnimatedSection>
-          <SectionTitle label="// Expérience" title="Mon parcours" />
-        </AnimatedSection>
+    <section id="experience" className="band band--surface experience">
+      <div className="shell">
+        <SectionHead label="Expérience" title="Mon parcours" />
 
-        <div className="timeline">
-          {experiences.map((exp, i) => (
-            <AnimatedSection
-              key={exp.id}
-              delay={i * 0.1}
-              direction={i % 2 === 0 ? "left" : "right"}
-            >
-              <div className={`timeline__item ${i % 2 === 0 ? "timeline__item--left" : "timeline__item--right"}`}>
-                <div
-                  className="timeline__dot"
-                  style={{ background: exp.accent, boxShadow: `0 0 12px ${exp.accent}80` }}
-                />
-                <div className="timeline__card glass">
-                  <div className="timeline__card-header">
-                    <div>
-                      <span className="timeline__period">{exp.period}</span>
-                      <h3 className="timeline__role">{exp.role}</h3>
-                      <div className="timeline__company" style={{ color: exp.accent }}>
-                        {exp.company}
-                        {exp.location && (
-                          <span className="timeline__location"> · {exp.location}</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+        <ol className="roles">
+          {experiences.map((exp, i) => {
+            const current = exp.period.includes("Présent");
+            return (
+              <Reveal key={exp.id} delay={i * 0.06} as="li" className="role card card--lift">
+                <div className="role__rail">
+                  <p className="role__period">{exp.period}</p>
+                  {exp.location && (
+                    <p className="role__location">{exp.location}</p>
+                  )}
+                  {current && <p className="role__now">En cours</p>}
+                </div>
 
-                  <ul className="timeline__bullets">
-                    {exp.description.map((d) => (
-                      <li key={d}>{d}</li>
+                <div className="role__body">
+                  <h3 className="role__title">{exp.role}</h3>
+                  <p className="role__company">{exp.company}</p>
+
+                  <ul className="role__points">
+                    {exp.description.map((line) => (
+                      <li key={line}>{line}</li>
                     ))}
                   </ul>
 
-                  <div className="timeline__tags">
-                    {exp.tags.map((t) => (
-                      <TechTag key={t} label={t} color={exp.accent} />
+                  <ul className="role__tags">
+                    {exp.tags.map((tag) => (
+                      <li key={tag} className="chip">
+                        {tag}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
-              </div>
-            </AnimatedSection>
-          ))}
+              </Reveal>
+            );
+          })}
 
-          {/* Education */}
-          <AnimatedSection delay={0.4}>
-            <div className="timeline__item timeline__item--left">
-              <div
-                className="timeline__dot"
-                style={{ background: "var(--text-muted)", boxShadow: "0 0 10px rgba(85,85,112,0.4)" }}
-              />
-              <div className="timeline__card glass">
-                <span className="timeline__period">2016 — 2019</span>
-                <h3 className="timeline__role">Ingénieur Architecte Logiciel</h3>
-                <div className="timeline__company" style={{ color: "var(--text-muted)" }}>
-                  ETNA — École des Technologies Numériques Appliquées
-                </div>
-                <ul className="timeline__bullets">
-                  <li>Formation en alternance · Architecture logicielle & développement</li>
-                </ul>
-              </div>
+          <Reveal delay={0.24} as="li" className="role card role--study">
+            <div className="role__rail">
+              <p className="role__period">{education.period}</p>
+              <p className="role__location">Formation</p>
             </div>
-          </AnimatedSection>
-        </div>
+            <div className="role__body">
+              <h3 className="role__title">{education.degree}</h3>
+              <p className="role__company">{education.school}</p>
+              <ul className="role__points">
+                {education.description.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </ol>
       </div>
     </section>
   );
