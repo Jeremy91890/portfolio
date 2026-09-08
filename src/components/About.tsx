@@ -18,7 +18,7 @@ const statements = [
 ];
 
 const stats = [
-  { value: "7+", label: "ans d'expérience" },
+  { value: "10+", label: "ans d'expérience" },
   { value: "40+", label: "projets réalisés" },
   { value: "20+", label: "étudiants mentorés" },
   { value: "∞", label: "cafés par sprint" },
@@ -32,7 +32,11 @@ export default function About() {
 
         <div className="about__statements">
           {statements.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.08} className="about__statement card card--lift">
+            <Reveal
+              key={s.title}
+              delay={i * 0.08}
+              className="about__statement card card--lift"
+            >
               <h3 className="about__statement-title">{s.title}</h3>
               <p className="about__statement-text">{s.text}</p>
             </Reveal>

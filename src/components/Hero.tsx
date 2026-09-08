@@ -1,5 +1,4 @@
 import { motion, useReducedMotion } from "framer-motion";
-import PageAudit from "./PageAudit";
 import "./Hero.css";
 
 const stack = ["React.js", "Next.js", "React Native", "NestJS"];
@@ -34,8 +33,8 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p className="hero__desc" {...rise(0.12)}>
-            7 ans d'expérience en développement web &amp; mobile. Je conçois des
-            applications performantes, accessibles et scalables.
+            10 ans d'expérience en développement web &amp; mobile. Je conçois
+            des applications performantes, accessibles et scalables.
           </motion.p>
 
           <motion.ul className="hero__stack" {...rise(0.18)}>
@@ -58,10 +57,6 @@ export default function Hero() {
             </a>
           </motion.div>
         </div>
-
-        <motion.div className="hero__panel" {...rise(0.2)}>
-          <PageAudit />
-        </motion.div>
       </div>
     </section>
   );
