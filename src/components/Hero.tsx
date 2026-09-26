@@ -1,7 +1,26 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { plans } from "../data/siteVitrine";
 import "./Hero.css";
 
 const stack = ["React.js", "Next.js", "React Native", "NestJS"];
+
+const lowestPrice = Math.min(...plans.map((p) => p.price));
+
+/** Deux publics, deux portes d'entrée vers les offres. */
+const paths = [
+  {
+    href: "#services",
+    label: "Pour les entreprises",
+    text: "J'interviens sur vos projets web et mobiles : correction de bugs, accessibilité, maintenance, nouvelles fonctionnalités.",
+    cta: "Voir les offres packagées",
+  },
+  {
+    href: "#site-vitrine",
+    label: "Pour les commerçants",
+    text: `Un site vitrine clé en main, hébergé et mis à jour pour vous, à petit prix : dès ${lowestPrice} €/mois.`,
+    cta: "Voir les formules site vitrine",
+  },
+];
 
 export default function Hero() {
   const reduced = useReducedMotion();
@@ -57,6 +76,21 @@ export default function Hero() {
             </a>
           </motion.div>
         </div>
+
+        <motion.ul className="hero__paths" {...rise(0.3)}>
+          {paths.map((p) => (
+            <li key={p.href}>
+              <a href={p.href} className="hero__path card card--lift">
+                <span className="hero__path-label">{p.label}</span>
+                <span className="hero__path-text">{p.text}</span>
+                <span className="hero__path-cta">
+                  {p.cta}
+                  <span aria-hidden="true"> →</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </motion.ul>
       </div>
     </section>
   );

@@ -8,9 +8,9 @@ export default function Services() {
     <section id="services" className="band services">
       <div className="shell">
         <SectionHead
-          label="Offres"
+          label="Pour les équipes tech"
           title="Offres packagées"
-          lede="Des périmètres courts, un prix annoncé, un livrable défini à l'avance."
+          lede="Pour vos projets web et mobiles existants : des périmètres courts, un prix annoncé, un livrable défini à l'avance."
         />
 
         <ul className="offers">

@@ -20,6 +20,13 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
+  gap: 2.5rem clamp(2rem, 5vw, 4rem);
+}
+
+@media (min-width: 961px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
 }
 
 .hero__status {
@@ -76,3 +83,54 @@
   margin-top: 1.85rem;
 }
 
+/* ---------- Deux publics : entreprises et commerçants ---------- */
+.hero__paths {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero__paths > li {
+  display: flex;
+}
+
+.hero__path {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.25rem 1.4rem;
+}
+
+.hero__path-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mint-ink);
+}
+
+.hero__path-text {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+
+.hero__path-cta {
+  margin-top: auto;
+  padding-top: 0.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hero__path:hover .hero__path-cta {
+  color: var(--mint-ink);
+}
+
+@media (min-width: 561px) and (max-width: 960px) {
+  .hero__paths {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

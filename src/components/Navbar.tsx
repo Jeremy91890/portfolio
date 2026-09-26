@@ -7,6 +7,7 @@ const links = [
   { href: "#skills", label: "Compétences" },
   { href: "#experience", label: "Expérience" },
   { href: "#services", label: "Offres" },
+  { href: "#site-vitrine", label: "Site vitrine" },
   { href: "#contact", label: "Contact" },
 ];
 
