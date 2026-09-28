@@ -54,10 +54,7 @@ const stackedPlans = [...plans].sort(
 
 export default function SiteVitrine() {
   return (
-    <section
-      id="site-vitrine"
-      className="band band--surface site-vitrine"
-    >
+    <section id="site-vitrine" className="band band--surface site-vitrine">
       <div className="shell">
         <SectionHead
           label="Pour les commerçants"
@@ -92,7 +89,9 @@ export default function SiteVitrine() {
         </Reveal>
 
         <Reveal delay={0.05} className="sv-summary">
-          <h3 className="sv-summary__title">En bref, quelle formule pour vous ?</h3>
+          <h3 className="sv-summary__title">
+            En bref, quelle formule pour vous ?
+          </h3>
           <ul className="sv-summary__list">
             {plans.map((p) => (
               <li
@@ -216,17 +215,14 @@ export default function SiteVitrine() {
         <footer className="sv-foot">
           <p className="sv-foot__notes">
             * Dans la limite du raisonnable. Un bug (élément qui ne fonctionne
-            plus comme prévu) est corrigé gratuitement ; une modification est
-            un changement demandé par vous, décompté de votre quota. Les
-            erreurs faites depuis le back-office ne relèvent pas de la
-            garantie et comptent comme une modification. Toutes les offres
-            sont sans engagement : vous pouvez y mettre fin à tout moment.
+            plus comme prévu) est corrigé gratuitement ; une modification est un
+            changement demandé par vous, décompté de votre quota. Les erreurs
+            faites depuis le back-office ne relèvent pas de la garantie et
+            comptent comme une modification. Toutes les offres sont sans
+            engagement : vous pouvez y mettre fin à tout moment.
           </p>
           <p className="sv-foot__contact">
-            {contact.firstName} {contact.lastName} ·{" "}
-            <a href={`tel:+33${contact.phone.replaceAll(".", "").slice(1)}`}>
-              {contact.phone}
-            </a>
+            {contact.firstName} {contact.lastName} ·
           </p>
         </footer>
       </div>
