@@ -1,8 +1,8 @@
 import {
   common,
+  contact,
   featureLabels,
   featureOrder,
-  launchOffer,
   oneTimePurchase,
   plans,
 } from "../data/siteVitrine";
@@ -40,13 +40,10 @@ function Value({ value }: { value: string | null }) {
 
 function Price({ price, period }: { price: number; period: string }) {
   return (
-    <>
-      <p className="sv-price">
-        <span className="sv-price__amount">{price}</span>
-        <span className="sv-price__period"> €/{period}</span>
-      </p>
-      <p className="sv-price__offer">{launchOffer.title}</p>
-    </>
+    <p className="sv-price">
+      <span className="sv-price__amount">{price}</span>
+      <span className="sv-price__period"> €/{period}</span>
+    </p>
   );
 }
 
@@ -81,22 +78,16 @@ export default function SiteVitrine() {
               </p>
             </div>
 
-            <div className="sv-hero__aside">
-              <p className="sv-launch">
-                <span className="sv-overline">Offre de lancement</span>
-                <span className="sv-launch__title">{launchOffer.title}</span>
-              </p>
-              <ul className="sv-hero__badges">
-                <li className="sv-stat">
-                  <span className="sv-stat__value">{common.setupFee} €</span>
-                  <span className="sv-stat__label">de mise en place</span>
-                </li>
-                <li className="sv-stat">
-                  <span className="sv-stat__value">Sans engagement</span>
-                  <span className="sv-stat__label">résiliable à tout moment</span>
-                </li>
-              </ul>
-            </div>
+            <ul className="sv-hero__badges">
+              <li className="sv-stat">
+                <span className="sv-stat__value">{common.setupFee} €</span>
+                <span className="sv-stat__label">de mise en place</span>
+              </li>
+              <li className="sv-stat">
+                <span className="sv-stat__value">Sans</span>
+                <span className="sv-stat__label">engagement</span>
+              </li>
+            </ul>
           </header>
         </Reveal>
 
@@ -214,17 +205,27 @@ export default function SiteVitrine() {
             <ul className="sv-once__details">
               <li>Garantie bugs {oneTimePurchase.bugWarrantyMonths} mois</li>
               <li>Back-office +{oneTimePurchase.backofficePerMonth} €/mois</li>
-              <li>Modification sur devis</li>
+              <li>
+                Modification {oneTimePurchase.modificationUnitPrice} € l'unité
+              </li>
               <li>Support {oneTimePurchase.support.toLowerCase()}</li>
             </ul>
           </Reveal>
         </div>
 
         <footer className="sv-foot">
+          <p className="sv-foot__notes">
+            * Dans la limite du raisonnable. Un bug (élément qui ne fonctionne
+            plus comme prévu) est corrigé gratuitement ; une modification est
+            un changement demandé par vous, décompté de votre quota. Les
+            erreurs faites depuis le back-office ne relèvent pas de la
+            garantie et comptent comme une modification. Toutes les offres
+            sont sans engagement : vous pouvez y mettre fin à tout moment.
+          </p>
           <p className="sv-foot__contact">
-            Jérémy Debelleix ·{" "}
-            <a href="mailto:jeremy.debelleix@gmail.com">
-              jeremy.debelleix@gmail.com
+            {contact.firstName} {contact.lastName} ·{" "}
+            <a href={`tel:+33${contact.phone.replaceAll(".", "").slice(1)}`}>
+              {contact.phone}
             </a>
           </p>
         </footer>

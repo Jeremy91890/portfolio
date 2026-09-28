@@ -50,33 +50,10 @@
   color: var(--on-navy-2);
 }
 
-.sv-hero__aside {
-  display: grid;
-  gap: 0.75rem;
-  flex: none;
-}
-
 .sv-hero__badges {
   display: flex;
   gap: 0.75rem;
-}
-
-/* Offre de lancement : la pièce la plus visible de l'en-tête. */
-.sv-launch {
-  display: grid;
-  gap: 0.2rem;
-  padding: 1rem 1.25rem;
-  border-radius: var(--r-sm);
-  background: var(--mint);
-  color: var(--text);                /* jamais de blanc sur la menthe */
-  box-shadow: var(--shadow-md), var(--sheen);
-}
-
-.sv-launch__title {
-  font-size: clamp(1.6rem, 3vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.1;
+  flex: none;
 }
 
 .sv-stat {
@@ -188,18 +165,6 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-2);
-}
-
-.sv-price__offer {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.15rem 0.6rem;
-  border-radius: var(--r-pill);
-  background: var(--mint);
-  color: var(--text);
-  font-size: 0.75rem;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 .sv-tagline {
@@ -424,11 +389,18 @@
 .sv-foot {
   display: flex;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 1rem 2.5rem;
   margin-top: 1.75rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--border);
+}
+
+.sv-foot__notes {
+  max-width: 48rem;
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--text-2);
 }
 
 .sv-foot__contact {
@@ -469,7 +441,7 @@
     margin-top: 2.5rem;
   }
 
-  .sv-hero__aside {
+  .sv-hero__badges {
     width: 100%;
   }
 

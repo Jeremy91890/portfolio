@@ -96,8 +96,7 @@ export const plans: Plan[] = [
       reservationContact:
         "Bouton, formulaire de contact + formulaire de demande sur mesure",
       backoffice: "Inclus : tout le contenu, images et nouvelles pages",
-      modifications:
-        "Illimitées : on intervient pour n'importe quelle modification",
+      modifications: "Illimitées*",
       correctionBugs: "Inclus, traitée en priorité",
       support: "Email, SMS et téléphone, réponse sous 24 h ouvrées",
       ficheGoogle: "Mise au propre + mise à jour chaque mois",
@@ -109,10 +108,13 @@ export const plans: Plan[] = [
 
 export const common = {
   setupFee: 0,
+  commitment: false,
+  cancelAnytime: true,
 };
 
-export const launchOffer = {
-  title: "1er mois offert",
+export const contact = {
+  firstName: "Jérémy",
+  lastName: "DEBELLEIX",
 };
 
 export const oneTimePurchase = {
