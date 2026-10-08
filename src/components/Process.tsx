@@ -13,7 +13,7 @@ const steps = [
   {
     icon: PencilRuler,
     title: 'Je conçois votre site',
-    text: 'Textes, photos, couleurs : je construis un site à votre image. Vous validez, je l’ajuste jusqu’à ce qu’il vous plaise.',
+    text: 'Textes, photos, couleurs : je construis un site à votre image. Vous validez, je l’ajuste jusqu’à ce qu’il vous plaise, même au dixième « un peu plus de bleu ».',
     meta: 'Vous validez chaque étape',
   },
   {
