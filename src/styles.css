@@ -807,6 +807,7 @@ button { font: inherit; color: inherit; }
 .nothing ul { display: flex; flex-wrap: wrap; gap: 8px 20px; }
 .nothing li { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; }
 .nothing li svg { color: var(--orange-text); }
+.nothing__aside { grid-column: 1 / -1; font-size: 0.9375rem; font-style: italic; color: var(--navy); }
 
 /* ---------- Services ---------- */
 .services {

@@ -93,6 +93,9 @@ export default function Process() {
               </li>
             ))}
           </ul>
+          <p className="nothing__aside">
+            Et vous n’aurez jamais à me demander ce qu’est un « DNS ». Promis.
+          </p>
         </Reveal>
       </div>
     </section>

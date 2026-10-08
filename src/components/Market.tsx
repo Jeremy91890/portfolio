@@ -91,7 +91,8 @@ export default function Market() {
                 </strong>
                 <span>
                   par rapport à une agence, soit environ {Math.round(agency / mine)} fois moins cher. Même la formule
-                  Pro ({euros(49 * 36)} sur 3 ans) reste {Math.round(agency / (49 * 36))} fois moins chère.
+                  Pro ({euros(49 * 36)} sur 3 ans) reste {Math.round(agency / (49 * 36))} fois moins chère. De quoi
+                  changer de caisse enregistreuse… ou s’offrir beaucoup de croissants.
                 </span>
               </p>
             </div>

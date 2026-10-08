@@ -83,7 +83,8 @@ export function Footer() {
     <footer className="footer on-dark">
       <div className="container footer__inner">
         <p>
-          © {new Date().getFullYear()} {site.name} · {site.role}
+          © {new Date().getFullYear()} {site.name} · Fabriqué à
+          Dammarie-lès-Lys, carburé au café
         </p>
         <p>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
