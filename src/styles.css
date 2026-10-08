@@ -1143,14 +1143,11 @@ button { font: inherit; color: inherit; }
   display: grid;
   gap: 16px;
 }
-@media (min-width: 900px) { .extras { grid-template-columns: 1fr 2fr; } }
 .extra {
   padding: 28px;
   border-radius: var(--radius-lg);
 }
-.extra--launch { background: var(--orange-text); color: var(--white); position: relative; overflow: hidden; }
-.extra--launch .extra__eyebrow { color: var(--white); opacity: 0.92; }
-.extra--once { background: var(--surface); }
+.extra--once { background: var(--white); border: 1px solid var(--border); }
 .extra__eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; color: var(--navy); }
 .extra h3 { margin-top: 8px; font-size: 1.75rem; font-weight: 700; }
 .extra p { margin-top: 6px; }
@@ -1161,7 +1158,7 @@ button { font: inherit; color: inherit; }
 .extra__details li {
   padding: 6px 12px;
   border-radius: 999px;
-  background: var(--white);
+  background: var(--surface);
   border: 1px solid var(--border);
   font-size: 0.8125rem;
   color: var(--navy);

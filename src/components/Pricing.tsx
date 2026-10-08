@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Gift, Info } from '@phosphor-icons/react';
+import { Info } from '@phosphor-icons/react';
 import pricing from '../data/pricing.json';
 import { Reveal, Stagger, fadeUp } from './Reveal';
 import { mailto, site } from '../data/site';
@@ -8,7 +8,7 @@ type Cell = { text?: string; included?: boolean; detail?: string } | null;
 type PlanId = 'essentiel' | 'pro' | 'premium';
 type Feature = { label: string; isNew?: boolean } & Record<PlanId, Cell>;
 
-const { header, plans, launchOffer, oneTimePurchase: once, footnote } = pricing;
+const { header, plans, oneTimePurchase: once, footnote } = pricing;
 const features = pricing.features as Feature[];
 
 function CellContent({ cell }: { cell: Cell }) {
@@ -165,15 +165,7 @@ export default function Pricing() {
         </Stagger>
 
         <div className="extras">
-          <Reveal className="extra extra--launch">
-            <p className="extra__eyebrow">{launchOffer.eyebrow}</p>
-            <h3>
-              <Gift size={28} weight="duotone" aria-hidden="true" style={{ display: 'inline', verticalAlign: '-4px', marginRight: 8 }} />
-              {launchOffer.title}
-            </h3>
-            <p>{launchOffer.text}</p>
-          </Reveal>
-          <Reveal className="extra extra--once" delay={0.1}>
+          <Reveal className="extra extra--once">
             <p className="extra__eyebrow">{once.eyebrow}</p>
             <p className="extra__price">
               <strong>{once.price} €</strong>

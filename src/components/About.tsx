@@ -1,5 +1,5 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import {
   Atom,
   DeviceMobile,
@@ -52,24 +52,57 @@ function PhotoCard() {
   const shapeY = useTransform(scrollYProgress, [0, 1], [40, -40]);
   const badgeY = useTransform(scrollYProgress, [0, 1], [24, -24]);
 
+  // Le dévoilement ne démarre qu'une fois l'image chargée ET visible.
+  const imgRef = useRef<HTMLImageElement>(null);
+  // On observe le conteneur et non le cadre : Chrome (≥ 132) tient compte du clip-path de l'élément observé,
+  // un cadre masqué à 100 % n'est donc jamais « visible » et l'animation ne démarrerait jamais.
+  const inView = useInView(ref, { once: true, margin: '0px 0px -15% 0px' });
+  const reduce = useReducedMotion();
+  const [loaded, setLoaded] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    if (imgRef.current?.complete) setLoaded(true);
+  }, []);
+
+  const frameState = revealed ? 'done' : inView && loaded ? 'show' : 'hidden';
+
   return (
     <div className="photo" ref={ref}>
       <motion.div className="photo__shape" style={{ y: shapeY }} aria-hidden="true" />
       <motion.div
         className="photo__frame"
-        initial={{ clipPath: 'inset(100% 0% 0% 0% round 28px)' }}
-        whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 28px)' }}
-        viewport={{ once: true, margin: '0px 0px -15% 0px' }}
-        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        initial="hidden"
+        animate={frameState}
+        onAnimationComplete={(def) => def === 'show' && setRevealed(true)}
+        variants={{
+          hidden: { clipPath: 'inset(100% 0% 0% 0% round 28px)' },
+          show: {
+            clipPath: 'inset(0% 0% 0% 0% round 28px)',
+            transition: { duration: reduce ? 0 : 1.1, ease: [0.22, 1, 0.36, 1] },
+          },
+          // Une fois dévoilé, on retire le clip-path : Chrome ne garde plus de calque animé à repeindre
+          done: { clipPath: 'none', transition: { duration: 0 } },
+        }}
       >
         <motion.picture
-          initial={{ scale: 1.15 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true, margin: '0px 0px -15% 0px' }}
-          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          variants={{
+            hidden: { scale: 1.15 },
+            show: { scale: 1, transition: { duration: 1.4, ease: [0.22, 1, 0.36, 1] } },
+            done: { scale: 1 },
+          }}
         >
           <source srcSet={site.photo.webp} type="image/webp" />
-          <img src={site.photo.jpg} alt={site.photo.alt} width={720} height={720} loading="lazy" decoding="async" />
+          {/* Pas de loading="lazy" ni de décodage asynchrone : le dévoilement attend que l'image soit prête */}
+          <img
+            ref={imgRef}
+            src={site.photo.jpg}
+            alt={site.photo.alt}
+            width={720}
+            height={720}
+            onLoad={() => setLoaded(true)}
+            onError={() => setLoaded(true)}
+          />
         </motion.picture>
       </motion.div>
 

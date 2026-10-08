@@ -4,97 +4,184 @@
     "title": "Votre commerce, enfin visible en ligne",
     "subtitle": "Un site à votre image, hébergé et mis à jour pour vous. Vous gérez vos clients, on s'occupe du reste.",
     "badges": [
-      { "value": "0 €", "label": "de mise en place" },
-      { "value": "0 mois", "label": "d'engagement, résiliable à tout moment" }
+      {
+        "value": "0 €",
+        "label": "de mise en place"
+      },
+      {
+        "value": "0 mois",
+        "label": "d'engagement, résiliable à tout moment"
+      }
     ]
   },
   "plans": [
-    { "id": "essentiel", "name": "Essentiel", "price": 29, "period": "€/mois", "tagline": "Une page claire, hébergement et nom de domaine inclus", "featured": false },
-    { "id": "pro", "name": "Pro", "price": 49, "period": "€/mois", "tagline": "Plusieurs pages, espace de gestion et statistiques inclus", "featured": true, "ribbon": "LE PLUS CHOISI" },
-    { "id": "premium", "name": "Premium", "price": 89, "period": "€/mois", "tagline": "Site complet, IA sur mesure et modifications illimitées", "featured": false }
+    {
+      "id": "essentiel",
+      "name": "Essentiel",
+      "price": 29,
+      "period": "€/mois",
+      "tagline": "Une page claire, hébergement et nom de domaine inclus",
+      "featured": false
+    },
+    {
+      "id": "pro",
+      "name": "Pro",
+      "price": 49,
+      "period": "€/mois",
+      "tagline": "Plusieurs pages, espace de gestion et statistiques inclus",
+      "featured": true,
+      "ribbon": "LE PLUS CHOISI"
+    },
+    {
+      "id": "premium",
+      "name": "Premium",
+      "price": 89,
+      "period": "€/mois",
+      "tagline": "Site complet, IA sur mesure et modifications illimitées",
+      "featured": false
+    }
   ],
   "features": [
     {
       "label": "Votre site",
-      "essentiel": { "text": "1 page : présentation, horaires, plan, contact" },
-      "pro": { "text": "Plusieurs pages : services, carte ou tarifs, galerie photos" },
-      "premium": { "text": "Plusieurs pages + une page dédiée à chaque service" }
+      "essentiel": {
+        "text": "1 page : présentation, horaires, plan, contact"
+      },
+      "pro": {
+        "text": "Plusieurs pages : services, carte ou tarifs, galerie photos"
+      },
+      "premium": {
+        "text": "Plusieurs pages + une page dédiée à chaque service"
+      }
     },
     {
       "label": "Nom de domaine + hébergement",
-      "essentiel": { "included": true },
-      "pro": { "included": true },
-      "premium": { "included": true }
+      "essentiel": {
+        "included": true
+      },
+      "pro": {
+        "included": true
+      },
+      "premium": {
+        "included": true
+      }
     },
     {
       "label": "Animations modernes",
       "isNew": true,
       "essentiel": null,
-      "pro": { "included": true, "detail": "apparitions au défilement, effets au survol, transitions fluides" },
-      "premium": { "included": true }
+      "pro": {
+        "included": true,
+        "detail": "apparitions au défilement, effets au survol, transitions fluides"
+      },
+      "premium": {
+        "included": true
+      }
     },
     {
       "label": "Réservation & contact",
-      "essentiel": { "text": "Bouton vers votre plateforme (Planity, TheFork…)" },
-      "pro": { "text": "Bouton de réservation + formulaire de contact" },
-      "premium": { "text": "Bouton, formulaire de contact + formulaire de demande sur mesure" }
-    },
-    {
-      "label": "Espace de gestion (back-office)",
-      "essentiel": { "text": "En option (+10 €/mois) : horaires, textes et images" },
-      "pro": { "included": true, "detail": "horaires, textes, images, carte ou tarifs" },
-      "premium": { "included": true, "detail": "tout le contenu, images et nouvelles pages" }
-    },
-    {
-      "label": "Statistiques de consultation",
-      "isNew": true,
-      "essentiel": null,
-      "pro": { "text": "Tableau de bord : visites, pages vues, provenance des visiteurs" },
-      "premium": { "text": "Tableau de bord + bilan mensuel commenté" }
+      "essentiel": {
+        "text": "Bouton vers votre plateforme (Planity, TheFork…)"
+      },
+      "pro": {
+        "text": "Bouton de réservation + formulaire de contact"
+      },
+      "premium": {
+        "text": "Bouton, formulaire de contact + formulaire de demande sur mesure"
+      }
     },
     {
       "label": "Fonctionnalités IA sur mesure",
       "isNew": true,
       "essentiel": null,
       "pro": null,
-      "premium": { "text": "Prise de rendez-vous, chatbot, relances par email… adaptés à votre activité" }
+      "premium": {
+        "text": "Prise de rendez-vous, chatbot, relances par email… adaptés à votre activité"
+      }
     },
     {
-      "label": "Modifications faites pour vous",
-      "essentiel": { "text": "1 par trimestre" },
-      "pro": { "text": "1 par mois" },
-      "premium": { "text": "Illimitées*" }
+      "label": "Espace de gestion (back-office)",
+      "essentiel": {
+        "text": "En option (+10 €/mois) : horaires, textes et images"
+      },
+      "pro": {
+        "included": true,
+        "detail": "horaires, textes, images, carte ou tarifs"
+      },
+      "premium": {
+        "included": true,
+        "detail": "tout le contenu, images et nouvelles pages"
+      }
     },
     {
-      "label": "Correction de bugs (garantie)",
-      "essentiel": { "included": true },
-      "pro": { "included": true },
-      "premium": { "included": true, "detail": "traitée en priorité" }
-    },
-    {
-      "label": "Support",
-      "essentiel": { "text": "Email, réponse sous 72 h ouvrées" },
-      "pro": { "text": "Email et SMS, réponse sous 48 h ouvrées" },
-      "premium": { "text": "Email, SMS et téléphone, réponse sous 24 h ouvrées" }
+      "label": "Statistiques de consultation",
+      "isNew": true,
+      "essentiel": null,
+      "pro": {
+        "text": "Tableau de bord : visites, pages vues, provenance des visiteurs"
+      },
+      "premium": {
+        "text": "Tableau de bord + bilan mensuel commenté"
+      }
     },
     {
       "label": "Fiche Google Maps",
       "essentiel": null,
-      "pro": { "text": "Mise au propre lors de la mise en ligne" },
-      "premium": { "text": "Mise au propre + mise à jour chaque mois" }
+      "pro": {
+        "text": "Mise au propre lors de la mise en ligne"
+      },
+      "premium": {
+        "text": "Mise au propre + mise à jour chaque mois"
+      }
     },
     {
       "label": "Bonus",
       "essentiel": null,
-      "pro": { "text": "QR code pour récolter des avis" },
-      "premium": { "text": "QR code avis + référencement local" }
+      "pro": {
+        "text": "QR code pour récolter des avis"
+      },
+      "premium": {
+        "text": "QR code avis + référencement local"
+      }
+    },
+    {
+      "label": "Modifications faites pour vous",
+      "essentiel": {
+        "text": "1 par trimestre"
+      },
+      "pro": {
+        "text": "1 par mois"
+      },
+      "premium": {
+        "text": "Illimitées*"
+      }
+    },
+    {
+      "label": "Correction de bugs (garantie)",
+      "essentiel": {
+        "included": true
+      },
+      "pro": {
+        "included": true
+      },
+      "premium": {
+        "included": true,
+        "detail": "traitée en priorité"
+      }
+    },
+    {
+      "label": "Support",
+      "essentiel": {
+        "text": "Email, réponse sous 72 h ouvrées"
+      },
+      "pro": {
+        "text": "Email et SMS, réponse sous 48 h ouvrées"
+      },
+      "premium": {
+        "text": "Email, SMS et téléphone, réponse sous 24 h ouvrées"
+      }
     }
   ],
-  "launchOffer": {
-    "eyebrow": "OFFRE DE LANCEMENT",
-    "title": "1er mois offert",
-    "text": "En échange d'un avis ou d'une recommandation."
-  },
   "oneTimePurchase": {
     "eyebrow": "VOUS PRÉFÉREZ PAYER UNE SEULE FOIS ?",
     "price": 490,
