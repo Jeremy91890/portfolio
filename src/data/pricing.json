@@ -41,6 +41,15 @@
       "featured": false
     }
   ],
+  "includedInAll": {
+    "title": "Inclus dans toutes les formules",
+    "items": [
+      "Nom de domaine",
+      "Hébergement",
+      "Correction des bugs",
+      "Support par email"
+    ]
+  },
   "features": [
     {
       "label": "Votre site",
@@ -52,51 +61,6 @@
       },
       "premium": {
         "text": "Plusieurs pages + une page dédiée à chaque service"
-      }
-    },
-    {
-      "label": "Nom de domaine + hébergement",
-      "essentiel": {
-        "included": true
-      },
-      "pro": {
-        "included": true
-      },
-      "premium": {
-        "included": true
-      }
-    },
-    {
-      "label": "Animations modernes",
-      "isNew": true,
-      "essentiel": null,
-      "pro": {
-        "included": true,
-        "detail": "apparitions au défilement, effets au survol, transitions fluides"
-      },
-      "premium": {
-        "included": true
-      }
-    },
-    {
-      "label": "Réservation & contact",
-      "essentiel": {
-        "text": "Bouton vers votre plateforme (Planity, TheFork…)"
-      },
-      "pro": {
-        "text": "Bouton de réservation + formulaire de contact"
-      },
-      "premium": {
-        "text": "Bouton, formulaire de contact + formulaire de demande sur mesure"
-      }
-    },
-    {
-      "label": "Fonctionnalités IA sur mesure",
-      "isNew": true,
-      "essentiel": null,
-      "pro": null,
-      "premium": {
-        "text": "Prise de rendez-vous, chatbot, relances par email… adaptés à votre activité"
       }
     },
     {
@@ -125,6 +89,30 @@
       }
     },
     {
+      "label": "Animations modernes",
+      "isNew": true,
+      "essentiel": null,
+      "pro": {
+        "included": true,
+        "detail": "apparitions au défilement, effets au survol, transitions fluides"
+      },
+      "premium": {
+        "included": true
+      }
+    },
+    {
+      "label": "Réservation & contact",
+      "essentiel": {
+        "text": "Bouton vers votre plateforme (Planity, TheFork…)"
+      },
+      "pro": {
+        "text": "Bouton de réservation + formulaire de contact"
+      },
+      "premium": {
+        "text": "Bouton, formulaire de contact + formulaire de demande sur mesure"
+      }
+    },
+    {
       "label": "Fiche Google Maps",
       "essentiel": null,
       "pro": {
@@ -145,6 +133,15 @@
       }
     },
     {
+      "label": "Fonctionnalités IA sur mesure",
+      "isNew": true,
+      "essentiel": null,
+      "pro": null,
+      "premium": {
+        "text": "Prise de rendez-vous, chatbot, relances par email… adaptés à votre activité"
+      }
+    },
+    {
       "label": "Modifications faites pour vous",
       "essentiel": {
         "text": "1 par trimestre"
@@ -157,19 +154,6 @@
       }
     },
     {
-      "label": "Correction de bugs (garantie)",
-      "essentiel": {
-        "included": true
-      },
-      "pro": {
-        "included": true
-      },
-      "premium": {
-        "included": true,
-        "detail": "traitée en priorité"
-      }
-    },
-    {
       "label": "Support",
       "essentiel": {
         "text": "Email, réponse sous 72 h ouvrées"
@@ -178,7 +162,7 @@
         "text": "Email et SMS, réponse sous 48 h ouvrées"
       },
       "premium": {
-        "text": "Email, SMS et téléphone, réponse sous 24 h ouvrées"
+        "text": "Email, SMS et téléphone, réponse sous 24 h ouvrées, bugs traités en priorité"
       }
     }
   ],

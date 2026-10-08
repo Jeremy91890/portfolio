@@ -1017,6 +1017,36 @@ button { font: inherit; color: inherit; }
 .badge strong { display: block; font-size: 1.5rem; font-weight: 700; color: var(--orange); }
 .badge span { font-size: 0.8125rem; color: var(--gray-on-dark); }
 
+.included-all {
+  display: grid;
+  gap: 14px;
+  padding: 22px clamp(20px, 3vw, 32px);
+  border: 1px solid var(--border);
+  border-top: 0;
+  background: var(--orange-soft);
+}
+@media (min-width: 900px) {
+  .included-all { grid-template-columns: auto 1fr; align-items: center; gap: 32px; }
+}
+.included-all__title { font-size: 1rem; font-weight: 700; color: var(--navy); letter-spacing: 0; }
+.included-all__list { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+.included-all__list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--navy);
+}
+.included-all__check {
+  display: grid;
+  place-items: center;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--orange-text);
+  color: var(--white);
+}
+
 .pricing-table-wrap {
   border: 1px solid var(--border);
   border-top: 0;
@@ -1115,7 +1145,8 @@ button { font: inherit; color: inherit; }
 .plan-cards { display: none; }
 
 @media (max-width: 899px) {
-  .pricing-head { border-radius: var(--radius-lg); }
+  .pricing-head { border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .included-all { border-radius: 0 0 var(--radius-lg) var(--radius-lg); }
   .pricing-table-wrap { display: none; }
   .plan-cards {
     display: grid;
@@ -1172,7 +1203,8 @@ button { font: inherit; color: inherit; }
   color: var(--gray);
 }
 @media (min-width: 900px) { .pricing-foot { grid-template-columns: 1fr auto; gap: 48px; align-items: start; } }
-.pricing-foot__contact { font-weight: 600; color: var(--navy); white-space: nowrap; }
+.pricing-foot__contact { font-weight: 600; color: var(--navy); overflow-wrap: anywhere; }
+@media (min-width: 900px) { .pricing-foot__contact { white-space: nowrap; } }
 .pricing-note {
   margin-top: 32px;
   display: flex;

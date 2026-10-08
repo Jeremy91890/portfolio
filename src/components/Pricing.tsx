@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Info } from '@phosphor-icons/react';
+import { Check, Info } from '@phosphor-icons/react';
 import pricing from '../data/pricing.json';
 import { Reveal, Stagger, fadeUp } from './Reveal';
 import { mailto, site } from '../data/site';
@@ -8,7 +8,7 @@ type Cell = { text?: string; included?: boolean; detail?: string } | null;
 type PlanId = 'essentiel' | 'pro' | 'premium';
 type Feature = { label: string; isNew?: boolean } & Record<PlanId, Cell>;
 
-const { header, plans, oneTimePurchase: once, footnote } = pricing;
+const { header, includedInAll, plans, oneTimePurchase: once, footnote } = pricing;
 const features = pricing.features as Feature[];
 
 function CellContent({ cell }: { cell: Cell }) {
@@ -90,6 +90,21 @@ export default function Pricing() {
             ))}
           </ul>
         </Reveal>
+
+        {/* Ce qui est commun aux trois formules : sorti du tableau pour que celui-ci ne montre que les différences */}
+        <div className="included-all">
+          <h3 className="included-all__title">{includedInAll.title}</h3>
+          <Stagger className="included-all__list" step={0.08} as="ul">
+            {includedInAll.items.map((item) => (
+              <motion.li key={item} variants={fadeUp}>
+                <span className="included-all__check" aria-hidden="true">
+                  <Check size={14} weight="bold" />
+                </span>
+                {item}
+              </motion.li>
+            ))}
+          </Stagger>
+        </div>
 
         {/* Grand écran : tableau comparatif */}
         <div className="pricing-table-wrap">
