@@ -160,7 +160,6 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const blobY1 = useTransform(scrollYProgress, [0, 1], ['0%', '40%']);
   const blobY2 = useTransform(scrollYProgress, [0, 1], ['0%', '-30%']);
-  const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '12%']);
 
   return (
     <section ref={ref} id="top" className="hero on-dark" aria-labelledby="hero-title">
@@ -168,7 +167,7 @@ export default function Hero() {
       <motion.div className="hero__blob hero__blob--orange" style={{ y: blobY1 }} aria-hidden="true" />
       <motion.div className="hero__blob hero__blob--blue" style={{ y: blobY2 }} aria-hidden="true" />
 
-      <motion.div className="container hero__inner" initial="hidden" animate="show" style={{ y: contentY }}>
+      <motion.div className="container hero__inner" initial="hidden" animate="show">
         <div>
           <motion.p className="status-pill" variants={appear(0)}>
             <span className="status-pill__avatar" aria-hidden="true">

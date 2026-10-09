@@ -1,3 +1,13 @@
+/* Police de secours aux mêmes dimensions que Poppins : le texte ne saute pas quand Poppins arrive */
+@font-face {
+  font-family: 'Poppins Fallback';
+  src: local('Arial'), local('Helvetica'), local('Roboto');
+  size-adjust: 112.5%;
+  ascent-override: 93%;
+  descent-override: 31%;
+  line-gap-override: 8.9%;
+}
+
 :root {
   --navy: #14213d;
   --navy-2: #22335a;
@@ -28,7 +38,7 @@
   --section-y: clamp(72px, 10vw, 128px);
   --header-h: 68px;
 
-  --font: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font: 'Poppins', 'Poppins Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -51,7 +61,7 @@ body {
   font-size: 1rem;
   line-height: 1.65;
   color: var(--navy);
-  background: var(--white);
+  background: var(--navy-3);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -101,7 +111,7 @@ button { font: inherit; color: inherit; }
   padding-inline: var(--gutter);
 }
 
-.section { padding-block: var(--section-y); position: relative; }
+.section { padding-block: var(--section-y); position: relative; background: var(--white); }
 .section--surface { background: var(--surface); }
 .section--dark { background: var(--navy); }
 
@@ -192,10 +202,15 @@ button { font: inherit; color: inherit; }
   transition: background-color var(--dur), box-shadow var(--dur), backdrop-filter var(--dur);
 }
 .header--scrolled {
-  background: rgb(12 21 41 / 0.82);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: rgb(12 21 41 / 0.96);
   box-shadow: 0 1px 0 rgb(255 255 255 / 0.08);
+}
+@media (min-width: 960px) and (hover: hover) {
+  .header--scrolled {
+    background: rgb(12 21 41 / 0.82);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
 }
 .header__inner {
   height: 100%;
@@ -293,7 +308,8 @@ button { font: inherit; color: inherit; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: 100dvh;
+  min-height: 100vh;
+  min-height: 100svh;
   padding-top: calc(var(--header-h) + clamp(40px, 8vw, 96px));
   padding-bottom: clamp(64px, 8vw, 112px);
   background: var(--navy-3);
@@ -312,18 +328,17 @@ button { font: inherit; color: inherit; }
   position: absolute;
   z-index: -1;
   border-radius: 50%;
-  filter: blur(80px);
   pointer-events: none;
 }
 .hero__blob--orange {
-  width: 520px; height: 520px;
-  top: -140px; right: -120px;
-  background: rgb(244 106 46 / 0.45);
+  width: 760px; height: 760px;
+  top: -260px; right: -240px;
+  background: radial-gradient(circle closest-side, rgb(244 106 46 / 0.42), rgb(244 106 46 / 0.18) 55%, transparent);
 }
 .hero__blob--blue {
-  width: 600px; height: 600px;
-  bottom: -260px; left: -200px;
-  background: rgb(64 102 196 / 0.45);
+  width: 860px; height: 860px;
+  bottom: -390px; left: -330px;
+  background: radial-gradient(circle closest-side, rgb(64 102 196 / 0.42), rgb(64 102 196 / 0.18) 55%, transparent);
 }
 .hero__inner {
   display: grid;
