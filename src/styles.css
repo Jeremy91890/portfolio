@@ -1262,7 +1262,14 @@ button { font: inherit; color: inherit; }
   font-size: 0.8125rem;
   color: var(--gray);
 }
-@media (min-width: 900px) { .pricing-foot { grid-template-columns: 1fr auto; gap: 48px; align-items: start; } }
+.pricing-footnote {
+  margin-top: 12px;
+  max-width: 760px;
+  font-size: 0.8125rem;
+  color: var(--gray);
+}
+@media (max-width: 899px) { .pricing-footnote { margin-top: 16px; } }
+@media (min-width: 900px) { .pricing-foot { justify-items: end; } }
 .pricing-foot__contact { font-weight: 600; color: var(--navy); overflow-wrap: anywhere; }
 @media (min-width: 900px) { .pricing-foot__contact { white-space: nowrap; } }
 .pricing-note {

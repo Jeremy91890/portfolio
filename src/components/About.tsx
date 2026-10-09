@@ -13,7 +13,7 @@ import {
   Atom,
   DeviceMobile,
   Gauge,
-  GraduationCap,
+  ChatCircleText,
   Handshake,
   HandWaving,
   LinkedinLogo,
@@ -366,12 +366,13 @@ export default function About() {
               whileHover={{ y: -6 }}
             >
               <span className="card__icon" aria-hidden="true">
-                <GraduationCap size={26} weight="duotone" />
+                <ChatCircleText size={26} weight="duotone" />
               </span>
-              <h3>Mentor OpenClassrooms</h3>
+              <h3>À l’écoute & pédagogue</h3>
               <p>
-                J’ai accompagné des étudiants dans leur apprentissage du
-                développement web.
+                Je prends le temps de comprendre votre activité et de vous
+                expliquer chaque choix avec des mots simples, même si vous
+                n’êtes pas du tout technique.
               </p>
             </motion.article>
             <motion.article

@@ -175,6 +175,6 @@
     "modificationUnitPrice": 40,
     "support": "Facturé à l'intervention"
   },
-  "footnote": "* Dans la limite du raisonnable. Un bug (élément qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement demandé par vous, décompté de votre quota. Les erreurs faites depuis le back-office ne relèvent pas de la garantie et comptent comme une modification. Les fonctionnalités IA sont définies avec vous sur devis lors de la mise en place. Sans engagement : résiliable à tout moment.",
+  "footnote": "* Dans la limite du raisonnable. Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota.",
   "contact": "[Votre nom] · [Téléphone] · [Email]"
 }

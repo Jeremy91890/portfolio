@@ -179,6 +179,9 @@ export default function Pricing() {
           ))}
         </Stagger>
 
+        {/* Note de l'astérisque « Illimitées* », placée juste sous les formules */}
+        <p className="pricing-footnote">{footnote}</p>
+
         <div className="extras">
           <Reveal className="extra extra--once">
             <p className="extra__eyebrow">{once.eyebrow}</p>
@@ -206,7 +209,6 @@ export default function Pricing() {
         </Reveal>
 
         <div className="pricing-foot">
-          <p>{footnote}</p>
           <p className="pricing-foot__contact">
             {site.name} · {site.phone} · {site.email}
           </p>
