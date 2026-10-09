@@ -1,7 +1,6 @@
 import type { PointerEvent } from "react";
 import { motion } from "motion/react";
 import {
-  ArrowRight,
   ArrowsClockwise,
   BookOpenText,
   CalendarCheck,
@@ -11,7 +10,7 @@ import {
   Robot,
   ShoppingBag,
 } from "@phosphor-icons/react";
-import { Reveal, SectionHead, Stagger, fadeUp } from "./Reveal";
+import { SectionHead, Stagger, fadeUp } from "./Reveal";
 
 const services = [
   {
@@ -98,21 +97,6 @@ export default function Services() {
             </motion.li>
           ))}
         </Stagger>
-
-        <Reveal className="quote-banner on-dark">
-          <div>
-            <h3>Les formules ne sont qu’indicatives.</h3>
-            <p>
-              Besoin d’autre chose ? Je vous fais un devis personnalisé, en
-              dehors des formules, adapté à votre budget et à votre façon de
-              travailler.
-            </p>
-          </div>
-          <a className="btn" href="#contact">
-            Demander un devis
-            <ArrowRight size={18} weight="bold" aria-hidden="true" />
-          </a>
-        </Reveal>
       </div>
     </section>
   );

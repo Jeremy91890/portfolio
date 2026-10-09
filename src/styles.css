@@ -1272,18 +1272,6 @@ button { font: inherit; color: inherit; }
 @media (min-width: 900px) { .pricing-foot { justify-items: end; } }
 .pricing-foot__contact { font-weight: 600; color: var(--navy); overflow-wrap: anywhere; }
 @media (min-width: 900px) { .pricing-foot__contact { white-space: nowrap; } }
-.pricing-note {
-  margin-top: 32px;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  padding: 20px 24px;
-  border-radius: var(--radius);
-  border: 1px dashed var(--navy);
-  color: var(--navy);
-}
-.pricing-note svg { flex-shrink: 0; color: var(--orange-text); margin-top: 2px; }
-
 /* ---------- Contact ---------- */
 .contact {
   position: relative;

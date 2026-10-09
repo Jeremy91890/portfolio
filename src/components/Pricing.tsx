@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Check, Info } from '@phosphor-icons/react';
+import { ArrowRight, Check } from '@phosphor-icons/react';
 import pricing from '../data/pricing.json';
 import { Reveal, Stagger, fadeUp } from './Reveal';
 import { mailto, site } from '../data/site';
@@ -200,12 +200,19 @@ export default function Pricing() {
           </Reveal>
         </div>
 
-        <Reveal className="pricing-note">
-          <Info size={22} weight="bold" aria-hidden="true" />
-          <p>
-            <strong>Ces formules sont indicatives.</strong> Un besoin particulier (outil métier, IA, application
-            mobile…) ? Je vous propose un devis sur mesure, en dehors des formules.
-          </p>
+        <Reveal className="quote-banner on-dark">
+          <div>
+            <h3>Les formules ne sont qu’indicatives.</h3>
+            <p>
+              Besoin d’autre chose ? Je vous fais un devis personnalisé, en
+              dehors des formules, adapté à votre budget et à votre façon de
+              travailler.
+            </p>
+          </div>
+          <a className="btn" href="#contact">
+            Demander un devis
+            <ArrowRight size={18} weight="bold" aria-hidden="true" />
+          </a>
         </Reveal>
 
         <div className="pricing-foot">
