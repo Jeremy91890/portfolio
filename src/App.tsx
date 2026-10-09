@@ -25,9 +25,9 @@ export default function App() {
         <Marquee />
         <About />
         <Process />
-        <Services />
-        <Market />
         <Pricing />
+        <Market />
+        <Services />
         <Contact />
       </main>
       <Footer />

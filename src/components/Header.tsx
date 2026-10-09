@@ -6,9 +6,9 @@ import { site } from '../data/site';
 const links = [
   { id: 'a-propos', label: 'À propos' },
   { id: 'methode', label: 'Clé en main' },
-  { id: 'services', label: 'Sur mesure' },
-  { id: 'prix-du-marche', label: 'Prix du marché' },
   { id: 'tarifs', label: 'Tarifs' },
+  { id: 'prix-du-marche', label: 'Prix du marché' },
+  { id: 'services', label: 'Sur mesure' },
 ];
 
 export default function Header() {
