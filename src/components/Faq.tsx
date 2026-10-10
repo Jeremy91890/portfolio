@@ -65,12 +65,20 @@ const questions: { q: string; a: ReactNode }[] = [
   {
     q: "Je préfère payer une seule fois, c’est possible ?",
     a: (
-      <p>
-        Oui : <strong>{once.price} €</strong> pour le site, puis{" "}
-        {once.hostingPerMonth} €/mois pour l’hébergement et le nom de domaine.
-        Les bugs sont garantis {once.bugWarrantyMonths} mois et chaque
-        modification est facturée {once.modificationUnitPrice} €.
-      </p>
+      <>
+        <p>
+          Oui : <strong>{once.price} €</strong> pour le site, puis{" "}
+          {once.hostingPerMonth} €/mois pour l’hébergement et le nom de domaine.
+          Les bugs sont garantis {once.bugWarrantyMonths} mois et chaque
+          modification est facturée {once.modificationUnitPrice} €.
+        </p>
+        <p>
+          Vous ne souhaitez pas payer ces {once.hostingPerMonth} €/mois ? Vous
+          pouvez aussi <strong>gérer vous-même</strong> l’hébergement, le nom de
+          domaine et le certificat de sécurité : je vous livre le site et vous
+          explique comment le mettre en ligne.
+        </p>
+      </>
     ),
   },
   {

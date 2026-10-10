@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Marquee from './components/Marquee';
 import About from './components/About';
+import Why from './components/Why';
 import Process from './components/Process';
 import Services from './components/Services';
 import Market from './components/Market';
@@ -25,6 +26,7 @@ export default function App() {
         <Hero />
         <Marquee />
         <About />
+        <Why />
         <Process />
         <Pricing />
         <Market />
