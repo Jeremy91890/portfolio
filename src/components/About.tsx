@@ -10,48 +10,38 @@ import {
 } from "motion/react";
 import {
   ArrowRight,
-  Atom,
+  ChatCircleText,
   DeviceMobile,
   Gauge,
-  ChatCircleText,
   Handshake,
   HandWaving,
   LinkedinLogo,
-  MagicWand,
   MapPin,
-  Sparkle,
 } from "@phosphor-icons/react";
 import { Reveal, SectionHead, Stagger, fadeUp } from "./Reveal";
 import { site } from "../data/site";
 
-const skills = [
-  {
-    icon: Atom,
-    title: "React & React Native",
-    text: "Mon terrain de jeu depuis des années : des interfaces rapides, solides et faciles à faire évoluer.",
-    tags: ["React", "Next.js", "TypeScript", "React Native"],
-    wide: true,
-    dark: true,
-  },
+// Points forts, en liste légère à côté de la photo
+const strengths = [
   {
     icon: Handshake,
     title: "Un interlocuteur unique",
-    text: "Pas de jargon ni d’intermédiaire : vous parlez directement à la personne qui crée votre site.",
+    text: "Vous parlez directement à la personne qui crée votre site.",
+  },
+  {
+    icon: ChatCircleText,
+    title: "Zéro jargon",
+    text: "Chaque choix vous est expliqué avec des mots simples.",
   },
   {
     icon: DeviceMobile,
-    title: "Web & mobile",
-    text: "Votre site est parfait sur téléphone, là où vos clients vous cherchent. Applications iOS et Android possibles.",
+    title: "Pensé pour le mobile",
+    text: "Parfait sur téléphone, là où vos clients vous cherchent.",
   },
   {
     icon: Gauge,
-    title: "Performance & référencement",
-    text: "Des pages qui s’affichent vite et qui remontent sur Google et Google Maps, dans votre quartier.",
-  },
-  {
-    icon: MagicWand,
-    title: "IA & automatisation",
-    text: "Chatbot, prise de rendez-vous, relances : l’IA au service de votre quotidien, pas l’inverse.",
+    title: "Rapide et visible",
+    text: "Des pages qui s’affichent vite et remontent sur Google.",
   },
 ];
 
@@ -334,61 +324,21 @@ export default function About() {
             </a>
           </Reveal>
 
-          <Stagger className="bento" step={0.1}>
-            {skills.map(({ icon: Icon, title, text, tags, wide, dark }) => (
-              <motion.article
-                key={title}
-                className={`card${dark ? " card--dark on-dark" : ""}${wide ? " bento__item--wide" : ""}`}
-                variants={fadeUp}
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 300, damping: 22 }}
-              >
-                {dark && <span className="card__glow" aria-hidden="true" />}
-                <span className="card__icon" aria-hidden="true">
-                  <Icon size={26} weight="duotone" />
-                </span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-                {tags && (
-                  <ul className="tags" aria-label="Technologies">
-                    {tags.map((t) => (
-                      <li className="tag" key={t}>
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </motion.article>
+          <Stagger as="ul" className="strengths" step={0.08}>
+            {strengths.map(({ icon: Icon, title, text }) => (
+              <motion.li key={title} className="strength" variants={fadeUp}>
+                <Icon
+                  className="strength__icon"
+                  size={24}
+                  weight="duotone"
+                  aria-hidden="true"
+                />
+                <div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </div>
+              </motion.li>
             ))}
-            <motion.article
-              className="card"
-              variants={fadeUp}
-              whileHover={{ y: -6 }}
-            >
-              <span className="card__icon" aria-hidden="true">
-                <ChatCircleText size={26} weight="duotone" />
-              </span>
-              <h3>À l’écoute & pédagogue</h3>
-              <p>
-                Je prends le temps de comprendre votre activité et de vous
-                expliquer chaque choix avec des mots simples, même si vous
-                n’êtes pas du tout technique.
-              </p>
-            </motion.article>
-            <motion.article
-              className="card"
-              variants={fadeUp}
-              whileHover={{ y: -6 }}
-            >
-              <span className="card__icon" aria-hidden="true">
-                <Sparkle size={26} weight="duotone" />
-              </span>
-              <h3>Design & animations</h3>
-              <p>
-                Des interfaces modernes et vivantes, comme ce site, sans
-                sacrifier la vitesse.
-              </p>
-            </motion.article>
           </Stagger>
         </div>
       </div>

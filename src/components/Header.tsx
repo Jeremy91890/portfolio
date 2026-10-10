@@ -9,6 +9,7 @@ const links = [
   { id: 'tarifs', label: 'Tarifs' },
   { id: 'prix-du-marche', label: 'Prix du marché' },
   { id: 'services', label: 'Sur mesure' },
+  { id: 'faq', label: 'FAQ' },
 ];
 
 export default function Header() {

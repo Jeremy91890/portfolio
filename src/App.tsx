@@ -7,6 +7,7 @@ import Process from './components/Process';
 import Services from './components/Services';
 import Market from './components/Market';
 import Pricing from './components/Pricing';
+import Faq from './components/Faq';
 import Contact, { Footer } from './components/Contact';
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
         <Pricing />
         <Market />
         <Services />
+        <Faq />
         <Contact />
       </main>
       <Footer />
