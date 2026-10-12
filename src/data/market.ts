@@ -1,3 +1,7 @@
+import pricing from "./pricing.json";
+
+export const planPrice = (id: string) => pricing.plans.find((p) => p.id === id)!.price;
+
 // Prix du marché : chaque chiffre est repris tel quel de la source citée.
 export type Source = {
   publisher: string;
@@ -50,11 +54,8 @@ export const threeYearComparison = [
   },
   {
     label: "Mon offre Essentiel",
-    detail: "29 €/mois, tout compris, 0 € de mise en place",
-    total: 29 * 36,
+    detail: `${planPrice("essentiel")} €/mois, tout compris, 0 € de mise en place`,
+    total: planPrice("essentiel") * 36,
     mine: true,
   },
 ];
-
-export const aiPrompt =
-  "Combien coûte en moyenne la création et la maintenance d’un site vitrine pour un petit commerce en France, hébergement et nom de domaine compris ?";

@@ -10,6 +10,7 @@ import Market from './components/Market';
 import Pricing from './components/Pricing';
 import Faq from './components/Faq';
 import Contact, { Footer } from './components/Contact';
+import Legal from './components/Legal';
 
 export default function App() {
   const { scrollYProgress } = useScroll();
@@ -35,6 +36,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <Legal />
     </>
   );
 }

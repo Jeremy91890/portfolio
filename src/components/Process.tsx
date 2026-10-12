@@ -19,7 +19,7 @@ const steps = [
   {
     icon: RocketLaunch,
     title: 'Mise en ligne',
-    text: 'Je réserve le nom de domaine, j’héberge le site, je le sécurise et je mets votre fiche Google Maps au propre.',
+    text: 'Je réserve le nom de domaine, j’héberge le site et je le sécurise.',
     meta: '0 € de frais de mise en place',
   },
   {

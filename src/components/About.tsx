@@ -51,7 +51,7 @@ type Hello = { text: string; link?: { href: string; label: string } };
 const hellos: Hello[] = [
   { text: "Coucou ! Vous êtes arrivé jusqu’ici, on prend un café ?" },
   { text: "Oui, je suis aussi souriant au téléphone." },
-  { text: "Psst… la formule Pro est la plus choisie." },
+  { text: "Psst… je vous recommande la formule Pro." },
   {
     text: "Vous cherchez le bouton devis ? Il est tout en bas de la page.",
     link: { href: "#contact", label: "Demander un devis" },

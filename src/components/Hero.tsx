@@ -3,6 +3,9 @@ import { motion, useMotionValue, useScroll, useSpring, useTransform, type Varian
 import { ArrowRight, Check, Globe, HardDrives, LockSimple, Star, Wrench } from '@phosphor-icons/react';
 import Counter from './Counter';
 import { site } from '../data/site';
+import pricing from '../data/pricing.json';
+
+const fromPrice = Math.min(...pricing.plans.map((p) => p.price));
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -174,7 +177,7 @@ export default function Hero() {
               <img src={site.photo.thumb} alt="" width={32} height={32} />
               <span className="status-pill__dot" />
             </span>
-            {site.name} · Développeur frontend & mobile depuis 10 ans
+            {site.name} · Développeur web & mobile depuis 10 ans
           </motion.p>
 
           <h1 className="hero__title" id="hero-title">
@@ -200,8 +203,7 @@ export default function Hero() {
           </h1>
 
           <motion.p className="hero__lead" variants={appear(0.8)}>
-            Expert <strong>React</strong> et <strong>React Native</strong>,
-            je crée, héberge et fais vivre le site de votre commerce. Vous n’avez rien de technique à gérer, et ça vous
+            Je crée, héberge et fais vivre le site de votre commerce. Vous n’avez rien de technique à gérer, et ça vous
             coûte <strong>beaucoup moins cher que le marché</strong>.
           </motion.p>
 
@@ -229,7 +231,7 @@ export default function Hero() {
               <dt className="sr-only">Prix</dt>
               <dd style={{ margin: 0 }}>
                 <span className="stat__value">
-                  <Counter to={29} suffix=" €" />
+                  <Counter to={fromPrice} suffix=" €" />
                 </span>
                 <span className="stat__label">par mois, dès</span>
               </dd>
@@ -242,10 +244,10 @@ export default function Hero() {
               </dd>
             </div>
             <div>
-              <dt className="sr-only">Engagement</dt>
+              <dt className="sr-only">Délai de mise en ligne</dt>
               <dd style={{ margin: 0 }}>
-                <span className="stat__value">0 mois</span>
-                <span className="stat__label">d’engagement</span>
+                <span className="stat__value">{pricing.launchDays} jours</span>
+                <span className="stat__label">après validation de vos contenus</span>
               </dd>
             </div>
           </motion.dl>

@@ -2,18 +2,29 @@
   "header": {
     "eyebrow": "SITE WEB VITRINE CLÉ EN MAIN",
     "title": "Votre commerce, enfin visible en ligne",
-    "subtitle": "Un site à votre image, hébergé et mis à jour pour vous. Vous gérez vos clients, on s'occupe du reste.",
+    "subtitle": "Un site à votre image, que j'héberge et mets à jour pour vous. Vous gérez vos clients, je m'occupe du reste.",
     "badges": [
       {
         "value": "0 €",
         "label": "de mise en place"
       },
       {
-        "value": "0 mois",
-        "label": "d'engagement, résiliable à tout moment"
+        "value": "7 jours",
+        "label": "pour être en ligne, après validation de vos contenus"
+      },
+      {
+        "value": "Sans engagement",
+        "label": "sur formules Essentiel et Pro"
+      },
+      {
+        "value": "2 mois offerts",
+        "label": "sur chaque formule, en payant à l'année"
       }
     ]
   },
+  "annualFreeMonths": 2,
+  "launchDays": 7,
+  "premiumCommitmentMonths": 12,
   "plans": [
     {
       "id": "essentiel",
@@ -21,6 +32,7 @@
       "price": 29,
       "period": "€/mois",
       "tagline": "Une page claire, hébergement et nom de domaine inclus",
+      "commitment": "Sans engagement",
       "featured": false
     },
     {
@@ -28,16 +40,18 @@
       "name": "Pro",
       "price": 49,
       "period": "€/mois",
-      "tagline": "Plusieurs pages, espace de gestion et statistiques inclus",
+      "tagline": "3 pages, modifiables par vous, et statistiques de visites",
+      "commitment": "Sans engagement",
       "featured": true,
-      "ribbon": "LE PLUS CHOISI"
+      "ribbon": "RECOMMANDÉ"
     },
     {
       "id": "premium",
       "name": "Premium",
       "price": 89,
       "period": "€/mois",
-      "tagline": "Site complet, IA sur mesure et modifications illimitées",
+      "tagline": "Site complet, outil sur mesure et modifications illimitées",
+      "commitment": "Engagement 12 mois",
       "featured": false
     }
   ],
@@ -46,8 +60,10 @@
     "items": [
       "Nom de domaine",
       "Hébergement",
+      "Sécurité (HTTPS) et sauvegardes",
       "Correction des bugs",
-      "Support par email"
+      "Mentions légales obligatoires (loi LCEN)",
+      "Mise en ligne 7 jours après validation de vos contenus"
     ]
   },
   "features": [
@@ -57,88 +73,88 @@
         "text": "1 page : présentation, horaires, plan, contact"
       },
       "pro": {
-        "text": "Plusieurs pages : services, carte ou tarifs, galerie photos"
+        "text": "3 pages : services, carte ou tarifs, galerie photos"
       },
       "premium": {
-        "text": "Plusieurs pages + une page dédiée à chaque service"
+        "text": "Jusqu'à 5 pages"
       }
     },
     {
-      "label": "Espace de gestion (back-office)",
+      "label": "Modifier votre site vous-même",
+      "hint": "(depuis un espace simple, sans passer par moi)",
       "essentiel": {
         "text": "En option (+10 €/mois) : horaires, textes et images"
       },
       "pro": {
         "included": true,
-        "detail": "horaires, textes, images, carte ou tarifs"
+        "detail": "horaires, textes, images, carte ou tarifs, pour chaque page"
       },
       "premium": {
         "included": true,
-        "detail": "tout le contenu, images et nouvelles pages"
+        "detail": "horaires, textes, images, carte ou tarifs, pour chaque page"
       }
     },
     {
-      "label": "Statistiques de consultation",
-      "isNew": true,
-      "essentiel": null,
-      "pro": {
-        "text": "Tableau de bord : visites, pages vues, provenance des visiteurs"
+      "label": "Adresse e-mail pro",
+      "hint": "(contact@votrecommerce.fr)",
+      "essentiel": {
+        "text": "En option (+5 €/mois)"
       },
-      "premium": {
-        "text": "Tableau de bord + bilan mensuel commenté"
-      }
-    },
-    {
-      "label": "Animations modernes",
-      "isNew": true,
-      "essentiel": null,
       "pro": {
-        "included": true,
-        "detail": "apparitions au défilement, effets au survol, transitions fluides"
+        "text": "En option (+5 €/mois)"
       },
       "premium": {
         "included": true
       }
     },
     {
-      "label": "Réservation & contact",
+      "label": "Statistiques de visites",
+      "essentiel": null,
+      "pro": {
+        "text": "Tableau de bord : nombre de visiteurs, pages consultées, d'où ils viennent"
+      },
+      "premium": {
+        "text": "Tableau de bord + bilan mensuel commenté"
+      }
+    },
+    {
+      "label": "Réservation en ligne",
       "essentiel": {
-        "text": "Bouton vers votre plateforme (Planity, TheFork…)"
+        "text": "Un bouton vers votre outil de réservation (Planity, TheFork…)"
       },
       "pro": {
-        "text": "Bouton de réservation + formulaire de contact"
+        "text": "La réservation intégrée à votre site : vos clients accèdent à votre outil sans quitter votre site"
       },
       "premium": {
-        "text": "Bouton, formulaire de contact + formulaire de demande sur mesure"
+        "text": "Votre propre système de réservation, sans dépendre d'une plateforme"
       }
     },
     {
-      "label": "Fiche Google Maps",
+      "label": "Visibilité sur Google",
       "essentiel": null,
       "pro": {
-        "text": "Mise au propre lors de la mise en ligne"
+        "text": "Fiche Google Maps mise au propre à la mise en ligne"
       },
       "premium": {
-        "text": "Mise au propre + mise à jour chaque mois"
+        "text": "Fiche Google Maps mise au propre à la mise en ligne"
       }
     },
     {
-      "label": "Bonus",
+      "label": "Avis clients",
       "essentiel": null,
       "pro": {
-        "text": "QR code pour récolter des avis"
+        "text": "QR code à afficher en boutique pour récolter des avis Google"
       },
       "premium": {
-        "text": "QR code avis + référencement local"
+        "text": "QR code à afficher en boutique pour récolter des avis Google"
       }
     },
     {
-      "label": "Fonctionnalités IA sur mesure",
-      "isNew": true,
+      "label": "Outil sur mesure",
       "essentiel": null,
       "pro": null,
       "premium": {
-        "text": "Prise de rendez-vous, chatbot, relances par email… adaptés à votre activité"
+        "text": "1 outil au choix : assistant IA, rappels de rendez-vous, gestion des factures, des stocks, etc."
       }
     },
     {
@@ -173,8 +189,9 @@
     "bugWarrantyMonths": 3,
     "backofficePerMonth": 10,
     "modificationUnitPrice": 40,
-    "support": "Facturé à l'intervention"
+    "quoteMaxDays": 7
   },
-  "footnote": "* Dans la limite du raisonnable. Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota.",
-  "contact": "[Votre nom] · [Téléphone] · [Email]"
+  "notes": [
+    "* Dans la limite du raisonnable. Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota."
+  ]
 }

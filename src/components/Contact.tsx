@@ -8,6 +8,7 @@ import {
 } from "@phosphor-icons/react";
 import { Reveal } from "./Reveal";
 import { mailto, site } from "../data/site";
+import { LEGAL_HASH } from "./Legal";
 
 export default function Contact() {
   return (
@@ -83,10 +84,12 @@ export function Footer() {
     <footer className="footer on-dark">
       <div className="container footer__inner">
         <p>
-          © {new Date().getFullYear()} {site.name} · Fabriqué à
-          Dammarie-lès-Lys, carburé au café
+          © {new Date().getFullYear()} {site.name} · Fabriqué à {site.town},
+          carburé au café
         </p>
-        <p>
+        <p>TVA non applicable, art. 293 B du CGI.</p>
+        <p className="footer__links">
+          <a href={LEGAL_HASH}>Mentions légales</a>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn<span className="sr-only"> (nouvel onglet)</span>
           </a>

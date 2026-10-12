@@ -6,9 +6,9 @@ import { mailto, site } from '../data/site';
 
 type Cell = { text?: string; included?: boolean; detail?: string } | null;
 type PlanId = 'essentiel' | 'pro' | 'premium';
-type Feature = { label: string; isNew?: boolean } & Record<PlanId, Cell>;
+type Feature = { label: string; hint?: string } & Record<PlanId, Cell>;
 
-const { header, includedInAll, plans, oneTimePurchase: once, footnote } = pricing;
+const { header, includedInAll, plans, oneTimePurchase: once, notes } = pricing;
 const features = pricing.features as Feature[];
 
 function CellContent({ cell }: { cell: Cell }) {
@@ -33,10 +33,6 @@ function CellContent({ cell }: { cell: Cell }) {
   return <>{cell.text}</>;
 }
 
-function NewTag() {
-  return <span className="new-tag">NOUVEAU</span>;
-}
-
 function PlanHeader({ plan }: { plan: (typeof plans)[number] }) {
   return (
     <>
@@ -45,6 +41,7 @@ function PlanHeader({ plan }: { plan: (typeof plans)[number] }) {
         {plan.price}
         <small>{plan.period}</small>
       </span>
+      <span className="plan-commitment">{plan.commitment}</span>
       <span className="plan-tagline">{plan.tagline}</span>
     </>
   );
@@ -132,7 +129,7 @@ export default function Pricing() {
                 >
                   <th scope="row">
                     {f.label}
-                    {f.isNew && <NewTag />}
+                    {f.hint && <span className="feature-hint"> {f.hint}</span>}
                   </th>
                   {plans.map((plan) => (
                     <td key={plan.id} className={plan.featured ? 'col-pro' : undefined}>
@@ -166,7 +163,7 @@ export default function Pricing() {
                     <div key={f.label}>
                       <dt>
                         {f.label}
-                        {f.isNew && <NewTag />}
+                        {f.hint && <span className="feature-hint"> {f.hint}</span>}
                       </dt>
                       <dd>
                         <CellContent cell={f[plan.id as PlanId]} />
@@ -179,34 +176,30 @@ export default function Pricing() {
           ))}
         </Stagger>
 
-        {/* Note de l'astérisque « Illimitées* », placée juste sous les formules */}
-        <p className="pricing-footnote">{footnote}</p>
+        {/* Note de l'astérisque « Illimitées* » et conditions, placées juste sous les formules */}
+        <ul className="pricing-footnote">
+          {notes.map((note) => (
+            <li key={note}>{note}</li>
+          ))}
+        </ul>
 
         <div className="extras">
           <Reveal className="extra extra--once">
             <p className="extra__eyebrow">{once.eyebrow}</p>
-            <p className="extra__price">
-              <strong>{once.price} €</strong>
-              <span>
-                pour le site, puis {once.hostingPerMonth} €/mois pour l’hébergement et le nom de domaine.
-              </span>
+            <p className="extra__note">
+              Envoyez-moi votre cahier des charges : je vous fais un{' '}
+              <strong>devis sur mesure en {once.quoteMaxDays} jours maximum</strong>.{' '}
+              <a href={mailto('Cahier des charges – demande de devis')}>Envoyer mon cahier des charges</a>
             </p>
-            <ul className="extra__details">
-              <li>Garantie bugs {once.bugWarrantyMonths} mois</li>
-              <li>Back-office +{once.backofficePerMonth} €/mois</li>
-              <li>Modification {once.modificationUnitPrice} € l’unité</li>
-              <li>Support {once.support.charAt(0).toLowerCase() + once.support.slice(1)}</li>
-            </ul>
           </Reveal>
         </div>
 
         <Reveal className="quote-banner on-dark">
           <div>
-            <h3>Les formules ne sont qu’indicatives.</h3>
+            <h3>Besoin d’autre chose ?</h3>
             <p>
-              Besoin d’autre chose ? Je vous fais un devis personnalisé, en
-              dehors des formules, adapté à votre budget et à votre façon de
-              travailler.
+              Je vous fais un devis sur mesure, adapté à votre budget et à
+              votre façon de travailler.
             </p>
           </div>
           <a className="btn" href="#contact">

@@ -1,44 +1,14 @@
-import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowSquareOut, Copy, Check, PiggyBank, Sparkle } from '@phosphor-icons/react';
+import { ArrowSquareOut, PiggyBank } from '@phosphor-icons/react';
 import { Reveal, SectionHead, Stagger, fadeUp } from './Reveal';
 import Counter from './Counter';
-import { aiPrompt, sources, threeYearComparison } from '../data/market';
+import { planPrice, sources, threeYearComparison } from '../data/market';
 
 const max = Math.max(...threeYearComparison.map((r) => r.total));
 const agency = threeYearComparison[0].total;
 const mine = threeYearComparison.find((r) => r.mine)!.total;
+const proTotal = planPrice('pro') * 36;
 const euros = (n: number) => `${n.toLocaleString('fr-FR')} €`;
-
-const aiLinks = [
-  { label: 'ChatGPT', href: `https://chatgpt.com/?q=${encodeURIComponent(aiPrompt)}` },
-  { label: 'Claude', href: `https://claude.ai/new?q=${encodeURIComponent(aiPrompt)}` },
-  { label: 'Perplexity', href: `https://www.perplexity.ai/search?q=${encodeURIComponent(aiPrompt)}` },
-];
-
-function CopyPrompt() {
-  const [copied, setCopied] = useState(false);
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(aiPrompt);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2500);
-    } catch {
-      setCopied(false);
-    }
-  };
-  return (
-    <>
-      <button type="button" className="copy-btn" onClick={copy}>
-        {copied ? <Check size={18} weight="bold" aria-hidden="true" /> : <Copy size={18} aria-hidden="true" />}
-        {copied ? 'Copié' : 'Copier la question'}
-      </button>
-      <span className="sr-only" role="status">
-        {copied ? 'Question copiée dans le presse-papiers' : ''}
-      </span>
-    </>
-  );
-}
 
 export default function Market() {
   return (
@@ -91,7 +61,7 @@ export default function Market() {
                 </strong>
                 <span>
                   par rapport à une agence, soit environ {Math.round(agency / mine)} fois moins cher. Même la formule
-                  Pro ({euros(49 * 36)} sur 3 ans) reste {Math.round(agency / (49 * 36))} fois moins chère. De quoi
+                  Pro ({euros(proTotal)} sur 3 ans) reste {Math.round(agency / proTotal)} fois moins chère. De quoi
                   changer de caisse enregistreuse… ou s’offrir beaucoup de croissants.
                 </span>
               </p>
@@ -128,32 +98,6 @@ export default function Market() {
             ))}
           </Stagger>
         </div>
-
-        <Reveal className="ai-box on-dark">
-          <h3>
-            <Sparkle size={26} weight="fill" color="var(--orange)" aria-hidden="true" />
-            Faites le test : demandez à une IA
-          </h3>
-          <p>
-            Posez la question à l’assistant de votre choix et comparez sa réponse avec mes tarifs : dès 29 €/mois,
-            hébergement, nom de domaine et suivi compris.
-          </p>
-          <div className="prompt">
-            <span>{aiPrompt}</span>
-            <CopyPrompt />
-          </div>
-          <ul className="ai-links">
-            {aiLinks.map((l) => (
-              <li key={l.label}>
-                <a href={l.href} target="_blank" rel="noopener noreferrer">
-                  Demander à {l.label}
-                  <ArrowSquareOut size={16} aria-hidden="true" />
-                  <span className="sr-only">(nouvel onglet)</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
       </div>
     </section>
   );

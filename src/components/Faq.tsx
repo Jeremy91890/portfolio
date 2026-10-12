@@ -5,17 +5,25 @@ import { Reveal, SectionHead, Stagger, fadeUp } from "./Reveal";
 import pricing from "../data/pricing.json";
 import { site } from "../data/site";
 
-const { oneTimePurchase: once } = pricing;
+const { oneTimePurchase: once, annualFreeMonths, launchDays, premiumCommitmentMonths } = pricing;
 
 const questions: { q: string; a: ReactNode }[] = [
   {
     q: "Y a-t-il un engagement ou des frais de départ ?",
     a: (
-      <p>
-        Non. La mise en place est à <strong>0 €</strong> et l’abonnement est{" "}
-        <strong>sans engagement</strong> : vous pouvez le résilier à tout
-        moment.
-      </p>
+      <>
+        <p>
+          La mise en place est à <strong>0 €</strong>. Les formules Essentiel
+          et Pro sont <strong>sans engagement</strong> : vous pouvez les
+          résilier à tout moment. La formule Premium, qui inclut un outil
+          développé sur mesure, demande un engagement de{" "}
+          {premiumCommitmentMonths} mois.
+        </p>
+        <p>
+          En payant à l’année, vous profitez de{" "}
+          <strong>{annualFreeMonths} mois offerts</strong>.
+        </p>
+      </>
     ),
   },
   {
@@ -41,6 +49,35 @@ const questions: { q: string; a: ReactNode }[] = [
     ),
   },
   {
+    q: "Qui s’occupe des textes et des photos ?",
+    a: (
+      <p>
+        Vous pouvez me fournir vos textes et vos photos, ou je m’en charge pour
+        vous. Votre site est en ligne <strong>{launchDays} jours</strong> après la
+        validation de tous vos textes et images.
+      </p>
+    ),
+  },
+  {
+    q: "Le nom de domaine m’appartient-il ?",
+    a: (
+      <p>
+        Je le réserve et le gère pour vous, pour que vous n’ayez rien à faire.
+        Si vous arrêtez, je vous le transfère : vous gardez votre adresse.
+      </p>
+    ),
+  },
+  {
+    q: "Je peux changer de formule ?",
+    a: (
+      <p>
+        Oui, en cours d’abonnement, pour suivre l’évolution de votre activité.
+        Depuis la formule Premium, le passage à une formule inférieure est
+        possible à l’issue des {premiumCommitmentMonths} mois d’engagement.
+      </p>
+    ),
+  },
+  {
     q: "Quelle différence entre un bug et une modification ?",
     a: (
       <p>
@@ -48,6 +85,7 @@ const questions: { q: string; a: ReactNode }[] = [
         comme prévu : il est corrigé gratuitement. Une{" "}
         <strong>modification</strong>, c’est un changement que vous demandez
         (un nouveau texte, une photo…) : elle est décomptée de votre quota.
+        Les modifications non utilisées ne sont pas reportées.
       </p>
     ),
   },
@@ -94,7 +132,7 @@ const questions: { q: string; a: ReactNode }[] = [
     q: "Mon besoin ne rentre dans aucune formule…",
     a: (
       <p>
-        Les formules ne sont qu’indicatives. Prise de rendez-vous, click &
+        Les formules couvrent les besoins les plus courants. Prise de rendez-vous, click &
         collect, application mobile, outil métier : je vous fais un{" "}
         <a href="#contact">devis personnalisé</a>, adapté à votre budget.
       </p>

@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { Pause, Play, Sparkle } from '@phosphor-icons/react';
 
 const items = [
-  'React',
-  'React Native',
-  'TypeScript',
-  'Next.js',
-  'iOS & Android',
-  'Référencement local',
+  'Site vitrine',
+  'Visible sur Google',
+  'Parfait sur mobile',
   'Prise de rendez-vous',
-  'Intelligence artificielle',
-  'Performance web',
+  'Avis clients',
+  'Click & collect',
+  'Application mobile',
   'Hébergement inclus',
+  'Nom de domaine inclus',
+  'Mises à jour incluses',
 ];
 
 function Group({ hidden }: { hidden?: boolean }) {
@@ -31,7 +31,7 @@ export default function Marquee() {
   const [paused, setPaused] = useState(false);
 
   return (
-    <section className="marquee on-dark" data-paused={paused} aria-label="Compétences">
+    <section className="marquee on-dark" data-paused={paused} aria-label="Ce que je fais pour vous">
       <div className="marquee__viewport">
         <div className="marquee__track">
           <Group />
