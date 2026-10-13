@@ -4,6 +4,8 @@ export const site = {
   name: 'Jérémy Debelleix',
   initials: 'JD',
   role: 'Développeur web & mobile',
+  // Adresse publique du site (URL canonique, sitemap, partages)
+  url: 'https://jeremydebelleix.fr',
   email: 'jeremy.debelleix@gmail.com',
   phone: '06 30 38 69 83',
   phoneHref: '+33630386983',

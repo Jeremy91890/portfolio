@@ -18,7 +18,8 @@ export default function Counter({
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -10% 0px' });
   const reduce = useReducedMotion();
-  const [value, setValue] = useState(reduce ? to : 0);
+  // Toujours 0 au premier rendu, pour que le HTML pré-rendu corresponde à l'hydratation
+  const [value, setValue] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
