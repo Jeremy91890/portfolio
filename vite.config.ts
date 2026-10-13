@@ -69,8 +69,12 @@ const structuredData = {
 };
 
 function seo(): Plugin {
+  let ssr = false;
   return {
     name: 'seo',
+    configResolved(config) {
+      ssr = Boolean(config.build.ssr);
+    },
     transformIndexHtml(html) {
       const title = html.match(/<title>(.*?)<\/title>/)?.[1] ?? site.name;
       html = html.replace(/%FROM_PRICE%/g, String(fromPrice));
@@ -104,7 +108,7 @@ function seo(): Plugin {
     },
     // robots.txt et sitemap.xml, avec le domaine défini dans site.ts
     generateBundle() {
-      if (this.meta.watchMode) return;
+      if (this.meta.watchMode || ssr) return;
       const today = new Date().toISOString().slice(0, 10);
       this.emitFile({
         type: 'asset',
