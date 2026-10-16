@@ -5,7 +5,8 @@ import Counter from './Counter';
 import { site } from '../data/site';
 import pricing from '../data/pricing.json';
 
-const fromPrice = Math.min(...pricing.plans.map((p) => p.price));
+// Formule la moins chère, affichée comme prix d'appel
+const entryPlan = pricing.plans.reduce((a, b) => (b.price < a.price ? b : a));
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -177,7 +178,11 @@ export default function Hero() {
               <img src={site.photo.thumb} alt="" width={32} height={32} />
               <span className="status-pill__dot" />
             </span>
-            {site.name} · Développeur web & mobile depuis 10 ans
+            Par {site.firstName}, développeur web depuis 10 ans
+          </motion.p>
+
+          <motion.p className="eyebrow hero__slogan" variants={appear(0.08)}>
+            {site.slogan}
           </motion.p>
 
           <h1 className="hero__title" id="hero-title">
@@ -231,9 +236,9 @@ export default function Hero() {
               <dt className="sr-only">Prix</dt>
               <dd style={{ margin: 0 }}>
                 <span className="stat__value">
-                  <Counter to={fromPrice} suffix=" €" />
+                  <Counter to={entryPlan.price} suffix=" €" />
                 </span>
-                <span className="stat__label">par mois, dès</span>
+                <span className="stat__label">par mois, formule {entryPlan.name}</span>
               </dd>
             </div>
             <div>

@@ -3,7 +3,6 @@ import {
   ArrowRight,
   EnvelopeSimple,
   LinkedinLogo,
-  MapPin,
   Phone,
 } from "@phosphor-icons/react";
 import { Reveal } from "./Reveal";
@@ -68,10 +67,6 @@ export default function Contact() {
                 LinkedIn<span className="sr-only"> (nouvel onglet)</span>
               </a>
             </li>
-            <li>
-              <MapPin size={18} aria-hidden="true" />
-              {site.city}
-            </li>
           </ul>
         </Reveal>
       </div>
@@ -84,8 +79,8 @@ export function Footer() {
     <footer className="footer on-dark">
       <div className="container footer__inner">
         <p>
-          © {new Date().getFullYear()} {site.name} · Fabriqué à {site.town},
-          carburé au café
+          © {new Date().getFullYear()} {site.brand} · {site.name} · Fabriqué à{" "}
+          {site.town},
         </p>
         <p>TVA non applicable, art. 293 B du CGI.</p>
         <p className="footer__links">

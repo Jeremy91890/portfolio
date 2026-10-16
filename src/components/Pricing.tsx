@@ -176,7 +176,7 @@ export default function Pricing() {
           ))}
         </Stagger>
 
-        {/* Note de l'astérisque « Illimitées* » et conditions, placées juste sous les formules */}
+        {/* Conditions (bug vs modification), placées juste sous les formules */}
         <ul className="pricing-footnote">
           {notes.map((note) => (
             <li key={note}>{note}</li>

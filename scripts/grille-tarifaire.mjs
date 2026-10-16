@@ -290,7 +290,7 @@ const html = `<!doctype html>
       <div class="contact">
         <h3>Une question ? Je vous réponds personnellement.</h3>
         <p><strong>${esc(site.phone)}</strong> · <strong>${esc(site.email)}</strong></p>
-        <p>${esc(site.name)} · ${esc(site.city)}</p>
+        <p>${esc(site.name)}</p>
       </div>
     </div>
   </div>

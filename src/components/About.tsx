@@ -16,7 +16,6 @@ import {
   Handshake,
   HandWaving,
   LinkedinLogo,
-  MapPin,
 } from "@phosphor-icons/react";
 import { Reveal, SectionHead, Stagger, fadeUp } from "./Reveal";
 import { site } from "../data/site";
@@ -190,16 +189,6 @@ function PhotoCard() {
         <strong>10 ans</strong>
         <span>de développement en entreprise</span>
       </motion.p>
-      <motion.p
-        className="photo__badge photo__badge--place"
-        initial={{ opacity: 0, scale: 0.7 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.8 }}
-      >
-        <MapPin size={18} weight="fill" aria-hidden="true" />
-        {site.city}
-      </motion.p>
       <motion.button
         type="button"
         className="photo__wave"
@@ -301,7 +290,7 @@ export default function About() {
               devenir informaticien.
             </p>
             <p>
-              Basé à <strong>{site.city}</strong>, je vous accompagne dans{" "}
+              Je vous accompagne dans{" "}
               <strong>toute votre digitalisation</strong>, du premier site
               jusqu’aux outils sur mesure adaptés à votre façon de travailler.
             </p>

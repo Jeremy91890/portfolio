@@ -1,15 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
-import { ArrowRight, List, X } from '@phosphor-icons/react';
-import { site } from '../data/site';
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { ArrowRight, List, X } from "@phosphor-icons/react";
+import { site } from "../data/site";
+import NappageLogo from "./NappageLogo";
 
 const links = [
-  { id: 'a-propos', label: 'À propos' },
-  { id: 'methode', label: 'Clé en main' },
-  { id: 'tarifs', label: 'Tarifs' },
-  { id: 'prix-du-marche', label: 'Prix du marché' },
-  { id: 'services', label: 'Sur mesure' },
-  { id: 'faq', label: 'FAQ' },
+  { id: "a-propos", label: "À propos" },
+  { id: "methode", label: "Clé en main" },
+  { id: "tarifs", label: "Tarifs" },
+  { id: "prix-du-marche", label: "Prix du marché" },
+  { id: "services", label: "Sur mesure" },
+  { id: "faq", label: "FAQ" },
 ];
 
 export default function Header() {
@@ -21,8 +22,8 @@ export default function Header() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   // Section courante mise en évidence dans la navigation
@@ -33,7 +34,7 @@ export default function Header() {
           if (entry.isIntersecting) setActive(entry.target.id);
         });
       },
-      { rootMargin: '-45% 0px -50% 0px' },
+      { rootMargin: "-45% 0px -50% 0px" },
     );
     links.forEach(({ id }) => {
       const el = document.getElementById(id);
@@ -44,30 +45,34 @@ export default function Header() {
 
   useEffect(() => {
     if (!open) return;
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
+      if (e.key === "Escape") {
         setOpen(false);
         menuBtn.current?.focus();
       }
     };
-    window.addEventListener('keydown', onKey);
+    window.addEventListener("keydown", onKey);
     return () => {
-      document.body.style.overflow = '';
-      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
     };
   }, [open]);
 
   return (
-    <header className={`header on-dark${scrolled || open ? ' header--scrolled' : ''}`}>
+    <header
+      className={`header on-dark${scrolled || open ? " header--scrolled" : ""}`}
+    >
       <div className="container header__inner">
-        <a className="logo" href="#top" aria-label={`${site.name}, retour en haut de page`}>
-          <span className="logo__mark" aria-hidden="true">
-            {site.initials}
-          </span>
+        <a
+          className="logo"
+          href="#top"
+          aria-label={`${site.brand}, retour en haut de page`}
+        >
+          <NappageLogo className="logo__mark" />
           <span className="logo__text" aria-hidden="true">
-            {site.name}
-            <small>{site.role}</small>
+            {site.brand}
+            <small className="logo__baseline">{site.baseline}</small>
           </span>
         </a>
 
@@ -75,12 +80,20 @@ export default function Header() {
           <ul className="nav__list">
             {links.map(({ id, label }) => (
               <li key={id}>
-                <a className="nav__link" href={`#${id}`} aria-current={active === id ? 'true' : undefined}>
+                <a
+                  className="nav__link"
+                  href={`#${id}`}
+                  aria-current={active === id ? "true" : undefined}
+                >
                   {active === id && (
                     <motion.span
                       className="nav__pill"
                       layoutId="nav-pill"
-                      transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 380,
+                        damping: 32,
+                      }}
                     />
                   )}
                   {label}
@@ -102,8 +115,14 @@ export default function Header() {
           aria-controls="menu-mobile"
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X size={24} aria-hidden="true" /> : <List size={24} aria-hidden="true" />}
-          <span className="sr-only">{open ? 'Fermer le menu' : 'Ouvrir le menu'}</span>
+          {open ? (
+            <X size={24} aria-hidden="true" />
+          ) : (
+            <List size={24} aria-hidden="true" />
+          )}
+          <span className="sr-only">
+            {open ? "Fermer le menu" : "Ouvrir le menu"}
+          </span>
         </button>
       </div>
 

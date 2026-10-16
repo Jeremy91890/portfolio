@@ -18,7 +18,7 @@ Un site à votre image, hébergé et mis à jour pour vous. Vous gérez vos clie
 |---|---|---|
 | **Essentiel** | 29 €/mois | Une page claire, hébergement et nom de domaine inclus |
 | **Pro** (le plus choisi) | 49 €/mois | Plusieurs pages, espace de gestion et statistiques inclus |
-| **Premium** | 89 €/mois | Site complet, IA sur mesure et modifications illimitées |
+| **Premium** | 89 €/mois | Site complet, IA sur mesure et 3 modifications par mois |
 
 ## Comparatif détaillé
 
@@ -32,10 +32,10 @@ Un site à votre image, hébergé et mis à jour pour vous. Vous gérez vos clie
 | Fiche Google Maps | — | Mise au propre lors de la mise en ligne | Mise au propre + mise à jour chaque mois |
 | Bonus | — | QR code pour récolter des avis | QR code avis + référencement local |
 | Fonctionnalités IA sur mesure *(nouveau)* | — | — | Prise de rendez-vous, chatbot, relances par email… adaptés à votre activité |
-| Modifications faites pour vous | 1 par trimestre | 1 par mois | Illimitées* |
+| Modifications faites pour vous | 1 par trimestre | 1 par mois | 3 par mois |
 | Support | Email, réponse sous 72 h ouvrées | Email et SMS, réponse sous 48 h ouvrées | Email, SMS et téléphone, réponse sous 24 h ouvrées, bugs traités en priorité |
 
-\* Dans la limite du raisonnable. Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota.
+Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota.
 
 ## Vous préférez payer une seule fois ?
 
@@ -52,4 +52,4 @@ Ces formules sont indicatives. Un besoin particulier (outil métier, IA, applica
 
 ---
 
-Jérémy Debelleix · 06 30 38 69 83 · jeremy.debelleix@gmail.com
+Jérémy Debelleix · 06 30 38 69 83 · jeremy@nappage.fr

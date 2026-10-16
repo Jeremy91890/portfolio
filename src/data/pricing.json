@@ -50,7 +50,7 @@
       "name": "Premium",
       "price": 89,
       "period": "€/mois",
-      "tagline": "Site complet, outil sur mesure et modifications illimitées",
+      "tagline": "Site complet, outil sur mesure et 3 modifications par mois",
       "commitment": "Engagement 12 mois",
       "featured": false
     }
@@ -166,7 +166,7 @@
         "text": "1 par mois"
       },
       "premium": {
-        "text": "Illimitées*"
+        "text": "3 par mois"
       }
     },
     {
@@ -192,6 +192,6 @@
     "quoteMaxDays": 7
   },
   "notes": [
-    "* Dans la limite du raisonnable. Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota."
+    "Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota."
   ]
 }
