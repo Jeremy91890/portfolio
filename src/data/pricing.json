@@ -114,7 +114,7 @@
         "text": "En option (+{emailPerMonth} €/mois)"
       },
       "pro": {
-        "text": "En option (+{emailPerMonth} €/mois)"
+        "included": true
       },
       "premium": {
         "included": true
