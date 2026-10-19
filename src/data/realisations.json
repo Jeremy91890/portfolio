@@ -1,0 +1,14 @@
+{
+  "sites": [
+    {
+      "id": "japon",
+      "label": "Voyages au Japon",
+      "url": "https://japon-vitrine.netlify.app/"
+    },
+    {
+      "id": "lucifer-moon",
+      "label": "Voyance",
+      "url": "https://lucifer-moon.netlify.app/"
+    }
+  ]
+}

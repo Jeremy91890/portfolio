@@ -9,7 +9,7 @@
         "label": "de mise en place"
       },
       {
-        "value": "7 jours",
+        "value": "{launchDays} jours",
         "label": "pour être en ligne, après validation de vos contenus"
       },
       {
@@ -25,6 +25,13 @@
   "annualFreeMonths": 2,
   "launchDays": 7,
   "premiumCommitmentMonths": 12,
+  "criticalResponseHours": 24,
+  "phoneHours": "lun-sam, 9 h-19 h",
+  "options": {
+    "backofficePerMonth": 10,
+    "emailPerMonth": 5,
+    "extraModification": 40
+  },
   "plans": [
     {
       "id": "essentiel",
@@ -33,7 +40,8 @@
       "period": "€/mois",
       "tagline": "Une page claire, hébergement et nom de domaine inclus",
       "commitment": "Sans engagement",
-      "featured": false
+      "featured": false,
+      "buyoutPrice": 290
     },
     {
       "id": "pro",
@@ -43,27 +51,32 @@
       "tagline": "3 pages, modifiables par vous, et statistiques de visites",
       "commitment": "Sans engagement",
       "featured": true,
-      "ribbon": "RECOMMANDÉ"
+      "ribbon": "RECOMMANDÉ",
+      "buyoutPrice": 490
     },
     {
       "id": "premium",
       "name": "Premium",
       "price": 89,
       "period": "€/mois",
-      "tagline": "Site complet, outil sur mesure et modifications illimitées",
+      "tagline": "Site complet, outil sur mesure et 3 modifications par mois",
       "commitment": "Engagement 12 mois",
-      "featured": false
+      "featured": false,
+      "buyoutPrice": null
     }
   ],
   "includedInAll": {
     "title": "Inclus dans toutes les formules",
     "items": [
-      "Nom de domaine",
-      "Hébergement",
+      "Nom de domaine et hébergement",
       "Sécurité (HTTPS) et sauvegardes",
-      "Correction des bugs",
-      "Mentions légales obligatoires (loi LCEN)",
-      "Mise en ligne 7 jours après validation de vos contenus"
+      "Bugs corrigés, panne sous {criticalResponseHours} h ouvrées",
+      "Référencement Google de base",
+      "Lien vers votre outil de réservation",
+      "QR code pour vos avis Google",
+      "Rédaction de vos textes",
+      "Mentions légales et RGPD",
+      "En ligne {launchDays} jours après validation"
     ]
   },
   "features": [
@@ -73,17 +86,17 @@
         "text": "1 page : présentation, horaires, plan, contact"
       },
       "pro": {
-        "text": "3 pages : services, carte ou tarifs, galerie photos"
+        "text": "3 pages, accueil compris (ex. : accueil et contact, services, galerie)"
       },
       "premium": {
-        "text": "Jusqu'à 5 pages"
+        "text": "Jusqu'à 5 pages, accueil compris"
       }
     },
     {
       "label": "Modifier votre site vous-même",
       "hint": "(depuis un espace simple, sans passer par moi)",
       "essentiel": {
-        "text": "En option (+10 €/mois) : horaires, textes et images"
+        "text": "En option (+{backofficePerMonth} €/mois) : horaires, textes et images"
       },
       "pro": {
         "included": true,
@@ -96,12 +109,12 @@
     },
     {
       "label": "Adresse e-mail pro",
-      "hint": "(contact@votrecommerce.fr)",
+      "hint": "(1 boîte contact@votrecommerce.fr)",
       "essentiel": {
-        "text": "En option (+5 €/mois)"
+        "text": "En option (+{emailPerMonth} €/mois)"
       },
       "pro": {
-        "text": "En option (+5 €/mois)"
+        "text": "En option (+{emailPerMonth} €/mois)"
       },
       "premium": {
         "included": true
@@ -111,54 +124,34 @@
       "label": "Statistiques de visites",
       "essentiel": null,
       "pro": {
-        "text": "Tableau de bord : nombre de visiteurs, pages consultées, d'où ils viennent"
+        "text": "Tableau de bord : visiteurs, pages vues et comment ils vous ont trouvé (Google, Instagram…)"
       },
       "premium": {
-        "text": "Tableau de bord + bilan mensuel commenté"
+        "text": "Tableau de bord + bilan mensuel commenté par e-mail"
       }
     },
     {
-      "label": "Réservation en ligne",
-      "essentiel": {
-        "text": "Un bouton vers votre outil de réservation (Planity, TheFork…)"
-      },
-      "pro": {
-        "text": "La réservation intégrée à votre site : vos clients accèdent à votre outil sans quitter votre site"
-      },
-      "premium": {
-        "text": "Votre propre système de réservation, sans dépendre d'une plateforme"
-      }
-    },
-    {
-      "label": "Visibilité sur Google",
+      "label": "Fiche Google Maps",
       "essentiel": null,
       "pro": {
-        "text": "Fiche Google Maps mise au propre à la mise en ligne"
+        "text": "Mise au propre à la mise en ligne : horaires, photos, catégories, lien vers votre site"
       },
       "premium": {
-        "text": "Fiche Google Maps mise au propre à la mise en ligne"
-      }
-    },
-    {
-      "label": "Avis clients",
-      "essentiel": null,
-      "pro": {
-        "text": "QR code à afficher en boutique pour récolter des avis Google"
-      },
-      "premium": {
-        "text": "QR code à afficher en boutique pour récolter des avis Google"
+        "text": "Mise au propre à la mise en ligne : horaires, photos, catégories, lien vers votre site"
       }
     },
     {
       "label": "Outil sur mesure",
+      "hint": "(délai de livraison fixé ensemble)",
       "essentiel": null,
       "pro": null,
       "premium": {
-        "text": "1 outil au choix : assistant IA, rappels de rendez-vous, gestion des factures, des stocks, etc."
+        "text": "1 outil au choix : réservation sans commission, devis et factures, carte de fidélité, assistant qui répond à vos clients (ou tout autre besoin sur mesure)"
       }
     },
     {
       "label": "Modifications faites pour vous",
+      "hint": "(un élément, ou une liste envoyée en une fois)",
       "essentiel": {
         "text": "1 par trimestre"
       },
@@ -166,32 +159,27 @@
         "text": "1 par mois"
       },
       "premium": {
-        "text": "Illimitées*"
+        "text": "3 par mois"
       }
     },
     {
       "label": "Support",
       "essentiel": {
-        "text": "Email, réponse sous 72 h ouvrées"
+        "text": "E-mail, réponse sous 72 h ouvrées"
       },
       "pro": {
-        "text": "Email et SMS, réponse sous 48 h ouvrées"
+        "text": "E-mail et SMS, réponse sous 48 h ouvrées"
       },
       "premium": {
-        "text": "Email, SMS et téléphone, réponse sous 24 h ouvrées, bugs traités en priorité"
+        "text": "E-mail, SMS et téléphone ({phoneHours}), réponse sous 24 h ouvrées"
       }
     }
   ],
   "oneTimePurchase": {
-    "eyebrow": "VOUS PRÉFÉREZ PAYER UNE SEULE FOIS ?",
-    "price": 490,
-    "hostingPerMonth": 15,
-    "bugWarrantyMonths": 3,
-    "backofficePerMonth": 10,
-    "modificationUnitPrice": 40,
     "quoteMaxDays": 7
   },
   "notes": [
-    "* Dans la limite du raisonnable. Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota."
+    "Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement. Une modification est un changement que vous demandez : un élément, ou une liste d'éléments envoyée en une seule fois. Elle est décomptée de votre quota ; au-delà, chaque modification est facturée {extraModification} €.",
+    "Paiement par prélèvement SEPA. Résiliation par simple e-mail, effective à la fin du mois en cours."
   ]
 }

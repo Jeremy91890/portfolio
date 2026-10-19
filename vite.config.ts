@@ -1,7 +1,7 @@
 import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { legal, site } from './src/data/site';
-import pricing from './src/data/pricing.json';
+import pricing from './src/data/pricing';
 
 const home = `${site.url}/`;
 const fromPrice = Math.min(...pricing.plans.map((p) => p.price));
@@ -14,7 +14,9 @@ const structuredData = {
     {
       '@type': 'ProfessionalService',
       '@id': `${home}#entreprise`,
-      name: `${site.name} – ${site.role}`,
+      name: site.brand,
+      alternateName: `${site.brand} – ${site.name}, ${site.role.toLowerCase()}`,
+      logo: `${site.url}/logo-nappage.png`,
       description: `Création, hébergement et maintenance de sites web pour commerçants, dès ${fromPrice} €/mois.`,
       url: home,
       image: `${site.url}${site.photo.jpg}`,
@@ -61,7 +63,7 @@ const structuredData = {
       '@type': 'WebSite',
       '@id': `${home}#site`,
       url: home,
-      name: site.name,
+      name: site.brand,
       inLanguage: 'fr-FR',
       publisher: { '@id': `${home}#entreprise` },
     },
@@ -76,7 +78,7 @@ function seo(): Plugin {
       ssr = Boolean(config.build.ssr);
     },
     transformIndexHtml(html) {
-      const title = html.match(/<title>(.*?)<\/title>/)?.[1] ?? site.name;
+      const title = html.match(/<title>(.*?)<\/title>/)?.[1] ?? site.brand;
       html = html.replace(/%FROM_PRICE%/g, String(fromPrice));
       const description = html.match(/<meta name="description" content="(.*?)"/)?.[1] ?? '';
 
@@ -90,7 +92,7 @@ function seo(): Plugin {
           meta({ name: 'author', content: site.name }),
           og('og:type', 'website'),
           og('og:locale', 'fr_FR'),
-          og('og:site_name', site.name),
+          og('og:site_name', site.brand),
           og('og:url', home),
           og('og:title', title),
           og('og:description', description),

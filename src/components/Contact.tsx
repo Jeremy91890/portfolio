@@ -3,7 +3,6 @@ import {
   ArrowRight,
   EnvelopeSimple,
   LinkedinLogo,
-  MapPin,
   Phone,
 } from "@phosphor-icons/react";
 import { Reveal } from "./Reveal";
@@ -41,6 +40,13 @@ export default function Contact() {
             Une formule, un devis sur mesure ou simplement une question : je
             vous réponds personnellement.
           </p>
+          <p className="status-pill contact__signature">
+            <span className="status-pill__avatar" aria-hidden="true">
+              <img src={site.photo.thumb} alt="" width={32} height={32} loading="lazy" />
+              <span className="status-pill__dot" />
+            </span>
+            {site.firstName}, développeur web depuis 10 ans
+          </p>
         </Reveal>
         <Reveal className="contact__ctas" delay={0.15}>
           <a className="btn" href={mailto("Demande de devis – site web")}>
@@ -68,10 +74,6 @@ export default function Contact() {
                 LinkedIn<span className="sr-only"> (nouvel onglet)</span>
               </a>
             </li>
-            <li>
-              <MapPin size={18} aria-hidden="true" />
-              {site.city}
-            </li>
           </ul>
         </Reveal>
       </div>
@@ -84,8 +86,8 @@ export function Footer() {
     <footer className="footer on-dark">
       <div className="container footer__inner">
         <p>
-          © {new Date().getFullYear()} {site.name} · Fabriqué à {site.town},
-          carburé au café
+          © {new Date().getFullYear()} {site.brand} · {site.name} · Fabriqué à{" "}
+          {site.town},
         </p>
         <p>TVA non applicable, art. 293 B du CGI.</p>
         <p className="footer__links">

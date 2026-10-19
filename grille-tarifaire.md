@@ -14,28 +14,28 @@ Un site à votre image, hébergé et mis à jour pour vous. Vous gérez vos clie
 
 ## Les formules
 
-| Formule | Prix | En bref |
-|---|---|---|
-| **Essentiel** | 29 €/mois | Une page claire, hébergement et nom de domaine inclus |
+| Formule                  | Prix      | En bref                                                   |
+| ------------------------ | --------- | --------------------------------------------------------- |
+| **Essentiel**            | 29 €/mois | Une page claire, hébergement et nom de domaine inclus     |
 | **Pro** (le plus choisi) | 49 €/mois | Plusieurs pages, espace de gestion et statistiques inclus |
-| **Premium** | 89 €/mois | Site complet, IA sur mesure et modifications illimitées |
+| **Premium**              | 89 €/mois | Site complet, IA sur mesure et 3 modifications par mois   |
 
 ## Comparatif détaillé
 
-| | **Essentiel** | **Pro** | **Premium** |
-|---|---|---|---|
-| Votre site | 1 page : présentation, horaires, plan, contact | Plusieurs pages : services, carte ou tarifs, galerie photos | Plusieurs pages + une page dédiée à chaque service |
-| Espace de gestion (back-office) | En option (+10 €/mois) : horaires, textes et images | Inclus : horaires, textes, images, carte ou tarifs | Inclus : tout le contenu, images et nouvelles pages |
-| Statistiques de consultation *(nouveau)* | — | Tableau de bord : visites, pages vues, provenance des visiteurs | Tableau de bord + bilan mensuel commenté |
-| Animations modernes *(nouveau)* | — | Inclus : apparitions au défilement, effets au survol, transitions fluides | Inclus |
-| Réservation & contact | Bouton vers votre plateforme (Planity, TheFork…) | Bouton de réservation + formulaire de contact | Bouton, formulaire de contact + formulaire de demande sur mesure |
-| Fiche Google Maps | — | Mise au propre lors de la mise en ligne | Mise au propre + mise à jour chaque mois |
-| Bonus | — | QR code pour récolter des avis | QR code avis + référencement local |
-| Fonctionnalités IA sur mesure *(nouveau)* | — | — | Prise de rendez-vous, chatbot, relances par email… adaptés à votre activité |
-| Modifications faites pour vous | 1 par trimestre | 1 par mois | Illimitées* |
-| Support | Email, réponse sous 72 h ouvrées | Email et SMS, réponse sous 48 h ouvrées | Email, SMS et téléphone, réponse sous 24 h ouvrées, bugs traités en priorité |
+|                                           | **Essentiel**                                       | **Pro**                                                                   | **Premium**                                                                  |
+| ----------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Votre site                                | 1 page : présentation, horaires, plan, contact      | Plusieurs pages : services, carte ou tarifs, galerie photos               | Plusieurs pages + une page dédiée à chaque service                           |
+| Espace de gestion (back-office)           | En option (+10 €/mois) : horaires, textes et images | Inclus : horaires, textes, images, carte ou tarifs                        | Inclus : tout le contenu, images et nouvelles pages                          |
+| Statistiques de consultation _(nouveau)_  | —                                                   | Tableau de bord : visites, pages vues, provenance des visiteurs           | Tableau de bord + bilan mensuel commenté                                     |
+| Animations modernes _(nouveau)_           | —                                                   | Inclus : apparitions au défilement, effets au survol, transitions fluides | Inclus                                                                       |
+| Réservation & contact                     | Bouton vers votre plateforme (Planity, TheFork…)    | Bouton de réservation + formulaire de contact                             | Bouton, formulaire de contact + formulaire de demande sur mesure             |
+| Fiche Google Maps                         | —                                                   | Mise au propre lors de la mise en ligne                                   | Mise au propre + mise à jour chaque mois                                     |
+| Bonus                                     | —                                                   | QR code pour récolter des avis                                            | QR code avis + référencement local                                           |
+| Fonctionnalités IA sur mesure _(nouveau)_ | —                                                   | —                                                                         | Prise de rendez-vous, chatbot, relances par email… adaptés à votre activité  |
+| Modifications faites pour vous            | 1 par trimestre                                     | 1 par mois                                                                | 3 par mois                                                                   |
+| Support                                   | Email, réponse sous 72 h ouvrées                    | Email et SMS, réponse sous 48 h ouvrées                                   | Email, SMS et téléphone, réponse sous 24 h ouvrées, bugs traités en priorité |
 
-\* Dans la limite du raisonnable. Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota.
+Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota.
 
 ## Vous préférez payer une seule fois ?
 
@@ -52,4 +52,4 @@ Ces formules sont indicatives. Un besoin particulier (outil métier, IA, applica
 
 ---
 
-Jérémy Debelleix · 06 30 38 69 83 · jeremy.debelleix@gmail.com
+Jérémy Debelleix · 06 30 38 69 83 · jeremy?debelleix@gmail.com

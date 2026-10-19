@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Check } from '@phosphor-icons/react';
-import pricing from '../data/pricing.json';
+import pricing from '../data/pricing';
 import { Reveal, Stagger, fadeUp } from './Reveal';
 import { mailto, site } from '../data/site';
 
@@ -176,30 +176,20 @@ export default function Pricing() {
           ))}
         </Stagger>
 
-        {/* Note de l'astérisque « Illimitées* » et conditions, placées juste sous les formules */}
+        {/* Conditions (bug vs modification), placées juste sous les formules */}
         <ul className="pricing-footnote">
           {notes.map((note) => (
             <li key={note}>{note}</li>
           ))}
         </ul>
 
-        <div className="extras">
-          <Reveal className="extra extra--once">
-            <p className="extra__eyebrow">{once.eyebrow}</p>
-            <p className="extra__note">
-              Envoyez-moi votre cahier des charges : je vous fais un{' '}
-              <strong>devis sur mesure en {once.quoteMaxDays} jours maximum</strong>.{' '}
-              <a href={mailto('Cahier des charges – demande de devis')}>Envoyer mon cahier des charges</a>
-            </p>
-          </Reveal>
-        </div>
-
+        {/* Paiement unique et besoins hors formules : un seul encart, sur devis */}
         <Reveal className="quote-banner on-dark">
           <div>
-            <h3>Besoin d’autre chose ?</h3>
+            <h3>Payer une seule fois, ou un besoin hors formules ?</h3>
             <p>
-              Je vous fais un devis sur mesure, adapté à votre budget et à
-              votre façon de travailler.
+              Décrivez-moi votre projet : je vous fais un devis sur mesure en{' '}
+              {once.quoteMaxDays} jours maximum, adapté à votre budget.
             </p>
           </div>
           <a className="btn" href="#contact">

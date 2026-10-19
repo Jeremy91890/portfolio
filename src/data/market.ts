@@ -1,4 +1,4 @@
-import pricing from "./pricing.json";
+import pricing from "./pricing";
 
 export const planPrice = (id: string) => pricing.plans.find((p) => p.id === id)!.price;
 

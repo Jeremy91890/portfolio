@@ -8,18 +8,20 @@ import { pathToFileURL } from 'node:url';
 import { transform } from 'esbuild';
 
 const root = resolve(import.meta.dirname, '..');
-const pricing = JSON.parse(readFileSync(join(root, 'src/data/pricing.json'), 'utf8'));
-const { code } = await transform(readFileSync(join(root, 'src/data/site.ts'), 'utf8'), {
-  loader: 'ts',
-  format: 'esm',
-});
-const { site, legal } = await import('data:text/javascript,' + encodeURIComponent(code));
+// Charge un module TS sans dépendance (site.ts, fill-pricing.ts)
+const importTs = async (file) => {
+  const { code } = await transform(readFileSync(join(root, file), 'utf8'), { loader: 'ts', format: 'esm' });
+  return import('data:text/javascript,' + encodeURIComponent(code));
+};
+const { site, legal } = await importTs('src/data/site.ts');
+const { fillPricing } = await importTs('src/data/fill-pricing.ts');
+const pricing = fillPricing(JSON.parse(readFileSync(join(root, 'src/data/pricing.json'), 'utf8')));
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const OUT = join(root, 'grille-tarifaire.pdf');
 
-const { header, plans, features, includedInAll, notes, oneTimePurchase: once } = pricing;
-const { annualFreeMonths, launchDays, premiumCommitmentMonths } = pricing;
+const { header, plans, features, includedInAll, oneTimePurchase: once, options } = pricing;
+const { annualFreeMonths, launchDays, premiumCommitmentMonths, criticalResponseHours } = pricing;
 const font = (w) => pathToFileURL(join(root, `node_modules/@fontsource/poppins/files/poppins-latin-${w}-normal.woff2`)).href;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const eur = (n) => `${n.toLocaleString("fr-FR")}&nbsp;€`;
@@ -77,10 +79,10 @@ const table = `
 // Page 2 : les questions qu'un client se pose avant de signer (reprend la FAQ du site)
 const faq = [
   {
-    t: 'Prix et TVA',
-    b: `<p>Les prix indiqués sont <strong>ceux que vous payez</strong> : aucune TVA ne s’ajoute.</p>
-        <p class="small">TVA non applicable, art. 293 B du CGI (micro-entreprise).</p>
-        <p>Mise en place : <strong>0 €</strong>.</p>`,
+    t: 'Prix et paiement',
+    b: `<p>Les prix indiqués sont <strong>ceux que vous payez</strong> : aucune TVA ne s’ajoute. Mise en place : <strong>0 €</strong>.</p>
+        <p>Paiement par <strong>prélèvement SEPA</strong>, chaque mois.</p>
+        <p class="small">TVA non applicable, art. 293 B du CGI (micro-entreprise).</p>`,
   },
   {
     t: 'Paiement mensuel ou annuel',
@@ -90,44 +92,46 @@ const faq = [
             .map((p) => `<tr><td>${esc(p.name)}</td><td>${eur(p.price)}</td><td><strong>${eur(p.price * (12 - annualFreeMonths))}</strong></td></tr>`)
             .join('')}
         </table>
-        <p class="small">En payant à l’année, ${annualFreeMonths} mois sont offerts : vous payez 10 mois au lieu de 12.</p>`,
+        <p class="small">À l’année, ${annualFreeMonths} mois offerts. Si vous arrêtez en cours d’année, les mois écoulés sont recalculés au tarif mensuel et le reste vous est remboursé.</p>`,
   },
   {
-    t: 'Engagement',
-    b: `<p>Essentiel et Pro sont <strong>sans engagement</strong> : vous pouvez résilier à tout moment.</p>
-        <p>${esc(premium.name)}, qui inclut un outil développé sur mesure, demande un engagement de <strong>${premiumCommitmentMonths} mois</strong>.</p>`,
-  },
-  {
-    t: 'Changer de formule',
-    b: `<p>Possible en cours d’abonnement, pour suivre l’évolution de votre activité.</p>
-        <p>Depuis ${esc(premium.name)}, le passage à une formule inférieure est possible à l’issue des ${premiumCommitmentMonths} mois d’engagement.</p>`,
+    t: 'Engagement et changement de formule',
+    b: `<p>Essentiel et Pro sont <strong>sans engagement</strong> : résiliation par simple e-mail, effective à la fin du mois en cours.</p>
+        <p>${esc(premium.name)}, qui inclut un outil sur mesure, demande <strong>${premiumCommitmentMonths} mois</strong> d’engagement. Changer de formule est possible à tout moment ; depuis ${esc(premium.name)}, vers une formule inférieure à l’issue de l’engagement.</p>`,
   },
   {
     t: 'Options',
     b: `<ul>
-          <li>Modifier votre site vous-même (Essentiel) : <strong>+${once.backofficePerMonth}&nbsp;€/mois</strong></li>
-          <li>Adresse e-mail pro (Essentiel, Pro) : <strong>+5&nbsp;€/mois</strong> — incluse dans ${esc(premium.name)}</li>
+          <li>Modifier votre site vous-même (Essentiel) : <strong>+${options.backofficePerMonth}&nbsp;€/mois</strong></li>
+          <li>Adresse e-mail pro (Essentiel, Pro) : <strong>+${options.emailPerMonth}&nbsp;€/mois</strong> — incluse dans ${esc(premium.name)}</li>
+          <li>Modification au-delà du quota : <strong>${eur(options.extraModification)}</strong></li>
         </ul>`,
   },
   {
-    t: 'Mise en ligne en 7 jours',
-    b: `<p>Vous me fournissez vos textes et photos, ou je m’en charge pour vous.</p>
-        <p>Votre site est en ligne <strong>${launchDays} jours</strong> après la validation de tous vos textes et images.</p>`,
-  },
-  {
-    t: 'Votre nom de domaine',
-    b: `<p>Je le réserve et le gère pour vous : vous n’avez rien à faire.</p>
-        <p>Si vous arrêtez, je vous le transfère : <strong>vous gardez votre adresse</strong>.</p>`,
+    t: `Mise en ligne en ${launchDays} jours`,
+    b: `<p>Je rédige vos textes après un échange avec vous, ou j’utilise les vôtres. Photos : les vôtres, ou des photos libres de droits (séance photo non incluse).</p>
+        <p>Votre site est en ligne <strong>${launchDays} jours</strong> après la validation de vos contenus. L’outil ${esc(premium.name)} est livré dans un délai fixé ensemble.</p>`,
   },
   {
     t: 'Bug ou modification ?',
-    b: `<p>Un <strong>bug</strong> (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement.</p>
-        <p>Une <strong>modification</strong> (un nouveau texte, une photo…) est décomptée de votre quota. Les modifications non utilisées ne sont pas reportées.</p>`,
+    b: `<p>Un <strong>bug</strong> est corrigé gratuitement ; site inaccessible : pris en charge sous ${criticalResponseHours}&nbsp;h ouvrées.</p>
+        <p>Une <strong>modification</strong> (un élément, ou une liste envoyée en une fois) est décomptée de votre quota. Les modifications non utilisées ne sont pas reportées.</p>`,
+  },
+  {
+    t: 'Si vous arrêtez',
+    b: `<p>Je vous transfère votre <strong>nom de domaine</strong> et vous remets vos textes et photos.</p>
+        <p>Rachat du site complet : ${plans
+          .map((p) => `${esc(p.name)} ${p.buyoutPrice ? eur(p.buyoutPrice) : 'sur devis'}`)
+          .join(', ')}.</p>`,
+  },
+  {
+    t: 'Si j’arrête mon activité',
+    b: `<p>Je vous remets <strong>gratuitement</strong> votre site complet, prêt à être repris par un autre prestataire.</p>`,
   },
   {
     t: 'Payer une seule fois ?',
     b: `<p>C’est possible, sur devis.</p>
-        <p>Envoyez-moi votre cahier des charges : je vous fais un <strong>devis sur mesure en ${once.quoteMaxDays}&nbsp;jours maximum</strong>.</p>`,
+        <p>Décrivez-moi votre projet : je vous fais un <strong>devis sur mesure en ${once.quoteMaxDays}&nbsp;jours maximum</strong>.</p>`,
   },
 ];
 
@@ -253,7 +257,7 @@ const html = `<!doctype html>
 
   <div class="body">
     ${table.replace('<table class="grid">', '<table class="grid"><colgroup><col class="lab"><col><col><col></colgroup>')}
-    ${notes.map((n) => `<p class="note">${esc(n)}</p>`).join('')}
+    <p class="note">Bug, modification, paiement, résiliation : tous les détails en page 2.</p>
   </div>
 
   <footer class="foot">
@@ -283,14 +287,14 @@ const html = `<!doctype html>
     <div class="cta">
       <div class="quote">
         <h3>Votre besoin ne rentre dans aucune formule ?</h3>
-        <p>Prise de rendez-vous, click &amp; collect, application mobile, outil métier… Je vous fais un
+        <p>Click &amp; collect, application mobile, outil métier… Je vous fais un
         <strong>devis personnalisé</strong>, adapté à votre budget et à votre façon de travailler.
         Vous avez déjà un site ? Je le modernise en préservant votre place sur Google.</p>
       </div>
       <div class="contact">
         <h3>Une question ? Je vous réponds personnellement.</h3>
         <p><strong>${esc(site.phone)}</strong> · <strong>${esc(site.email)}</strong></p>
-        <p>${esc(site.name)} · ${esc(site.city)}</p>
+        <p>${esc(site.name)}</p>
       </div>
     </div>
   </div>
