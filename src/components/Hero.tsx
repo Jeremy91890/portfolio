@@ -1,7 +1,8 @@
-import { Fragment, useRef, type PointerEvent } from 'react';
-import { motion, useMotionValue, useScroll, useSpring, useTransform, type Variants } from 'motion/react';
-import { ArrowRight, Check, Globe, HardDrives, LockSimple, Star, Wrench } from '@phosphor-icons/react';
+import { Fragment, useRef } from 'react';
+import { motion, useScroll, useTransform, type Variants } from 'motion/react';
+import { ArrowRight } from '@phosphor-icons/react';
 import Counter from './Counter';
+import DevicesMock from './DevicesMock';
 import { site } from '../data/site';
 import pricing from '../data/pricing.json';
 
@@ -39,126 +40,6 @@ function Words({ words, offset }: { words: string[]; offset: number }) {
   );
 }
 
-function BrowserMock() {
-  const ref = useRef<HTMLDivElement>(null);
-  const rx = useMotionValue(0);
-  const ry = useMotionValue(0);
-  const rotateX = useSpring(rx, { stiffness: 150, damping: 20 });
-  const rotateY = useSpring(ry, { stiffness: 150, damping: 20 });
-
-  const onMove = (e: PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== 'mouse' || !ref.current) return;
-    const r = ref.current.getBoundingClientRect();
-    ry.set(((e.clientX - r.left) / r.width - 0.5) * 10);
-    rx.set(-((e.clientY - r.top) / r.height - 0.5) * 10);
-  };
-  const onLeave = () => {
-    rx.set(0);
-    ry.set(0);
-  };
-
-  // Le site « se construit » bloc par bloc
-  const block = (i: number): Variants => ({
-    hidden: { opacity: 0, y: 16, scale: 0.97 },
-    show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease, delay: 1.3 + i * 0.22 } },
-  });
-  const chip = (i: number): Variants => ({
-    hidden: { opacity: 0, scale: 0.6, y: 10 },
-    show: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: { type: 'spring', stiffness: 260, damping: 18, delay: 2.6 + i * 0.25 },
-    },
-  });
-
-  return (
-    <motion.div
-      ref={ref}
-      className="mock-wrap"
-      onPointerMove={onMove}
-      onPointerLeave={onLeave}
-      variants={appear(0.5)}
-      aria-hidden="true"
-    >
-      <motion.div className="mock" style={{ rotateX, rotateY }}>
-        <div className="mock__bar">
-          <div className="mock__dots">
-            <span />
-            <span />
-            <span />
-          </div>
-          <div className="mock__url">
-            <LockSimple size={12} weight="bold" />
-            <motion.span
-              initial={{ clipPath: 'inset(0 100% 0 0)' }}
-              animate={{ clipPath: 'inset(0 0% 0 0)' }}
-              transition={{ duration: 0.9, delay: 0.9, ease: 'linear' }}
-            >
-              boulangerie-martin.fr
-            </motion.span>
-            <span className="mock__caret" />
-          </div>
-        </div>
-        <div className="mock__body">
-          <motion.div className="mock__nav" variants={block(0)}>
-            <span className="mock__brand">Boulangerie Martin</span>
-            <span className="mock__links">
-              <span />
-              <span />
-              <span />
-            </span>
-          </motion.div>
-          <motion.div className="mock__hero" variants={block(1)}>
-            <strong>Pain au levain, viennoiseries maison</strong>
-            <small>Ouvert du mardi au dimanche · 7h – 19h30</small>
-            <span className="mock__book">Commander en ligne</span>
-          </motion.div>
-          <motion.div className="mock__cards" variants={block(2)}>
-            {[0, 1, 2].map((k) => (
-              <div className="mock__card" key={k}>
-                <i />
-                <b />
-                <b />
-              </div>
-            ))}
-          </motion.div>
-          <motion.div className="mock__reviews" variants={block(3)}>
-            <span>Livre d’or · 128 avis</span>
-            <span className="mock__stars">
-              {[0, 1, 2, 3, 4].map((k) => (
-                <Star key={k} size={12} weight="fill" />
-              ))}
-            </span>
-          </motion.div>
-        </div>
-      </motion.div>
-
-      <motion.div className="chip chip--1" variants={chip(0)}>
-        <span className="chip__icon">
-          <Globe size={16} weight="bold" />
-        </span>
-        Nom de domaine
-        <Check size={14} weight="bold" color="#16a34a" />
-      </motion.div>
-      <motion.div className="chip chip--2" variants={chip(1)}>
-        <span className="chip__icon">
-          <HardDrives size={16} weight="bold" />
-        </span>
-        Hébergement
-        <Check size={14} weight="bold" color="#16a34a" />
-      </motion.div>
-      <motion.div className="chip chip--3" variants={chip(2)}>
-        <span className="chip__icon">
-          <Wrench size={16} weight="bold" />
-        </span>
-        Mises à jour
-        <Check size={14} weight="bold" color="#16a34a" />
-      </motion.div>
-    </motion.div>
-  );
-}
-
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
@@ -173,15 +54,7 @@ export default function Hero() {
 
       <motion.div className="container hero__inner" initial="hidden" animate="show">
         <div>
-          <motion.p className="status-pill" variants={appear(0)}>
-            <span className="status-pill__avatar" aria-hidden="true">
-              <img src={site.photo.thumb} alt="" width={32} height={32} />
-              <span className="status-pill__dot" />
-            </span>
-            Par {site.firstName}, développeur web depuis 10 ans
-          </motion.p>
-
-          <motion.p className="eyebrow hero__slogan" variants={appear(0.08)}>
+          <motion.p className="eyebrow hero__slogan" variants={appear(0)}>
             {site.slogan}
           </motion.p>
 
@@ -258,7 +131,7 @@ export default function Hero() {
           </motion.dl>
         </div>
 
-        <BrowserMock />
+        <DevicesMock />
       </motion.div>
     </section>
   );

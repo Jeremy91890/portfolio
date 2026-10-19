@@ -40,6 +40,13 @@ export default function Contact() {
             Une formule, un devis sur mesure ou simplement une question : je
             vous réponds personnellement.
           </p>
+          <p className="status-pill contact__signature">
+            <span className="status-pill__avatar" aria-hidden="true">
+              <img src={site.photo.thumb} alt="" width={32} height={32} loading="lazy" />
+              <span className="status-pill__dot" />
+            </span>
+            {site.firstName}, développeur web depuis 10 ans
+          </p>
         </Reveal>
         <Reveal className="contact__ctas" delay={0.15}>
           <a className="btn" href={mailto("Demande de devis – site web")}>
