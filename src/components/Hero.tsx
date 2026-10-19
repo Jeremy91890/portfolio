@@ -4,7 +4,7 @@ import { ArrowRight } from '@phosphor-icons/react';
 import Counter from './Counter';
 import DevicesMock from './DevicesMock';
 import { site } from '../data/site';
-import pricing from '../data/pricing.json';
+import pricing from '../data/pricing';
 
 // Formule la moins chère, affichée comme prix d'appel
 const entryPlan = pricing.plans.reduce((a, b) => (b.price < a.price ? b : a));

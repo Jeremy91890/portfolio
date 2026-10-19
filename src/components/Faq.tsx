@@ -2,26 +2,45 @@ import { useId, useState, type ReactNode } from "react";
 import { motion } from "motion/react";
 import { Phone, Plus } from "@phosphor-icons/react";
 import { Reveal, SectionHead, Stagger, fadeUp } from "./Reveal";
-import pricing from "../data/pricing.json";
+import pricing from "../data/pricing";
 import { site } from "../data/site";
 
-const { oneTimePurchase: once, annualFreeMonths, launchDays, premiumCommitmentMonths } = pricing;
+const {
+  oneTimePurchase: once,
+  options,
+  plans,
+  annualFreeMonths,
+  launchDays,
+  premiumCommitmentMonths,
+} = pricing;
+const plan = (id: string) => plans.find((p) => p.id === id)!;
 
 const questions: { q: string; a: ReactNode }[] = [
   {
     q: "Y a-t-il un engagement ou des frais de départ ?",
     a: (
+      <p>
+        La mise en place est à <strong>0 €</strong>. Les formules Essentiel et
+        Pro sont <strong>sans engagement</strong> : vous résiliez par simple
+        e-mail, effectif à la fin du mois en cours. La formule Premium, qui
+        inclut un outil développé sur mesure, demande un engagement de{" "}
+        {premiumCommitmentMonths} mois.
+      </p>
+    ),
+  },
+  {
+    q: "Comment se passe le paiement ?",
+    a: (
       <>
         <p>
-          La mise en place est à <strong>0 €</strong>. Les formules Essentiel
-          et Pro sont <strong>sans engagement</strong> : vous pouvez les
-          résilier à tout moment. La formule Premium, qui inclut un outil
-          développé sur mesure, demande un engagement de{" "}
-          {premiumCommitmentMonths} mois.
+          Par <strong>prélèvement SEPA</strong>, chaque mois. En payant à
+          l’année, vous profitez de{" "}
+          <strong>{annualFreeMonths} mois offerts</strong> : vous payez{" "}
+          {12 - annualFreeMonths} mois au lieu de 12.
         </p>
         <p>
-          En payant à l’année, vous profitez de{" "}
-          <strong>{annualFreeMonths} mois offerts</strong>.
+          Si vous arrêtez en cours d’année, les mois écoulés sont recalculés
+          au tarif mensuel et le reste vous est remboursé.
         </p>
       </>
     ),
@@ -43,7 +62,7 @@ const questions: { q: string; a: ReactNode }[] = [
       <p>
         Oui, avec l’espace de gestion : horaires, textes, images… Il est inclus
         dans les formules Pro et Premium, et disponible en option (+
-        {once.backofficePerMonth} €/mois) avec Essentiel. Sinon, je fais les
+        {options.backofficePerMonth} €/mois) avec Essentiel. Sinon, je fais les
         modifications pour vous, selon le quota de votre formule.
       </p>
     ),
@@ -51,20 +70,49 @@ const questions: { q: string; a: ReactNode }[] = [
   {
     q: "Qui s’occupe des textes et des photos ?",
     a: (
+      <>
+        <p>
+          Je rédige vos textes après un échange avec vous, ou j’utilise les
+          vôtres. Pour les photos : les vôtres, ou des photos libres de droits
+          que je sélectionne. La séance photo n’est pas incluse.
+        </p>
+        <p>
+          Votre site est en ligne <strong>{launchDays} jours</strong> après la
+          validation de tous vos textes et images.
+        </p>
+      </>
+    ),
+  },
+  {
+    q: "Quel outil sur mesure avec la formule Premium ?",
+    a: (
       <p>
-        Vous pouvez me fournir vos textes et vos photos, ou je m’en charge pour
-        vous. Votre site est en ligne <strong>{launchDays} jours</strong> après la
-        validation de tous vos textes et images.
+        Vous en choisissez un : réservation en ligne sans commission, devis et
+        factures, carte de fidélité numérique, ou assistant qui répond aux
+        questions de vos clients (horaires, services, tarifs). Votre site est
+        en ligne en {launchDays} jours ; le délai de livraison de l’outil est
+        fixé ensemble. Pour un autre besoin, je vous fais un devis.
       </p>
     ),
   },
   {
-    q: "Le nom de domaine m’appartient-il ?",
+    q: "Que se passe-t-il si j’arrête ?",
     a: (
-      <p>
-        Je le réserve et le gère pour vous, pour que vous n’ayez rien à faire.
-        Si vous arrêtez, je vous le transfère : vous gardez votre adresse.
-      </p>
+      <>
+        <p>
+          Je vous transfère votre <strong>nom de domaine</strong> et vous remets
+          vos textes et vos photos : vous gardez votre adresse et vos contenus.
+        </p>
+        <p>
+          Vous pouvez aussi racheter le site complet, prêt à être repris :{" "}
+          {plan("essentiel").buyoutPrice} € pour Essentiel,{" "}
+          {plan("pro").buyoutPrice} € pour Pro, sur devis pour Premium.
+        </p>
+        <p>
+          Et si c’est moi qui arrête mon activité, je vous remets{" "}
+          <strong>gratuitement</strong> votre site complet.
+        </p>
+      </>
     ),
   },
   {
@@ -80,43 +128,43 @@ const questions: { q: string; a: ReactNode }[] = [
   {
     q: "Quelle différence entre un bug et une modification ?",
     a: (
-      <p>
-        Un <strong>bug</strong>, c’est quelque chose qui ne fonctionne plus
-        comme prévu : il est corrigé gratuitement. Une{" "}
-        <strong>modification</strong>, c’est un changement que vous demandez
-        (un nouveau texte, une photo…) : elle est décomptée de votre quota.
-        Les modifications non utilisées ne sont pas reportées.
-      </p>
+      <>
+        <p>
+          Un <strong>bug</strong>, c’est quelque chose qui ne fonctionne plus
+          comme prévu : il est corrigé gratuitement. Si votre site est
+          inaccessible, je le prends en charge sous{" "}
+          {pricing.criticalResponseHours} h ouvrées, quelle que soit votre
+          formule.
+        </p>
+        <p>
+          Une <strong>modification</strong>, c’est un changement que vous
+          demandez : un élément, ou une liste d’éléments envoyée en une seule
+          fois. Elle est décomptée de votre quota ; au-delà, chaque
+          modification est facturée {options.extraModification} €. Les
+          modifications non utilisées ne sont pas reportées.
+        </p>
+      </>
     ),
   },
   {
     q: "Mon site sera-t-il visible sur Google ?",
     a: (
       <p>
-        Vos pages sont conçues pour s’afficher vite et bien remonter dans les
-        recherches. Avec les formules Pro et Premium, je mets aussi votre fiche
-        Google Maps au propre pour que les clients de votre quartier vous
-        trouvent.
+        Oui : avec toutes les formules, vos pages sont conçues pour s’afficher
+        vite et bien remonter dans les recherches, et je déclare votre site
+        auprès de Google. Avec Pro et Premium, je mets aussi votre fiche Google
+        Maps au propre pour que les clients de votre quartier vous trouvent.
       </p>
     ),
   },
   {
     q: "Je préfère payer une seule fois, c’est possible ?",
     a: (
-      <>
-        <p>
-          Oui : <strong>{once.price} €</strong> pour le site, puis{" "}
-          {once.hostingPerMonth} €/mois pour l’hébergement et le nom de domaine.
-          Les bugs sont garantis {once.bugWarrantyMonths} mois et chaque
-          modification est facturée {once.modificationUnitPrice} €.
-        </p>
-        <p>
-          Vous ne souhaitez pas payer ces {once.hostingPerMonth} €/mois ? Vous
-          pouvez aussi <strong>gérer vous-même</strong> l’hébergement, le nom de
-          domaine et le certificat de sécurité : je vous livre le site et vous
-          explique comment le mettre en ligne.
-        </p>
-      </>
+      <p>
+        Oui, sur devis. Décrivez-moi votre projet : je vous envoie un{" "}
+        <a href="#contact">devis sur mesure</a> en {once.quoteMaxDays} jours
+        maximum.
+      </p>
     ),
   },
   {
@@ -132,8 +180,8 @@ const questions: { q: string; a: ReactNode }[] = [
     q: "Mon besoin ne rentre dans aucune formule…",
     a: (
       <p>
-        Les formules couvrent les besoins les plus courants. Prise de rendez-vous, click &
-        collect, application mobile, outil métier : je vous fais un{" "}
+        Les formules couvrent les besoins les plus courants. Click & collect,
+        application mobile, outil métier : je vous fais un{" "}
         <a href="#contact">devis personnalisé</a>, adapté à votre budget.
       </p>
     ),

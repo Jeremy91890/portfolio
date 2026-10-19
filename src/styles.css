@@ -1327,23 +1327,6 @@ button { font: inherit; color: inherit; }
   .plan-card .plan-cta { margin-top: 24px; }
 }
 
-.extras {
-  margin-top: 24px;
-  display: grid;
-  gap: 16px;
-}
-.extra {
-  padding: 28px;
-  border-radius: var(--radius-lg);
-}
-.extra--once { background: var(--white); border: 1px solid var(--border); }
-.extra__eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; color: var(--navy); }
-.extra h3 { margin-top: 8px; font-size: 1.75rem; font-weight: 700; }
-.extra p { margin-top: 6px; }
-.extra__note { margin-top: 8px; color: var(--gray); }
-.extra__note strong { color: var(--navy); }
-.extra__note a { font-weight: 600; color: var(--orange-text); text-underline-offset: 3px; }
-
 .pricing-foot {
   margin-top: 24px;
   display: grid;

@@ -1,7 +1,7 @@
 import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { legal, site } from './src/data/site';
-import pricing from './src/data/pricing.json';
+import pricing from './src/data/pricing';
 
 const home = `${site.url}/`;
 const fromPrice = Math.min(...pricing.plans.map((p) => p.price));
