@@ -1,4 +1,4 @@
-import type { PointerEvent } from "react";
+import type { CSSProperties } from "react";
 import { motion } from "motion/react";
 import {
   ArrowsClockwise,
@@ -13,53 +13,18 @@ import {
 import { SectionHead, Stagger, fadeUp } from "./Reveal";
 
 const services = [
-  {
-    icon: CalendarCheck,
-    title: "Prise de rendez-vous",
-    text: "Vos clients réservent en ligne, 24 h/24, avec rappels automatiques pour éviter les absences.",
-  },
-  {
-    icon: BookOpenText,
-    title: "Livre d’or & avis",
-    text: "Recueillez et affichez les avis de vos clients, et faites remonter votre note sur Google.",
-  },
-  {
-    icon: Robot,
-    title: "Intelligence artificielle",
-    text: "Chatbot qui répond aux questions fréquentes, relances par email, rédaction assistée.",
-  },
-  {
-    icon: ShoppingBag,
-    title: "Commande & click & collect",
-    text: "Vos produits en ligne, commandés à l’avance et retirés en boutique.",
-  },
-  {
-    icon: Gear,
-    title: "Outils métier sur mesure",
-    text: "Devis, suivi de commandes, stocks : des outils taillés pour vos processus à vous. Adieu le tableur à 47 onglets.",
-  },
-  {
-    icon: DeviceMobileCamera,
-    title: "Application mobile",
-    text: "Une application iOS et Android pour fidéliser vos clients au quotidien.",
-  },
-  {
-    icon: ChartLineUp,
-    title: "Statistiques claires",
-    text: "Combien de visites, d’où viennent vos clients : des chiffres simples, commentés.",
-  },
-  {
-    icon: ArrowsClockwise,
-    title: "Refonte de votre site",
-    text: "Un site vieillissant ? Je le modernise en préservant votre référencement.",
-  },
+  { icon: CalendarCheck, label: "Rendez-vous en ligne" },
+  { icon: Robot, label: "IA & chatbot" },
+  { icon: ShoppingBag, label: "Click & collect" },
+  { icon: BookOpenText, label: "Avis clients" },
+  { icon: Gear, label: "Outils métier" },
+  { icon: DeviceMobileCamera, label: "Appli mobile" },
+  { icon: ChartLineUp, label: "Statistiques" },
+  { icon: ArrowsClockwise, label: "Refonte de site" },
 ];
 
-const track = (e: PointerEvent<HTMLElement>) => {
-  const r = e.currentTarget.getBoundingClientRect();
-  e.currentTarget.style.setProperty("--x", `${e.clientX - r.left}px`);
-  e.currentTarget.style.setProperty("--y", `${e.clientY - r.top}px`);
-};
+// Tailles variées (multiplicateur) pour un nuage de bulles irrégulier.
+const sizes = [1.15, 0.9, 1, 1.2, 0.95, 1.1, 0.88, 1.05];
 
 export default function Services() {
   return (
@@ -72,28 +37,25 @@ export default function Services() {
         <SectionHead
           id="services-title"
           eyebrow="Sur mesure"
+          center
           title={
             <>
-              Votre digitalisation,{" "}
-              <span className="accent">quelle qu’elle soit.</span>
+              Besoin d’autre chose&nbsp;?{" "}
+              <span className="accent">Je le développe.</span>
             </>
           }
-          lead="Les formules couvrent la majorité des besoins, mais chaque commerce est unique. Je développe aussi des fonctionnalités adaptées à vos processus."
         />
 
-        <Stagger className="services" step={0.06} as="ul">
-          {services.map(({ icon: Icon, title, text }) => (
-            <motion.li
-              key={title}
-              className="spot"
-              variants={fadeUp}
-              onPointerMove={track}
-            >
-              <span className="card__icon" aria-hidden="true">
-                <Icon size={24} weight="duotone" />
+        <Stagger className="bubbles" step={0.05} as="ul">
+          {services.map(({ icon: Icon, label }, i) => (
+            <motion.li key={label} variants={fadeUp}>
+              <span
+                className="bubble"
+                style={{ "--i": i, "--s": sizes[i % sizes.length] } as CSSProperties}
+              >
+                <Icon className="bubble__icon" weight="duotone" aria-hidden="true" />
+                <span className="bubble__label">{label}</span>
               </span>
-              <h3>{title}</h3>
-              <p>{text}</p>
             </motion.li>
           ))}
         </Stagger>
