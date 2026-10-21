@@ -986,31 +986,34 @@ button { font: inherit; color: inherit; }
   margin-inline: auto;
 }
 .bubbles li:nth-child(odd) { margin-top: 14px; }
+.bubbles li.is-open { flex-basis: 100%; display: flex; justify-content: center; margin-top: 0; }
 .bubble {
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  color: var(--navy);
+  overflow: hidden;
+  transition: border-color var(--dur), box-shadow var(--dur);
+}
+.bubble:hover { border-color: rgb(244 106 46 / 0.45); box-shadow: var(--shadow); }
+.is-open .bubble { width: min(100%, 420px); border-color: rgb(244 106 46 / 0.45); box-shadow: var(--shadow); }
+.bubble__toggle {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 9px 16px 9px 12px;
-  border-radius: 999px;
-  background: var(--white);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  border: 0;
+  background: none;
+  font: inherit;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--navy);
+  color: inherit;
   white-space: nowrap;
-  /* Durées et décalages variés pour que les bulles ne bougent pas en même temps */
-  animation: bubble-float calc(3.2s + var(--i) * 0.35s) ease-in-out calc(var(--i) * -0.6s) infinite;
-  transition: border-color var(--dur), box-shadow var(--dur), scale var(--dur) var(--ease-out);
+  cursor: pointer;
 }
-.bubble svg { flex: none; color: var(--orange-text); }
-.bubble:hover { border-color: rgb(244 106 46 / 0.45); box-shadow: var(--shadow); scale: 1.08; animation-play-state: paused; }
-@keyframes bubble-float {
-  0%, 100% { translate: 0 0; rotate: 0deg; }
-  25% { translate: 3px -9px; rotate: 1.5deg; }
-  50% { translate: 0 -14px; rotate: 0deg; }
-  75% { translate: -3px -7px; rotate: -1.5deg; }
-}
+.is-open .bubble__toggle { padding: 14px 18px 0; font-size: 1rem; font-weight: 600; white-space: normal; text-align: left; }
+.bubble__toggle svg { flex: none; color: var(--orange-text); }
+.bubble__text { padding: 6px 18px 16px 44px; font-size: 0.875rem; color: var(--gray); }
 
 .quote-banner {
   margin-top: 40px;
