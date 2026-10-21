@@ -23,9 +23,6 @@ const services = [
   { icon: ArrowsClockwise, label: "Refonte de site" },
 ];
 
-// Tailles variées (multiplicateur) pour un nuage de bulles irrégulier.
-const sizes = [1.15, 0.9, 1, 1.2, 0.95, 1.1, 0.88, 1.05];
-
 export default function Services() {
   return (
     <section
@@ -51,10 +48,10 @@ export default function Services() {
             <motion.li key={label} variants={fadeUp}>
               <span
                 className="bubble"
-                style={{ "--i": i, "--s": sizes[i % sizes.length] } as CSSProperties}
+                style={{ "--i": i } as CSSProperties}
               >
-                <Icon className="bubble__icon" weight="duotone" aria-hidden="true" />
-                <span className="bubble__label">{label}</span>
+                <Icon size={18} weight="duotone" aria-hidden="true" />
+                {label}
               </span>
             </motion.li>
           ))}
