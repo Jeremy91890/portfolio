@@ -8,7 +8,7 @@ export const site = {
   initials: "JD",
   role: "Développeur web & mobile",
   // Adresse publique du site (URL canonique, sitemap, partages)
-  url: "https://jeremydebelleix.fr",
+  url: "https://www.nappage.fr",
   email: "contact@nappage.fr",
   phone: "06 30 38 69 83",
   phoneHref: "+33630386983",

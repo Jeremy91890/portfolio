@@ -42,7 +42,13 @@ export default function Contact() {
           </p>
           <p className="status-pill contact__signature">
             <span className="status-pill__avatar" aria-hidden="true">
-              <img src={site.photo.thumb} alt="" width={32} height={32} loading="lazy" />
+              <img
+                src={site.photo.thumb}
+                alt=""
+                width={32}
+                height={32}
+                loading="lazy"
+              />
               <span className="status-pill__dot" />
             </span>
             {site.firstName}, développeur web depuis 10 ans
@@ -86,8 +92,7 @@ export function Footer() {
     <footer className="footer on-dark">
       <div className="container footer__inner">
         <p>
-          © {new Date().getFullYear()} {site.brand} · {site.name} · Fabriqué à{" "}
-          {site.town},
+          © {new Date().getFullYear()} {site.brand} · {site.name}
         </p>
         <p>TVA non applicable, art. 293 B du CGI.</p>
         <p className="footer__links">
