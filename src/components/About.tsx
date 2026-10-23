@@ -18,7 +18,10 @@ import {
   LinkedinLogo,
 } from "@phosphor-icons/react";
 import { Reveal, SectionHead, Stagger, fadeUp } from "./Reveal";
+import Counter from "./Counter";
+import NappageLogo from "./NappageLogo";
 import { site } from "../data/site";
+import { planPrice } from "../data/market";
 
 // Points forts, en liste légère à côté de la photo
 const strengths = [
@@ -43,6 +46,175 @@ const strengths = [
     text: "Des pages qui s’affichent vite et remontent sur Google.",
   },
 ];
+
+// Ce que rapporte un site, présenté comme un ticket de caisse. Chaque chiffre est repris tel quel de la source citée.
+const gainSources = [
+  {
+    label: "Google, How Mobile Search Connects Consumers to Stores, 2016",
+    url: "https://www.thinkwithgoogle.com/_qs/documents/620/mobile-search-trends-consumers-to-stores.pdf",
+  },
+  {
+    label: "Baromètre France Num 2026 (DGE) : 52 % des indépendants ont un site",
+    url: "https://www.francenum.gouv.fr/files/2026-09/Barom%C3%A8tre%20France%20Num%202026%20-%20Rapport%20final.pdf",
+  },
+  {
+    label:
+      "Verisign, 5 Reasons Every Small Business Needs a Website, enquête de septembre 2015 auprès de 456 petites entreprises américaines",
+    url: "https://www.verisign.com/assets/ebook-5ReasonsSMBWebsite-Jan2016.pdf",
+  },
+];
+
+// Formule Essentiel ramenée à la journée (12 mois / 365 jours)
+const perDay = ((planPrice("essentiel") * 12) / 365).toLocaleString("fr-FR", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+// Libellé court sur une ligne (lu d'un coup d'œil), détail en petit dessous
+type Gain = {
+  label: string;
+  detail: string;
+  value?: string;
+  count?: number;
+  note?: number;
+  highlight?: boolean;
+};
+
+const gains: Gain[] = [
+  {
+    label: "Vitrine ouverte",
+    detail: "même quand votre boutique est fermée",
+    value: "24 h/24",
+  },
+  {
+    label: "Recherches locales",
+    detail: "qui finissent par un achat",
+    count: 28,
+    note: 1,
+    highlight: true,
+  },
+  {
+    label: "Concurrents sans site",
+    detail: "des indépendants n’en ont toujours pas",
+    count: 48,
+    note: 2,
+    highlight: true,
+  },
+  {
+    label: "Coût par jour",
+    detail: "avec la formule Essentiel",
+    value: `dès ${perDay} €`,
+  },
+];
+
+function GainsTicket() {
+  // On observe le ticket entier et non le papier : masqué par le clip-path de son parent, il ne serait jamais « visible »
+  const ticketRef = useRef<HTMLDivElement>(null);
+  const printed = useInView(ticketRef, {
+    once: true,
+    margin: "0px 0px -15% 0px",
+  });
+
+  return (
+    <div className="gains on-dark">
+      <Reveal className="gains__intro">
+        <h3 className="gains__title">
+          Un site ne coûte pas. <span className="accent">Il rapporte.</span>
+        </h3>
+        <p className="gains__lead">
+          Il vend pour vous jour et nuit, et vous place devant les concurrents
+          qui n’en ont pas.
+        </p>
+        <p className="gains__stat">
+          <strong>
+            <Counter to={77} suffix=" %" />
+          </strong>
+          <span>
+            des petites entreprises jugent qu’un site est un excellent moyen de
+            trouver de nouveaux clients
+            <sup>
+              <a href="#gain-source-3">
+                3<span className="sr-only"> (voir la source)</span>
+              </a>
+            </sup>
+            {/* Avis déclaré des entreprises, pas une mesure du chiffre d'affaires */}
+            <small>Enquête Verisign auprès d’entreprises américaines, 2015.</small>
+          </span>
+        </p>
+      </Reveal>
+
+      <div className="ticket" ref={ticketRef}>
+        <span className="ticket__slot" aria-hidden="true" />
+        {/* Le ticket « sort » de la fente de la caisse au défilement */}
+        <div className="ticket__clip">
+          <motion.div
+            className="ticket__paper"
+            initial={{ y: "-100%" }}
+            animate={printed ? { y: 0 } : undefined}
+            transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="ticket__body">
+              <p className="ticket__brand">
+                <NappageLogo size={28} />
+                {site.brand}
+              </p>
+              <p className="ticket__heading">
+                Ce que votre site vous rapporte
+              </p>
+
+              <dl className="ticket__rows">
+                {gains.map((g) => (
+                  <div key={g.label} className="ticket__row">
+                    <dt className="ticket__label">{g.label}</dt>
+                    <dd
+                      className={`ticket__value${g.highlight ? " ticket__value--hl" : ""}`}
+                    >
+                      {g.count !== undefined ? (
+                        <Counter to={g.count} suffix=" %" />
+                      ) : (
+                        g.value
+                      )}
+                    </dd>
+                    <dd className="ticket__detail">
+                      {g.detail}
+                      {g.note && (
+                        <sup>
+                          <a href={`#gain-source-${g.note}`}>
+                            {g.note}
+                            <span className="sr-only"> (voir la source)</span>
+                          </a>
+                        </sup>
+                      )}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <p className="ticket__total">
+                <span>Total</span>
+                <strong>Rentabilisé dès 1 nouveau client par mois</strong>
+              </p>
+              <p className="ticket__thanks">Merci de votre visite !</p>
+              <span className="ticket__barcode" aria-hidden="true" />
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      <ol className="gains__sources">
+        {gainSources.map((s, i) => (
+          <li key={s.url} id={`gain-source-${i + 1}`}>
+            <span aria-hidden="true">{i + 1}. </span>
+            <a href={s.url} target="_blank" rel="noopener noreferrer">
+              {s.label}
+              <span className="sr-only">(nouvel onglet)</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
 
 // Phrases affichées à tour de rôle quand on clique sur la main
 type Hello = { text: string; link?: { href: string; label: string } };
@@ -330,6 +502,10 @@ export default function About() {
             ))}
           </Stagger>
         </div>
+      </div>
+
+      <div className="container">
+        <GainsTicket />
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight, ArrowSquareOut } from '@phosphor-icons/react';
+import { ArrowRight, ArrowSquareOut, Plus } from '@phosphor-icons/react';
 import { Reveal, SectionHead, Stagger, fadeUp } from './Reveal';
 import Counter from './Counter';
 
@@ -36,6 +37,10 @@ const stats = [
 ];
 
 export default function Why() {
+  // Carte ouverte au clic / toucher (le survol est géré en CSS, sur les écrans qui le permettent)
+  const [open, setOpen] = useState<string | null>(null);
+  const toggle = (title: string) => setOpen((o) => (o === title ? null : title));
+
   return (
     <section id="pourquoi" className="section section--surface" aria-labelledby="pourquoi-title">
       <div className="container">
@@ -51,20 +56,51 @@ export default function Why() {
         />
 
         <Stagger as="ul" className="why" step={0.08}>
-          {stats.map((s) => (
-            <motion.li key={s.title} className="why__card" variants={fadeUp}>
-              <h3>{s.title}</h3>
-              <p className="why__value">
-                <Counter to={s.value} suffix={' %'} />
-              </p>
-              <p className="why__text">{s.text}</p>
-              <a className="why__source" href={s.url} target="_blank" rel="noopener noreferrer">
-                {s.source}
-                <ArrowSquareOut size={14} aria-hidden="true" />
-                <span className="sr-only">(nouvel onglet)</span>
-              </a>
-            </motion.li>
-          ))}
+          {stats.map((s, i) => {
+            const isOpen = open === s.title;
+            const panelId = `why-panel-${i}`;
+            return (
+              <motion.li
+                key={s.title}
+                className="why__card"
+                data-open={isOpen}
+                variants={fadeUp}
+                // Toucher n'importe où sur la carte l'ouvre ou la ferme (le bouton et le lien gèrent leur propre clic)
+                onClick={(e) => {
+                  if (!(e.target as HTMLElement).closest('a, button')) toggle(s.title);
+                }}
+                onKeyDown={(e) => e.key === 'Escape' && isOpen && setOpen(null)}
+              >
+                <h3>
+                  <button
+                    type="button"
+                    className="why__toggle"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => toggle(s.title)}
+                  >
+                    {s.title}
+                    <Plus className="why__plus" size={18} weight="bold" aria-hidden="true" />
+                  </button>
+                </h3>
+                <p className="why__value">
+                  <Counter to={s.value} suffix={' %'} />
+                </p>
+                <div className="why__back" id={panelId}>
+                  <div className="why__back-inner">
+                    <p className="why__text">
+                      {s.text}
+                    </p>
+                    <a className="why__source" href={s.url} target="_blank" rel="noopener noreferrer">
+                      {s.source}
+                      <ArrowSquareOut size={14} aria-hidden="true" />
+                      <span className="sr-only">(nouvel onglet)</span>
+                    </a>
+                  </div>
+                </div>
+              </motion.li>
+            );
+          })}
         </Stagger>
 
         <Reveal className="why__note" delay={0.1}>
