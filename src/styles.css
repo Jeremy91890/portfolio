@@ -1118,64 +1118,36 @@ button { font: inherit; color: inherit; }
 .review strong { color: var(--navy); }
 
 /* ---------- Comparer ---------- */
-/* 2 × 2 : colonnes = prix, lignes = qui fait le travail. La case « petit prix + fait pour vous » est mise en avant */
-.quad { max-width: 820px; margin-inline: auto; }
-.quad table { width: 100%; border-collapse: separate; border-spacing: 8px; table-layout: fixed; }
-.quad thead th { padding: 0 4px 2px; font-size: 0.8125rem; font-weight: 600; color: var(--gray); text-align: center; }
-.quad thead td, .quad tbody th { width: 34px; }
-/* Libellé de ligne écrit verticalement, pour laisser la place aux cases sur téléphone */
-.quad tbody th { padding: 0; }
-.quad tbody th span {
-  display: block;
-  margin-inline: auto;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--navy);
-  white-space: nowrap;
-}
-.quad td {
-  padding: 10px;
-  vertical-align: middle;
-  border-radius: var(--radius);
-  background: var(--surface);
-}
-.quad thead td { background: none; padding: 0; }
-.quad td.is-best { background: var(--orange-soft); outline: 2px solid var(--orange); outline-offset: -2px; }
-.quad ul { display: grid; gap: 8px; }
-.quad__choice { position: relative; padding: 12px; border-radius: var(--radius-sm); background: var(--white); border: 1px solid var(--border); }
-.quad__choice strong { display: flex; align-items: center; gap: 6px; font-size: 0.9375rem; line-height: 1.25; }
-.quad__choice > span:last-child { display: block; margin-top: 4px; font-size: 0.8125rem; line-height: 1.35; color: var(--gray); }
-.quad__choice.is-mine { padding-top: 18px; background: var(--navy); border-color: var(--navy); color: var(--white); box-shadow: var(--shadow); }
-.quad__choice.is-mine strong { font-size: 1.125rem; }
-.quad__choice.is-mine strong svg { flex-shrink: 0; color: #4ade80; }
-.quad__choice.is-mine > span:last-child { color: var(--white); font-weight: 500; }
-.quad__badge {
+/* Face-à-face : à gauche ce que vous faites vous-même, à droite ce que je fais pour vous, au même prix */
+.duel { max-width: 820px; margin-inline: auto; display: grid; gap: 12px; align-items: stretch; }
+@media (min-width: 640px) { .duel { grid-template-columns: 1fr auto 1fr; gap: 16px; } }
+.duel__card { position: relative; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border); background: var(--surface); }
+.duel__card.is-mine { padding-top: 30px; background: var(--navy); border-color: var(--navy); color: var(--white); box-shadow: var(--shadow-lg); }
+.duel__badge {
   position: absolute;
-  top: 0; left: 12px;
+  top: 0; left: 24px;
   transform: translateY(-50%);
-  padding: 2px 10px;
+  padding: 4px 12px;
   border-radius: 999px;
   background: var(--orange);
   color: var(--navy);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
 }
-.quad__empty { text-align: center; font-size: 0.8125rem; font-style: italic; color: var(--gray); }
-@media (max-width: 479px) {
-  .quad table { border-spacing: 6px; margin-inline: -6px; width: calc(100% + 12px); }
-  .quad td { padding: 6px; }
-  .quad__choice { padding: 10px 8px; }
-  .quad__choice.is-mine { padding-top: 16px; }
-  .quad__choice strong { font-size: 0.8125rem; }
-  .quad__choice.is-mine strong { font-size: 1rem; }
-  .quad__choice > span:last-child { font-size: 0.75rem; }
-  .quad thead th { font-size: 0.75rem; }
-}
+.duel__name { font-size: 1.25rem; font-weight: 700; }
+.duel__price { margin-top: 4px; font-weight: 600; color: var(--gray); }
+.is-mine .duel__price { color: var(--orange); font-size: 1.125rem; }
+.duel ul { margin-top: 18px; display: grid; gap: 10px; }
+.duel li { display: flex; align-items: center; gap: 10px; color: var(--gray); }
+.duel li svg { flex-shrink: 0; color: var(--dash); }
+.is-mine li { color: var(--white); font-weight: 500; }
+.is-mine li svg { color: #4ade80; }
+.duel__vs { align-self: center; justify-self: center; font-weight: 800; font-size: 0.875rem; text-transform: uppercase; color: var(--gray); }
+.duel__elsewhere { margin: 20px auto 0; max-width: 820px; text-align: center; font-size: 0.9375rem; color: var(--gray); }
+.duel__elsewhere strong { color: var(--navy); font-weight: 600; white-space: nowrap; }
 
 .versus__takeaway { margin: 28px auto 0; max-width: 640px; text-align: center; color: var(--gray); }
 .versus__takeaway strong { color: var(--navy); }

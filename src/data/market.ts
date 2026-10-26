@@ -21,33 +21,21 @@ const fromPrice = Math.min(...pricing.plans.map((p) => p.price));
 const price = (n: number) =>
   n.toLocaleString("fr-FR", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
 
-// Comparaison en 2 × 2 : petit prix ou prix fort, fait pour vous ou à faire vous-même.
-// Seuil « petit prix » = le haut de la fourchette des outils à faire soi-même (Nappage doit rester en dessous).
-export const cheapUpTo = diy.monthlyMax;
-
-export type Choice = { name: string; price: string; mine?: boolean };
-
-export const grid = {
-  columns: [`Jusqu'à ${price(cheapUpTo)} €/mois`, `${price(turnkey.monthly)} €/mois et plus`],
-  rows: [
-    {
-      label: "Fait pour vous",
-      cells: [
-        [{ name: "Nappage", price: `Dès ${price(fromPrice)} €/mois, ${euros(pricing.setupFee)} au départ`, mine: true }],
-        [
-          { name: "Clé en main national", price: `${price(turnkey.monthly)} € HT/mois + ${euros(turnkey.setup)} HT au départ` },
-          { name: "Agence web", price: `Dès ${price(agency.monthly)} €/mois + ${euros(agency.setup)} au départ` },
-        ],
-      ] as Choice[][],
-    },
-    {
-      label: "À faire vous-même",
-      cells: [
-        [{ name: "Faire soi-même", price: `${price(diy.monthlyMin)} à ${price(diy.monthlyMax)} € TTC/mois, et votre temps` }],
-        [],
-      ] as Choice[][],
-    },
-  ],
+// Face-à-face : même prix qu'un outil à faire soi-même, mais tout est fait pour vous.
+export const duel = {
+  diy: {
+    name: "Faire soi-même",
+    price: `${price(diy.monthlyMin)} à ${price(diy.monthlyMax)} € TTC/mois`,
+    tasks: ["Vous créez le site", "Vous écrivez vos textes", "Vous faites les mises à jour"],
+  },
+  mine: {
+    name: "Nappage",
+    price: `Dès ${price(fromPrice)} €/mois, ${euros(pricing.setupFee)} au départ`,
+    // Essentiel : vos textes corrigés ; Pro et Premium : rédigés pour vous
+    tasks: ["Je crée le site", "J'écris ou je corrige vos textes", "Je fais les mises à jour"],
+  },
+  // Les autres offres où tout est fait pour vous, en une ligne
+  elsewhere: `${price(turnkey.monthly)} € HT/mois + ${euros(turnkey.setup)} HT au départ`,
 };
 
 export type Source = { label: string; url: string };

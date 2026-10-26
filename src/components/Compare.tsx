@@ -1,28 +1,11 @@
 import { motion } from 'motion/react';
-import { ArrowRight, CheckCircle } from '@phosphor-icons/react';
+import { ArrowRight, CheckCircle, UserCircle } from '@phosphor-icons/react';
 import { Reveal, SectionHead } from './Reveal';
-import { MONTHS, agencySavings, euros, grid, sources, type Choice } from '../data/market';
+import { MONTHS, agencySavings, duel, euros, sources } from '../data/market';
 
-function ChoiceCard({ choice }: { choice: Choice }) {
-  return (
-    <motion.li
-      className={`quad__choice${choice.mine ? ' is-mine' : ''}`}
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-      transition={{ type: 'spring', stiffness: 260, damping: 20, delay: choice.mine ? 0.3 : 0 }}
-    >
-      {choice.mine && <span className="quad__badge">Le seul ici</span>}
-      <strong>
-        {choice.mine && <CheckCircle size={20} weight="fill" aria-hidden="true" />}
-        {choice.name}
-      </strong>
-      <span>{choice.price}</span>
-    </motion.li>
-  );
-}
+const ease = [0.22, 1, 0.36, 1] as const;
 
-/** 2 × 2 : petit prix ou prix fort, fait pour vous ou à faire vous-même. Nappage est seul dans la bonne case. */
+/** Face-à-face : même prix qu'un site à faire soi-même, mais c'est moi qui fais tout */
 export default function Compare() {
   return (
     <section id="comparer" className="section" aria-labelledby="comparer-title">
@@ -39,44 +22,48 @@ export default function Compare() {
           lead="Le prix d’un site à faire soi-même, sans rien avoir à faire."
         />
 
-        <Reveal className="quad">
-          <table>
-            <caption className="sr-only">Les façons d’avoir un site, selon le prix et qui fait le travail</caption>
-            <thead>
-              <tr>
-                <td />
-                {grid.columns.map((c) => (
-                  <th key={c} scope="col">
-                    {c}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {grid.rows.map((row, r) => (
-                <tr key={row.label}>
-                  <th scope="row">
-                    <span>{row.label}</span>
-                  </th>
-                  {row.cells.map((cell, c) => (
-                    <td key={c} className={r === 0 && c === 0 ? 'is-best' : undefined}>
-                      {cell.length > 0 ? (
-                        <ul>
-                          {cell.map((choice) => (
-                            <ChoiceCard key={choice.name} choice={choice} />
-                          ))}
-                        </ul>
-                      ) : (
-                        // Case « prix fort + à faire soi-même » : aucune offre ne s'y trouve, on le dit simplement
-                        <p className="quad__empty">Aucune offre ne vous fait payer cher pour tout faire vous-même.</p>
-                      )}
-                    </td>
-                  ))}
-                </tr>
+        <Reveal className="duel">
+          <div className="duel__card">
+            <h3 className="duel__name">{duel.diy.name}</h3>
+            <p className="duel__price">{duel.diy.price}</p>
+            <ul>
+              {duel.diy.tasks.map((t) => (
+                <li key={t}>
+                  <UserCircle size={22} weight="fill" aria-hidden="true" />
+                  {t}
+                </li>
               ))}
-            </tbody>
-          </table>
+            </ul>
+          </div>
+
+          <span className="duel__vs" aria-hidden="true">
+            vs
+          </span>
+
+          <motion.div
+            className="duel__card is-mine"
+            initial={{ scale: 0.94 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+            transition={{ duration: 0.6, delay: 0.25, ease }}
+          >
+            <span className="duel__badge">Tout est fait pour vous</span>
+            <h3 className="duel__name">{duel.mine.name}</h3>
+            <p className="duel__price">{duel.mine.price}</p>
+            <ul>
+              {duel.mine.tasks.map((t) => (
+                <li key={t}>
+                  <CheckCircle size={22} weight="fill" aria-hidden="true" />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </Reveal>
+
+        <p className="duel__elsewhere">
+          Ailleurs, quand tout est fait pour vous : <strong>{duel.elsewhere}</strong>.
+        </p>
 
         <p className="versus__takeaway">
           Face à une agence : <strong>{euros(agencySavings)} de plus en poche</strong> sur {MONTHS / 12} ans, avec la
