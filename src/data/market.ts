@@ -4,7 +4,7 @@ export const planPrice = (id: string) => pricing.plans.find((p) => p.id === id)!
 
 export const MONTHS = 36;
 // Espace insécable classique : l'espace fine (U+202F) de toLocaleString n'existe pas dans Poppins
-export const euros = (n: number) => `${Math.round(n).toLocaleString("fr-FR").replace(/\u202f/g, "\u00a0")}\u00a0€`;
+export const euros = (n: number) => `${Math.round(n).toLocaleString("fr-FR").replace(/ /g, " ")} €`;
 
 // Chiffres des autres options, repris tels quels des sources ci-dessous (bas des fourchettes).
 // Aucune marque citée dans le texte affiché : seulement des catégories.
@@ -13,96 +13,40 @@ const turnkey = { setup: 400, monthly: 60 }; // independant.io (service clé en 
 const agency = { setup: 2000, monthly: 150 }; // Fenxi (création) + Kolonell (maintenance)
 
 const proTotal = planPrice("pro") * MONTHS;
-const essentielTotal = planPrice("essentiel") * MONTHS;
-const turnkeyTotal = turnkey.setup + turnkey.monthly * MONTHS;
 const agencyTotal = agency.setup + agency.monthly * MONTHS;
 
 export type Option = {
   id: string;
+  /** Nom court, lisible dans une colonne étroite sur téléphone */
   name: string;
   mine?: boolean;
-  /** Valeurs dans l'ordre de `criteria` */
-  values: string[];
+  /** Coût sur 3 ans : montant affiché et longueur de la barre */
+  total: number;
+  prefix?: string;
+  note?: string;
 };
 
-export const criteria = [
-  "Frais de départ",
-  `Coût sur ${MONTHS / 12} ans`,
-  "Qui crée le site",
-  "Rédaction des textes",
-  "Fiche Google Maps",
-  "Votre interlocuteur",
-  "En ligne en",
-  "Vos modifications",
-];
-
 export const options: Option[] = [
-  {
-    id: "nappage",
-    name: "Nappage (Pro)",
-    mine: true,
-    values: [
-      euros(pricing.setupFee),
-      `${euros(proTotal)} (${euros(essentielTotal)} en Essentiel)`,
-      "Moi",
-      "Incluse",
-      "Mise au propre (suivie chaque mois en Premium)",
-      "Le développeur, en direct, en visio",
-      `${pricing.launchDays} jours`,
-      "Faites pour vous, ou par vous",
-    ],
-  },
-  {
-    id: "diy",
-    name: "Faire soi-même (outil en ligne)",
-    values: [
-      "0 €",
-      `≈ ${euros(diy.monthlyMin * MONTHS)} à ${euros(diy.monthlyMax * MONTHS)}, plus votre temps`,
-      "Vous",
-      "Vous",
-      "Vous",
-      "Un support en ligne",
-      "Selon votre temps",
-      "Par vous",
-    ],
-  },
-  {
-    id: "turnkey",
-    name: "Service clé en main national",
-    values: [
-      `≈ ${euros(turnkey.setup)} HT`,
-      `≈ ${euros(turnkeyTotal)} HT`,
-      "Une équipe à distance",
-      "Vous",
-      "Selon la formule",
-      "Un conseiller",
-      "Quelques semaines",
-      "Selon la formule",
-    ],
-  },
-  {
-    id: "agency",
-    name: "Agence web",
-    values: [
-      `≈ ${euros(agency.setup)} et plus`,
-      `≈ ${euros(agencyTotal)}`,
-      "L'agence",
-      "Souvent en supplément",
-      "En supplément",
-      "Un chef de projet",
-      "5 à 8 semaines",
-      "Facturées à l'heure",
-    ],
-  },
+  { id: "nappage", name: "Nappage", mine: true, total: proTotal, note: "formule Pro" },
+  { id: "diy", name: "Faire soi-même", total: diy.monthlyMax * MONTHS, prefix: "jusqu'à ", note: "+ votre temps" },
+  { id: "turnkey", name: "Clé en main national", total: turnkey.setup + turnkey.monthly * MONTHS, prefix: "≈ ", note: "HT" },
+  { id: "agency", name: "Agence web", total: agencyTotal, prefix: "≈ " },
 ];
 
-// Coût sur 3 ans, en barres (fourchette haute pour l'outil à faire soi-même)
-export const threeYear: { label: string; total: number; prefix?: string; suffix?: string; detail?: string; mine?: boolean }[] = [
-  { label: "Nappage, formule Pro", total: proTotal, mine: true },
-  { label: "Faire soi-même", total: diy.monthlyMax * MONTHS, prefix: "jusqu'à ", detail: "plus votre temps" },
-  { label: "Service clé en main", total: turnkeyTotal, prefix: "≈ ", suffix: " HT" },
-  { label: "Agence web", total: agencyTotal, prefix: "≈ " },
+// oui : fait pour vous / inclus · partiel : selon la formule ou en supplément · non : à votre charge ou absent
+export type Mark = "yes" | "partial" | "no";
+
+/** Une ligne par critère, une valeur par option (dans l'ordre de `options`) */
+export const rows: { label: string; marks: Mark[] }[] = [
+  { label: `${euros(pricing.setupFee)} pour démarrer`, marks: ["yes", "yes", "no", "no"] },
+  { label: "Site créé pour vous", marks: ["yes", "no", "yes", "yes"] },
+  { label: "Textes rédigés", marks: ["yes", "no", "no", "partial"] },
+  { label: "Fiche Google soignée", marks: ["yes", "no", "partial", "partial"] },
+  { label: "Le développeur en direct", marks: ["yes", "no", "no", "no"] },
+  { label: `En ligne en ${pricing.launchDays} jours`, marks: ["yes", "partial", "no", "no"] },
+  { label: "Modifications faites", marks: ["yes", "no", "partial", "partial"] },
 ];
+
 export const agencySavings = agencyTotal - proTotal;
 
 export type Source = { label: string; url: string };

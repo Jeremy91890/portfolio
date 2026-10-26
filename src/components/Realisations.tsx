@@ -10,6 +10,9 @@ type Client = { name: string; url?: string };
 const testimonials = socialProof.testimonials as Testimonial[];
 const clients = socialProof.clients as Client[];
 
+// Section masquée pour le moment : passer à true pour l'afficher (et son lien dans le menu)
+export const REALISATIONS_VISIBLE = false;
+
 export default function Realisations() {
   return (
     <section id="realisations" className="section" aria-labelledby="realisations-title">

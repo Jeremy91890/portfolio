@@ -3,9 +3,10 @@ import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, List, X } from "@phosphor-icons/react";
 import { site } from "../data/site";
 import NappageLogo from "./NappageLogo";
+import { REALISATIONS_VISIBLE } from "./Realisations";
 
 const links = [
-  { id: "realisations", label: "Réalisations" },
+  ...(REALISATIONS_VISIBLE ? [{ id: "realisations", label: "Réalisations" }] : []),
   { id: "methode", label: "Clé en main" },
   { id: "tarifs", label: "Tarifs" },
   { id: "comparer", label: "Comparer" },
