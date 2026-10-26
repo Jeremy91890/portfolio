@@ -21,12 +21,11 @@ const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const OUT = join(root, 'grille-tarifaire.pdf');
 
 const { header, plans, features, includedInAll, oneTimePurchase: once, options } = pricing;
-const { annualFreeMonths, launchDays, premiumCommitmentMonths, criticalResponseHours } = pricing;
+const { annualFreeMonths, launchDays, minCommitmentMonths, criticalResponseHours } = pricing;
 const font = (w) => pathToFileURL(join(root, `node_modules/@fontsource/poppins/files/poppins-latin-${w}-normal.woff2`)).href;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const eur = (n) => `${n.toLocaleString("fr-FR")}&nbsp;€`;
 const today = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-const premium = plans.find((p) => p.id === 'premium');
 
 const check = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
@@ -57,7 +56,7 @@ const table = `
         <span class="p-price">${p.price}<small> ${esc(p.period)}</small></span>
         <span class="p-annual">ou ${eur(p.price * (12 - annualFreeMonths))}/an (${annualFreeMonths} mois offerts)</span>
         <span class="p-commit">${esc(p.commitment)}</span>
-        <span class="p-tag">${esc(p.tagline)}</span>
+        <span class="p-tag">${esc(p.promise)}</span>
       </th>`,
         )
         .join('')}
@@ -96,21 +95,22 @@ const faq = [
   },
   {
     t: 'Engagement et changement de formule',
-    b: `<p>Essentiel et Pro sont <strong>sans engagement</strong> : résiliation par simple e-mail, effective à la fin du mois en cours.</p>
-        <p>${esc(premium.name)}, qui inclut un outil sur mesure, demande <strong>${premiumCommitmentMonths} mois</strong> d’engagement. Changer de formule est possible à tout moment ; depuis ${esc(premium.name)}, vers une formule inférieure à l’issue de l’engagement.</p>`,
+    b: `<p>Toutes les formules : <strong>${minCommitmentMonths} mois minimum</strong>, puis résiliation par simple e-mail, effective à la fin du mois en cours.</p>
+        <p>Changer de formule est possible en cours de route.</p>`,
   },
   {
     t: 'Options',
     b: `<ul>
           <li>Modifier votre site vous-même (Essentiel) : <strong>+${options.backofficePerMonth}&nbsp;€/mois</strong></li>
-          <li>Adresse e-mail pro (Essentiel, Pro) : <strong>+${options.emailPerMonth}&nbsp;€/mois</strong> — incluse dans ${esc(premium.name)}</li>
+          <li>Adresse e-mail pro (Essentiel) : <strong>+${options.emailPerMonth}&nbsp;€/mois</strong></li>
+          <li>Outil sur mesure (réservation sans commission, devis et factures, carte de fidélité, assistant clients) : <strong>sur devis</strong>, avec n’importe quelle formule</li>
           <li>Modification au-delà du quota : <strong>${eur(options.extraModification)}</strong></li>
         </ul>`,
   },
   {
     t: `Mise en ligne en ${launchDays} jours`,
-    b: `<p>Je rédige vos textes après un échange avec vous, ou j’utilise les vôtres. Photos : les vôtres, ou des photos libres de droits (séance photo non incluse).</p>
-        <p>Votre site est en ligne <strong>${launchDays} jours</strong> après la validation de vos contenus. L’outil ${esc(premium.name)} est livré dans un délai fixé ensemble.</p>`,
+    b: `<p>Textes rédigés pour vous en Pro et Premium ; en Essentiel, vous les fournissez et je les corrige. Photos : les vôtres, ou des photos libres de droits (séance photo non incluse).</p>
+        <p>Votre site est en ligne <strong>${launchDays} jours</strong> après la validation de vos contenus.</p>`,
   },
   {
     t: 'Bug ou modification ?',

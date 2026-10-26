@@ -5,11 +5,11 @@ import { site } from "../data/site";
 import NappageLogo from "./NappageLogo";
 
 const links = [
-  { id: "a-propos", label: "À propos" },
+  { id: "realisations", label: "Réalisations" },
   { id: "methode", label: "Clé en main" },
   { id: "tarifs", label: "Tarifs" },
-  { id: "prix-du-marche", label: "Prix du marché" },
-  { id: "services", label: "Sur mesure" },
+  { id: "comparer", label: "Comparer" },
+  { id: "a-propos", label: "À propos" },
   { id: "faq", label: "FAQ" },
 ];
 
@@ -103,7 +103,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <a className="btn header__cta" href="#contact">
+        <a className="btn header__cta" href="#rappel">
           Demander un devis
         </a>
 
@@ -152,7 +152,7 @@ export default function Header() {
                 </motion.li>
               ))}
             </ul>
-            <a className="btn" href="#contact" onClick={() => setOpen(false)}>
+            <a className="btn" href="#rappel" onClick={() => setOpen(false)}>
               Demander un devis
             </a>
           </motion.nav>

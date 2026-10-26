@@ -1,7 +1,6 @@
 import { Fragment, useRef } from 'react';
 import { motion, useScroll, useTransform, type Variants } from 'motion/react';
-import { ArrowRight } from '@phosphor-icons/react';
-import Counter from './Counter';
+import { ArrowRight, VideoCamera } from '@phosphor-icons/react';
 import DevicesMock from './DevicesMock';
 import { site } from '../data/site';
 import pricing from '../data/pricing';
@@ -81,8 +80,8 @@ export default function Hero() {
           </h1>
 
           <motion.p className="hero__lead" variants={appear(0.8)}>
-            Je crée, héberge et fais vivre le site de votre commerce. Vous n’avez rien de technique à gérer, et ça vous
-            coûte <strong>beaucoup moins cher que le marché</strong>.
+            Je crée, héberge et fais vivre le site de votre commerce.{' '}
+            <strong>Vous n’avez rien à faire, et vous ne payez rien pour démarrer.</strong>
           </motion.p>
 
           <motion.div className="hero__ctas" variants={appear(0.95)}>
@@ -90,34 +89,27 @@ export default function Hero() {
               Voir les formules
               <ArrowRight size={18} weight="bold" aria-hidden="true" />
             </a>
-            <a className="btn btn--ghost" href="#contact">
-              Parler de mon projet
+            <a className="btn btn--ghost" href="#rappel">
+              Être rappelé
             </a>
           </motion.div>
+          <motion.p className="hero__remote" variants={appear(1)}>
+            <VideoCamera size={18} weight="duotone" aria-hidden="true" />
+            Partout en France · suivi en visio
+          </motion.p>
 
           <motion.dl className="hero__stats" variants={appear(1.1)}>
             <div>
-              <dt className="sr-only">Expérience</dt>
-              <dd style={{ margin: 0 }}>
-                <span className="stat__value">
-                  <Counter to={10} suffix=" ans" />
-                </span>
-                <span className="stat__label">d’expérience</span>
-              </dd>
-            </div>
-            <div>
               <dt className="sr-only">Prix</dt>
               <dd style={{ margin: 0 }}>
-                <span className="stat__value">
-                  <Counter to={entryPlan.price} suffix=" €" />
-                </span>
-                <span className="stat__label">par mois, formule {entryPlan.name}</span>
+                <span className="stat__value">dès {entryPlan.price} €</span>
+                <span className="stat__label">par mois</span>
               </dd>
             </div>
             <div>
               <dt className="sr-only">Frais d’installation</dt>
               <dd style={{ margin: 0 }}>
-                <span className="stat__value">0 €</span>
+                <span className="stat__value">{pricing.setupFee} €</span>
                 <span className="stat__label">de mise en place</span>
               </dd>
             </div>
@@ -125,7 +117,7 @@ export default function Hero() {
               <dt className="sr-only">Délai de mise en ligne</dt>
               <dd style={{ margin: 0 }}>
                 <span className="stat__value">{pricing.launchDays} jours</span>
-                <span className="stat__label">après validation de vos contenus</span>
+                <span className="stat__label">pour être en ligne</span>
               </dd>
             </div>
           </motion.dl>

@@ -29,7 +29,7 @@ type Demo = {
 };
 type Example = Real | Demo;
 
-// Sites réalisés (captures générées par `npm run realisations`), puis exemples fictifs dessinés en HTML
+// Sites réalisés (captures générées par `npm run realisations`), puis maquettes dessinées en HTML (étiquetées comme telles)
 const examples: Example[] = [
   ...realisations.sites.map(
     (s): Real => ({
@@ -49,7 +49,7 @@ const examples: Example[] = [
     title: 'Pain au levain, viennoiseries maison',
     info: 'Ouvert du mardi au dimanche · 7h – 19h30',
     cta: 'Commander en ligne',
-    reviews: 'Livre d’or · 128 avis',
+    reviews: 'Vos avis Google',
     accent: '#f46a2e',
   },
 ];
@@ -287,7 +287,7 @@ export default function DevicesMock() {
             <span className="sr-only"> (nouvel onglet)</span>
           </a>
         ) : (
-          <span>Exemple fictif</span>
+          <span>Exemple de maquette</span>
         )}
       </div>
     </motion.div>

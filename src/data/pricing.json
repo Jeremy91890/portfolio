@@ -1,32 +1,33 @@
 {
   "header": {
-    "eyebrow": "SITE WEB VITRINE CLÉ EN MAIN",
-    "title": "Votre commerce, enfin visible en ligne",
-    "subtitle": "Un site à votre image, que j'héberge et mets à jour pour vous. Vous gérez vos clients, je m'occupe du reste.",
+    "eyebrow": "Tarifs",
+    "title": "Un abonnement, tout compris",
+    "subtitle": "Je crée, j'héberge, je mets à jour.",
     "badges": [
       {
-        "value": "0 €",
+        "value": "{setupFee} €",
         "label": "de mise en place"
       },
       {
         "value": "{launchDays} jours",
-        "label": "pour être en ligne, après validation de vos contenus"
+        "label": "pour être en ligne"
       },
       {
-        "value": "Sans engagement",
-        "label": "sur formules Essentiel et Pro"
+        "value": "{minCommitmentMonths} mois",
+        "label": "minimum, puis libre"
       },
       {
         "value": "2 mois offerts",
-        "label": "sur chaque formule, en payant à l'année"
+        "label": "en payant à l'année"
       }
     ]
   },
+  "setupFee": 0,
   "annualFreeMonths": 2,
   "launchDays": 7,
-  "premiumCommitmentMonths": 12,
+  "minCommitmentMonths": 6,
   "criticalResponseHours": 24,
-  "phoneHours": "lun-sam, 9 h-19 h",
+  "callbackHours": 48,
   "options": {
     "backofficePerMonth": 10,
     "emailPerMonth": 5,
@@ -38,18 +39,20 @@
       "name": "Essentiel",
       "price": 29,
       "period": "€/mois",
+      "promise": "Votre commerce existe en ligne",
       "tagline": "Une page claire, hébergement et nom de domaine inclus",
-      "commitment": "Sans engagement",
+      "commitment": "{minCommitmentMonths} mois minimum, puis sans engagement",
       "featured": false,
       "buyoutPrice": 290
     },
     {
       "id": "pro",
       "name": "Pro",
-      "price": 49,
+      "price": 59,
       "period": "€/mois",
-      "tagline": "3 pages, modifiables par vous, et statistiques de visites",
-      "commitment": "Sans engagement",
+      "promise": "Vos clients vous trouvent sur Google",
+      "tagline": "3 pages rédigées pour vous, fiche Google et suivi en visio",
+      "commitment": "{minCommitmentMonths} mois minimum, puis sans engagement",
       "featured": true,
       "ribbon": "RECOMMANDÉ",
       "buyoutPrice": 490
@@ -57,10 +60,11 @@
     {
       "id": "premium",
       "name": "Premium",
-      "price": 89,
+      "price": 99,
       "period": "€/mois",
-      "tagline": "Site complet, outil sur mesure et 3 modifications par mois",
-      "commitment": "Engagement 12 mois",
+      "promise": "Je fais vivre votre présence en ligne",
+      "tagline": "Jusqu'à 5 pages, fiche Google suivie et bilan chaque mois",
+      "commitment": "{minCommitmentMonths} mois minimum, puis sans engagement",
       "featured": false,
       "buyoutPrice": null
     }
@@ -69,47 +73,72 @@
     "title": "Inclus dans toutes les formules",
     "items": [
       "Nom de domaine et hébergement",
-      "Sécurité (HTTPS) et sauvegardes",
-      "Bugs corrigés, panne sous {criticalResponseHours} h ouvrées",
+      "Sécurité, sauvegardes et mises à jour",
+      "Panne prise en charge sous {criticalResponseHours} h ouvrées",
       "Référencement Google de base",
       "Lien vers votre outil de réservation",
-      "QR code pour vos avis Google",
-      "Rédaction de vos textes",
-      "Mentions légales et RGPD",
-      "En ligne {launchDays} jours après validation"
+      "Mentions légales et RGPD"
     ]
   },
   "features": [
     {
       "label": "Votre site",
       "essentiel": {
-        "text": "1 page : présentation, horaires, plan, contact"
+        "text": "1 page"
       },
       "pro": {
-        "text": "3 pages, accueil compris (ex. : accueil et contact, services, galerie)"
+        "text": "3 pages"
       },
       "premium": {
-        "text": "Jusqu'à 5 pages, accueil compris"
+        "text": "Jusqu'à 5 pages"
+      }
+    },
+    {
+      "label": "Vos textes",
+      "essentiel": {
+        "text": "Vos textes, corrigés et mis en forme"
+      },
+      "pro": {
+        "text": "Rédigés pour vous"
+      },
+      "premium": {
+        "text": "Rédigés pour vous"
+      }
+    },
+    {
+      "label": "QR code pour vos avis Google",
+      "essentiel": null,
+      "pro": {
+        "included": true
+      },
+      "premium": {
+        "included": true
+      }
+    },
+    {
+      "label": "Fiche Google Maps",
+      "essentiel": null,
+      "pro": {
+        "text": "Mise au propre à la mise en ligne"
+      },
+      "premium": {
+        "text": "Mise au propre, puis suivie chaque mois (horaires spéciaux, photos, 1 publication Google par mois)"
       }
     },
     {
       "label": "Modifier votre site vous-même",
-      "hint": "(depuis un espace simple, sans passer par moi)",
       "essentiel": {
-        "text": "En option (+{backofficePerMonth} €/mois) : horaires, textes et images"
+        "text": "En option (+{backofficePerMonth} €/mois)"
       },
       "pro": {
-        "included": true,
-        "detail": "horaires, textes, images, carte ou tarifs, pour chaque page"
+        "included": true
       },
       "premium": {
-        "included": true,
-        "detail": "horaires, textes, images, carte ou tarifs, pour chaque page"
+        "included": true
       }
     },
     {
       "label": "Adresse e-mail pro",
-      "hint": "(1 boîte contact@votrecommerce.fr)",
       "essentiel": {
         "text": "En option (+{emailPerMonth} €/mois)"
       },
@@ -124,34 +153,24 @@
       "label": "Statistiques de visites",
       "essentiel": null,
       "pro": {
-        "text": "Tableau de bord : visiteurs, pages vues et comment ils vous ont trouvé (Google, Instagram…)"
+        "text": "Tableau de bord"
       },
       "premium": {
-        "text": "Tableau de bord + bilan mensuel commenté par e-mail"
+        "text": "Tableau de bord + bilan mensuel commenté"
       }
     },
     {
-      "label": "Fiche Google Maps",
+      "label": "Point de suivi en visio",
       "essentiel": null,
       "pro": {
-        "text": "Mise au propre à la mise en ligne : horaires, photos, catégories, lien vers votre site"
+        "text": "1 par trimestre (20 min)"
       },
       "premium": {
-        "text": "Mise au propre à la mise en ligne : horaires, photos, catégories, lien vers votre site"
-      }
-    },
-    {
-      "label": "Outil sur mesure",
-      "hint": "(délai de livraison fixé ensemble)",
-      "essentiel": null,
-      "pro": null,
-      "premium": {
-        "text": "1 outil au choix : réservation sans commission, devis et factures, carte de fidélité, assistant qui répond à vos clients (ou tout autre besoin sur mesure)"
+        "text": "1 par mois (30 min)"
       }
     },
     {
       "label": "Modifications faites pour vous",
-      "hint": "(un élément, ou une liste envoyée en une fois)",
       "essentiel": {
         "text": "1 par trimestre"
       },
@@ -171,7 +190,7 @@
         "text": "E-mail et SMS, réponse sous 48 h ouvrées"
       },
       "premium": {
-        "text": "E-mail, SMS et téléphone ({phoneHours}), réponse sous 24 h ouvrées"
+        "text": "E-mail et SMS, rappel téléphonique sous 24 h ouvrées"
       }
     }
   ],
@@ -179,7 +198,7 @@
     "quoteMaxDays": 7
   },
   "notes": [
-    "Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement. Une modification est un changement que vous demandez : un élément, ou une liste d'éléments envoyée en une seule fois. Elle est décomptée de votre quota ; au-delà, chaque modification est facturée {extraModification} €.",
-    "Paiement par prélèvement SEPA. Résiliation par simple e-mail, effective à la fin du mois en cours."
+    "Un bug est corrigé gratuitement. Une modification (un changement que vous demandez, ou une liste envoyée en une fois) est décomptée de votre quota ; au-delà, {extraModification} € l'unité.",
+    "Prélèvement SEPA. {minCommitmentMonths} mois minimum, puis résiliation par simple e-mail, effective à la fin du mois en cours."
   ]
 }
