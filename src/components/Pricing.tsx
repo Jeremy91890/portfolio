@@ -177,15 +177,7 @@ export default function Pricing() {
                 Formule {plan.name}
               </h3>
               <PlanHeader plan={plan} />
-              {/* L'offre recommandée est détaillée ; les autres se déplient, pour une page plus courte sur téléphone */}
-              {plan.featured ? (
-                <PlanFeatures planId={plan.id as PlanId} />
-              ) : (
-                <details className="plan-card__more">
-                  <summary>Ce qui est inclus</summary>
-                  <PlanFeatures planId={plan.id as PlanId} />
-                </details>
-              )}
+              <PlanFeatures planId={plan.id as PlanId} />
               <PlanCta plan={plan} />
             </motion.article>
           ))}

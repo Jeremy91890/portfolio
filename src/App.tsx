@@ -6,7 +6,7 @@ import Why from './components/Why';
 import Process from './components/Process';
 import Services from './components/Services';
 import Compare from './components/Compare';
-import Realisations from './components/Realisations';
+import Realisations, { REALISATIONS_VISIBLE } from './components/Realisations';
 import Pricing from './components/Pricing';
 import Faq from './components/Faq';
 import Contact, { Footer } from './components/Contact';
@@ -25,7 +25,7 @@ export default function App() {
       <Header />
       <main id="contenu" tabIndex={-1}>
         <Hero />
-        <Realisations />
+        {REALISATIONS_VISIBLE && <Realisations />}
         <Why />
         <Process />
         <Pricing />

@@ -13,97 +13,30 @@ const turnkey = { setup: 400, monthly: 60 }; // independant.io (service clé en 
 const agency = { setup: 2000, monthly: 150 }; // Fenxi (création) + Kolonell (maintenance)
 
 const proTotal = planPrice("pro") * MONTHS;
-const essentielTotal = planPrice("essentiel") * MONTHS;
-const turnkeyTotal = turnkey.setup + turnkey.monthly * MONTHS;
 const agencyTotal = agency.setup + agency.monthly * MONTHS;
-
-export type Option = {
-  id: string;
-  name: string;
-  mine?: boolean;
-  /** Valeurs dans l'ordre de `criteria` */
-  values: string[];
-};
-
-export const criteria = [
-  "Frais de départ",
-  `Coût sur ${MONTHS / 12} ans`,
-  "Qui crée le site",
-  "Rédaction des textes",
-  "Fiche Google Maps",
-  "Votre interlocuteur",
-  "En ligne en",
-  "Vos modifications",
-];
-
-export const options: Option[] = [
-  {
-    id: "nappage",
-    name: "Nappage (Pro)",
-    mine: true,
-    values: [
-      euros(pricing.setupFee),
-      `${euros(proTotal)} (${euros(essentielTotal)} en Essentiel)`,
-      "Moi",
-      "Incluse",
-      "Mise au propre (suivie chaque mois en Premium)",
-      "Le développeur, en direct, en visio",
-      `${pricing.launchDays} jours`,
-      "Faites pour vous, ou par vous",
-    ],
-  },
-  {
-    id: "diy",
-    name: "Faire soi-même (outil en ligne)",
-    values: [
-      "0 €",
-      `≈ ${euros(diy.monthlyMin * MONTHS)} à ${euros(diy.monthlyMax * MONTHS)}, plus votre temps`,
-      "Vous",
-      "Vous",
-      "Vous",
-      "Un support en ligne",
-      "Selon votre temps",
-      "Par vous",
-    ],
-  },
-  {
-    id: "turnkey",
-    name: "Service clé en main national",
-    values: [
-      `≈ ${euros(turnkey.setup)} HT`,
-      `≈ ${euros(turnkeyTotal)} HT`,
-      "Une équipe à distance",
-      "Vous",
-      "Selon la formule",
-      "Un conseiller",
-      "Quelques semaines",
-      "Selon la formule",
-    ],
-  },
-  {
-    id: "agency",
-    name: "Agence web",
-    values: [
-      `≈ ${euros(agency.setup)} et plus`,
-      `≈ ${euros(agencyTotal)}`,
-      "L'agence",
-      "Souvent en supplément",
-      "En supplément",
-      "Un chef de projet",
-      "5 à 8 semaines",
-      "Facturées à l'heure",
-    ],
-  },
-];
-
-// Coût sur 3 ans, en barres (fourchette haute pour l'outil à faire soi-même)
-export const threeYear: { label: string; total: number; prefix?: string; suffix?: string; detail?: string; mine?: boolean }[] = [
-  { label: "Nappage, formule Pro", total: proTotal, mine: true },
-  { label: "Faire soi-même", total: diy.monthlyMax * MONTHS, prefix: "jusqu'à ", detail: "plus votre temps" },
-  { label: "Service clé en main", total: turnkeyTotal, prefix: "≈ ", suffix: " HT" },
-  { label: "Agence web", total: agencyTotal, prefix: "≈ " },
-];
 export const agencySavings = agencyTotal - proTotal;
+
+const fromPrice = Math.min(...pricing.plans.map((p) => p.price));
+// 30 → « 30 », 16.8 → « 16,80 »
+const price = (n: number) =>
+  n.toLocaleString("fr-FR", { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
+
+// Face-à-face : même prix qu'un outil à faire soi-même, mais tout est fait pour vous.
+export const duel = {
+  diy: {
+    name: "Faire soi-même",
+    price: `${price(diy.monthlyMin)} à ${price(diy.monthlyMax)} € TTC/mois`,
+    tasks: ["Vous créez le site", "Vous écrivez vos textes", "Vous faites les mises à jour"],
+  },
+  mine: {
+    name: "Nappage",
+    price: `Dès ${price(fromPrice)} €/mois, ${euros(pricing.setupFee)} au départ`,
+    // Essentiel : vos textes corrigés ; Pro et Premium : rédigés pour vous
+    tasks: ["Je crée le site", "J'écris ou je corrige vos textes", "Je fais les mises à jour"],
+  },
+  // Les autres offres où tout est fait pour vous, en une ligne
+  elsewhere: `${price(turnkey.monthly)} € HT/mois + ${euros(turnkey.setup)} HT au départ`,
+};
 
 export type Source = { label: string; url: string };
 
