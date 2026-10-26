@@ -67,7 +67,8 @@ export default function Compare() {
                           ))}
                         </ul>
                       ) : (
-                        <p className="quad__empty">Personne. Et on comprend pourquoi.</p>
+                        // Case « prix fort + à faire soi-même » : aucune offre ne s'y trouve, on le dit simplement
+                        <p className="quad__empty">Aucune offre ne vous fait payer cher pour tout faire vous-même.</p>
                       )}
                     </td>
                   ))}
