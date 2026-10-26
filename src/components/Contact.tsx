@@ -1,13 +1,161 @@
+import { useEffect, useState, type FormEvent } from "react";
 import { motion } from "motion/react";
 import {
   ArrowRight,
+  ChatText,
+  CheckCircle,
   EnvelopeSimple,
   LinkedinLogo,
   Phone,
+  VideoCamera,
 } from "@phosphor-icons/react";
 import { Reveal } from "./Reveal";
-import { mailto, site } from "../data/site";
+import { site } from "../data/site";
+import pricing from "../data/pricing";
 import { LEGAL_HASH } from "./Legal";
+import { FR_PHONE, HONEYPOT, LIMITS, MOMENTS, UNDECIDED } from "../data/callback";
+
+const PLAN_EVENT = "nappage:formule";
+
+/** Présélectionne la formule dans le formulaire (boutons « Choisir … » des tarifs) */
+export const choosePlan = (name: string) =>
+  window.dispatchEvent(new CustomEvent(PLAN_EVENT, { detail: name }));
+
+type Status = "idle" | "sending" | "sent" | "error";
+
+function CallbackForm() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [plan, setPlan] = useState("");
+
+  useEffect(() => {
+    const onPlan = (e: Event) => setPlan((e as CustomEvent<string>).detail);
+    window.addEventListener(PLAN_EVENT, onPlan);
+    return () => window.removeEventListener(PLAN_EVENT, onPlan);
+  }, []);
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/rappel", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      setPlan("");
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  if (status === "sent") {
+    return (
+      <div id="rappel" className="callback callback--done" role="status">
+        <CheckCircle size={40} weight="duotone" aria-hidden="true" />
+        <p>Merci ! Je vous rappelle sous {pricing.callbackHours} h ouvrées.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form id="rappel" className="callback" onSubmit={onSubmit} aria-labelledby="rappel-title">
+      <h3 id="rappel-title" className="callback__title">
+        Être rappelé
+      </h3>
+      <div className="callback__grid">
+        <label>
+          <span>
+            Prénom <span aria-hidden="true">*</span>
+          </span>
+          <input name="prenom" required autoComplete="given-name" maxLength={LIMITS.prenom} />
+        </label>
+        <label>
+          <span>
+            Nom du commerce <span aria-hidden="true">*</span>
+          </span>
+          <input name="commerce" required autoComplete="organization" maxLength={LIMITS.commerce} />
+        </label>
+        <label>
+          <span>
+            Téléphone <span aria-hidden="true">*</span>
+          </span>
+          <input
+            name="telephone"
+            type="tel"
+            required
+            autoComplete="tel"
+            inputMode="tel"
+            pattern={FR_PHONE}
+            maxLength={LIMITS.telephone}
+            title="Un numéro français, par exemple 06 12 34 56 78"
+            placeholder="06 12 34 56 78"
+          />
+        </label>
+        <label>
+          Ville
+          <input name="ville" autoComplete="address-level2" maxLength={LIMITS.ville} />
+        </label>
+        <label>
+          Formule qui vous intéresse
+          <select name="formule" value={plan} onChange={(e) => setPlan(e.target.value)}>
+            <option value="">Choisir…</option>
+            {pricing.plans.map((p) => (
+              <option key={p.id} value={p.name}>
+                {p.name}
+              </option>
+            ))}
+            <option value={UNDECIDED}>{UNDECIDED}</option>
+          </select>
+        </label>
+        <label>
+          Meilleur moment pour vous rappeler
+          <select name="moment" defaultValue="">
+            <option value="">Choisir…</option>
+            {MOMENTS.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="callback__full">
+          Message
+          <textarea name="message" rows={3} maxLength={LIMITS.message} />
+        </label>
+        {/* Champ piège : invisible pour les visiteurs, rempli par les robots */}
+        <div className="callback__trap" aria-hidden="true">
+          <label>
+            Site web
+            <input name={HONEYPOT} tabIndex={-1} autoComplete="off" />
+          </label>
+        </div>
+      </div>
+
+      <button className="btn" type="submit" disabled={status === "sending"}>
+        {status === "sending" ? "Envoi…" : "Je veux être rappelé"}
+        <ArrowRight size={18} weight="bold" aria-hidden="true" />
+      </button>
+
+      {status === "error" && (
+        <p className="callback__error" role="alert">
+          L’envoi n’a pas fonctionné. Appelez-moi au{" "}
+          <a href={`tel:${site.phoneHref}`}>{site.phone}</a> ou écrivez-moi à{" "}
+          <a href={`mailto:${site.email}`}>{site.email}</a>.
+        </p>
+      )}
+
+      <p className="callback__privacy">
+        <span aria-hidden="true">* obligatoire. </span>
+        Vos coordonnées servent uniquement à vous recontacter. Elles sont
+        conservées 3 ans au plus. <a href={LEGAL_HASH}>Mentions légales</a>
+      </p>
+    </form>
+  );
+}
 
 export default function Contact() {
   return (
@@ -27,7 +175,7 @@ export default function Contact() {
       />
       <div className="hero__grid" aria-hidden="true" />
       <div className="container contact__inner">
-        <Reveal>
+        <Reveal className="contact__intro">
           <p className="eyebrow">Contact</p>
           <h2
             className="contact__title"
@@ -36,10 +184,6 @@ export default function Contact() {
           >
             Parlons de <span className="accent">votre commerce.</span>
           </h2>
-          <p className="contact__lead">
-            Une formule, un devis sur mesure ou simplement une question : je
-            vous réponds personnellement.
-          </p>
           <p className="status-pill contact__signature">
             <span className="status-pill__avatar" aria-hidden="true">
               <img
@@ -53,26 +197,37 @@ export default function Contact() {
             </span>
             {site.firstName}, développeur web depuis 10 ans
           </p>
-        </Reveal>
-        <Reveal className="contact__ctas" delay={0.15}>
-          <a className="btn" href={mailto("Demande de devis – site web")}>
-            Demander un devis
-            <ArrowRight size={18} weight="bold" aria-hidden="true" />
-          </a>
-          <a className="btn btn--ghost" href={`tel:${site.phoneHref}`}>
-            <Phone size={18} aria-hidden="true" />
-            M’appeler
-          </a>
-        </Reveal>
-        <Reveal as="div" delay={0.25}>
+          <div className="contact__ctas">
+            {site.bookingUrl && (
+              <a
+                className="btn btn--ghost"
+                href={site.bookingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <VideoCamera size={18} aria-hidden="true" />
+                Réserver un appel visio
+                <span className="sr-only"> (nouvel onglet)</span>
+              </a>
+            )}
+            {/* Sur mobile : appel et SMS en un geste */}
+            <a className="btn btn--ghost contact__mobile" href={`tel:${site.phoneHref}`}>
+              <Phone size={18} aria-hidden="true" />
+              Appeler
+            </a>
+            <a className="btn btn--ghost contact__mobile" href={`sms:${site.phoneHref}`}>
+              <ChatText size={18} aria-hidden="true" />
+              SMS
+            </a>
+          </div>
           <ul className="contact__list">
-            <li>
-              <EnvelopeSimple size={18} aria-hidden="true" />
-              <a href={`mailto:${site.email}`}>{site.email}</a>
-            </li>
             <li>
               <Phone size={18} aria-hidden="true" />
               <a href={`tel:${site.phoneHref}`}>{site.phone}</a>
+            </li>
+            <li>
+              <EnvelopeSimple size={18} aria-hidden="true" />
+              <a href={`mailto:${site.email}`}>{site.email}</a>
             </li>
             <li>
               <LinkedinLogo size={18} aria-hidden="true" />
@@ -81,6 +236,9 @@ export default function Contact() {
               </a>
             </li>
           </ul>
+        </Reveal>
+        <Reveal delay={0.15} className="contact__form" as="div">
+          <CallbackForm />
         </Reveal>
       </div>
     </section>

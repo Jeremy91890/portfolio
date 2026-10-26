@@ -2,64 +2,57 @@ import { useState } from "react";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 import {
   ArrowsClockwise,
-  BookOpenText,
   CalendarCheck,
-  ChartLineUp,
   DeviceMobileCamera,
-  Gear,
+  Receipt,
   Robot,
   ShoppingBag,
+  Stamp,
 } from "@phosphor-icons/react";
 import { SectionHead, Stagger } from "./Reveal";
 
 const services = [
   {
     icon: CalendarCheck,
-    label: "Rendez-vous en ligne",
-    title: "Prise de rendez-vous",
-    text: "Vos clients réservent en ligne, 24 h/24, avec rappels automatiques pour éviter les absences.",
+    label: "Réservation",
+    title: "Réservation sans commission",
+    text: "Vos clients réservent en ligne, avec rappels automatiques, sans commission sur vos ventes.",
+  },
+  {
+    icon: Receipt,
+    label: "Devis et factures",
+    title: "Devis et factures",
+    text: "Créez et envoyez vos devis et factures en quelques clics.",
+  },
+  {
+    icon: Stamp,
+    label: "Carte de fidélité",
+    title: "Carte de fidélité",
+    text: "Une carte de fidélité sur le téléphone de vos clients.",
   },
   {
     icon: Robot,
-    label: "IA & chatbot",
-    title: "Intelligence artificielle",
-    text: "Chatbot qui répond aux questions fréquentes, relances par email, rédaction assistée.",
+    label: "Assistant clients",
+    title: "Assistant pour répondre aux clients",
+    text: "Il répond aux questions fréquentes : horaires, services, tarifs.",
   },
   {
     icon: ShoppingBag,
     label: "Click & collect",
     title: "Commande & click & collect",
-    text: "Vos produits en ligne, commandés à l’avance et retirés en boutique.",
-  },
-  {
-    icon: BookOpenText,
-    label: "Avis clients",
-    title: "Livre d’or & avis",
-    text: "Recueillez et affichez les avis de vos clients, et faites remonter votre note sur Google.",
-  },
-  {
-    icon: Gear,
-    label: "Outils métier",
-    title: "Outils métier sur mesure",
-    text: "Devis, suivi de commandes, stocks : des outils taillés pour vos processus à vous. Adieu le tableur à 47 onglets.",
+    text: "Vos produits commandés à l’avance et retirés en boutique.",
   },
   {
     icon: DeviceMobileCamera,
     label: "Appli mobile",
     title: "Application mobile",
-    text: "Une application iOS et Android pour fidéliser vos clients au quotidien.",
-  },
-  {
-    icon: ChartLineUp,
-    label: "Statistiques",
-    title: "Statistiques claires",
-    text: "Combien de visites, d’où viennent vos clients : des chiffres simples, commentés.",
+    text: "Une application iOS et Android pour fidéliser vos clients.",
   },
   {
     icon: ArrowsClockwise,
-    label: "Refonte de site",
-    title: "Refonte de votre site",
-    text: "Un site vieillissant ? Je le modernise en préservant votre référencement.",
+    label: "Reprise de votre site",
+    title: "Vous avez déjà un site ?",
+    text: "Je le reprends et le modernise en préservant votre référencement.",
   },
 ];
 
@@ -91,10 +84,11 @@ export default function Services() {
           center
           title={
             <>
-              Besoin d’autre chose&nbsp;?{" "}
+              Besoin d’un outil en plus&nbsp;?{" "}
               <span className="accent">Je le développe.</span>
             </>
           }
+          lead="Sur devis, en complément de n’importe quelle formule."
         />
 
         <Stagger className="bubbles" step={0.07} as="ul">

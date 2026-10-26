@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight, Check } from '@phosphor-icons/react';
 import pricing from '../data/pricing';
 import { Reveal, Stagger, fadeUp } from './Reveal';
-import { mailto, site } from '../data/site';
+import { choosePlan } from './Contact';
 
 type Cell = { text?: string; included?: boolean; detail?: string } | null;
 type PlanId = 'essentiel' | 'pro' | 'premium';
@@ -37,13 +37,33 @@ function PlanHeader({ plan }: { plan: (typeof plans)[number] }) {
   return (
     <>
       <span className="plan-name">{plan.name}</span>
+      <span className="plan-promise">{plan.promise}</span>
       <span className="plan-price">
         {plan.price}
         <small>{plan.period}</small>
       </span>
       <span className="plan-commitment">{plan.commitment}</span>
-      <span className="plan-tagline">{plan.tagline}</span>
     </>
+  );
+}
+
+function PlanFeatures({ planId }: { planId: PlanId }) {
+  return (
+    <dl>
+      {features
+        .filter((f) => f[planId] !== null)
+        .map((f) => (
+          <div key={f.label}>
+            <dt>
+              {f.label}
+              {f.hint && <span className="feature-hint"> {f.hint}</span>}
+            </dt>
+            <dd>
+              <CellContent cell={f[planId]} />
+            </dd>
+          </div>
+        ))}
+    </dl>
   );
 }
 
@@ -51,7 +71,8 @@ function PlanCta({ plan }: { plan: (typeof plans)[number] }) {
   return (
     <a
       className={`plan-cta${plan.featured ? ' plan-cta--featured' : ''}`}
-      href={mailto(`Formule ${plan.name} – demande d’informations`)}
+      href="#rappel"
+      onClick={() => choosePlan(plan.name)}
     >
       Choisir {plan.name}
     </a>
@@ -156,21 +177,15 @@ export default function Pricing() {
                 Formule {plan.name}
               </h3>
               <PlanHeader plan={plan} />
-              <dl>
-                {features
-                  .filter((f) => f[plan.id as PlanId] !== null)
-                  .map((f) => (
-                    <div key={f.label}>
-                      <dt>
-                        {f.label}
-                        {f.hint && <span className="feature-hint"> {f.hint}</span>}
-                      </dt>
-                      <dd>
-                        <CellContent cell={f[plan.id as PlanId]} />
-                      </dd>
-                    </div>
-                  ))}
-              </dl>
+              {/* L'offre recommandée est détaillée ; les autres se déplient, pour une page plus courte sur téléphone */}
+              {plan.featured ? (
+                <PlanFeatures planId={plan.id as PlanId} />
+              ) : (
+                <details className="plan-card__more">
+                  <summary>Ce qui est inclus</summary>
+                  <PlanFeatures planId={plan.id as PlanId} />
+                </details>
+              )}
               <PlanCta plan={plan} />
             </motion.article>
           ))}
@@ -187,22 +202,13 @@ export default function Pricing() {
         <Reveal className="quote-banner on-dark">
           <div>
             <h3>Payer une seule fois, ou un besoin hors formules ?</h3>
-            <p>
-              Décrivez-moi votre projet : je vous fais un devis sur mesure en{' '}
-              {once.quoteMaxDays} jours maximum, adapté à votre budget.
-            </p>
+            <p>Devis sur mesure sous {once.quoteMaxDays} jours.</p>
           </div>
-          <a className="btn" href="#contact">
+          <a className="btn" href="#rappel">
             Demander un devis
             <ArrowRight size={18} weight="bold" aria-hidden="true" />
           </a>
         </Reveal>
-
-        <div className="pricing-foot">
-          <p className="pricing-foot__contact">
-            {site.name} · {site.phone} · {site.email}
-          </p>
-        </div>
       </div>
     </section>
   );

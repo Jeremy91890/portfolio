@@ -1,12 +1,12 @@
 import { motion, useScroll, useSpring } from 'motion/react';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import Marquee from './components/Marquee';
 import About from './components/About';
 import Why from './components/Why';
 import Process from './components/Process';
 import Services from './components/Services';
-import Market from './components/Market';
+import Compare from './components/Compare';
+import Realisations from './components/Realisations';
 import Pricing from './components/Pricing';
 import Faq from './components/Faq';
 import Contact, { Footer } from './components/Contact';
@@ -25,12 +25,12 @@ export default function App() {
       <Header />
       <main id="contenu" tabIndex={-1}>
         <Hero />
-        <Marquee />
-        <About />
+        <Realisations />
         <Why />
         <Process />
         <Pricing />
-        <Market />
+        <Compare />
+        <About />
         <Services />
         <Faq />
         <Contact />

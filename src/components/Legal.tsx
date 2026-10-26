@@ -87,11 +87,22 @@ export default function Legal() {
 
         <h3>Données personnelles</h3>
         <p>
-          Ce site ne contient aucun formulaire et ne collecte aucune donnée
-          personnelle. Si vous me contactez par e-mail ou par téléphone,
-          j’utilise vos coordonnées uniquement pour vous répondre et assurer le
-          suivi de votre demande. Je les conserve au plus 3 ans après notre
-          dernier échange, et je ne les transmets à personne.
+          Le formulaire « Être rappelé » collecte votre prénom, le nom de votre
+          commerce et votre numéro de téléphone, et, si vous les indiquez, votre
+          ville, la formule qui vous intéresse, le meilleur moment pour vous
+          rappeler et votre message. Ces données servent uniquement à vous
+          recontacter et à assurer le suivi de votre demande (base légale : vos
+          démarches précontractuelles). Il en va de même si vous me contactez
+          par e-mail ou par téléphone.
+        </p>
+        <p>
+          Elles me sont envoyées par e-mail via {legal.mailer.name} (
+          {legal.mailer.location}), qui agit uniquement pour mon compte. Elles
+          ne sont enregistrées dans aucune base de données du site. Je suis le
+          seul destinataire, je les conserve au plus 3 ans après notre dernier
+          échange et je ne les transmets à personne. Votre adresse IP est
+          utilisée un court instant pour limiter les envois abusifs, sans être
+          conservée.
         </p>
         <p>
           Conformément au RGPD, vous pouvez accéder à vos données, les corriger

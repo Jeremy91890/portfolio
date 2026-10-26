@@ -1,13 +1,12 @@
 import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
-import { legal, site } from './src/data/site';
+import { site } from './src/data/site';
 import pricing from './src/data/pricing';
 
 const home = `${site.url}/`;
 const fromPrice = Math.min(...pricing.plans.map((p) => p.price));
-const [street, postalLine] = legal.address.split(', ');
 
-// Fiche « entreprise locale » lue par Google (schema.org)
+// Fiche entreprise lue par Google (schema.org) : zone desservie France, sans adresse affichée
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -23,19 +22,7 @@ const structuredData = {
       telephone: site.phoneHref,
       email: site.email,
       priceRange: `À partir de ${fromPrice} €/mois`,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: street,
-        postalCode: postalLine.split(' ')[0],
-        addressLocality: site.town,
-        addressRegion: 'Île-de-France',
-        addressCountry: 'FR',
-      },
-      areaServed: [
-        { '@type': 'City', name: site.town },
-        { '@type': 'City', name: 'Melun' },
-        { '@type': 'AdministrativeArea', name: 'Seine-et-Marne' },
-      ],
+      areaServed: { '@type': 'Country', name: 'France' },
       founder: { '@id': `${home}#personne` },
       sameAs: [site.linkedin],
       makesOffer: pricing.plans.map((plan) => ({
