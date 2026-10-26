@@ -1,11 +1,28 @@
 import { motion } from 'motion/react';
 import { ArrowRight, CheckCircle } from '@phosphor-icons/react';
 import { Reveal, SectionHead } from './Reveal';
-import { MONTHS, agencySavings, euros, options, sources } from '../data/market';
+import { MONTHS, agencySavings, euros, grid, sources, type Choice } from '../data/market';
 
-const max = Math.max(...options.map((o) => o.total));
+function ChoiceCard({ choice }: { choice: Choice }) {
+  return (
+    <motion.li
+      className={`quad__choice${choice.mine ? ' is-mine' : ''}`}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+      transition={{ type: 'spring', stiffness: 260, damping: 20, delay: choice.mine ? 0.3 : 0 }}
+    >
+      {choice.mine && <span className="quad__badge">Le seul ici</span>}
+      <strong>
+        {choice.mine && <CheckCircle size={20} weight="fill" aria-hidden="true" />}
+        {choice.name}
+      </strong>
+      <span>{choice.price}</span>
+    </motion.li>
+  );
+}
 
-/** Comparaison lisible d'un coup d'œil : une ligne par option, le coût sur 3 ans en barre et une seule phrase */
+/** 2 × 2 : petit prix ou prix fort, fait pour vous ou à faire vous-même. Nappage est seul dans la bonne case. */
 export default function Compare() {
   return (
     <section id="comparer" className="section" aria-labelledby="comparer-title">
@@ -19,42 +36,50 @@ export default function Compare() {
               Tout est fait pour vous. <span className="accent">Sans frais de départ.</span>
             </>
           }
-          lead={`Ce que coûte un site sur ${MONTHS / 12} ans, et ce qu’il vous reste à faire.`}
+          lead="Le prix d’un site à faire soi-même, sans rien avoir à faire."
         />
 
-        <Reveal className="versus">
-          <ul>
-            {options.map((o, i) => (
-              <li key={o.id} className={`versus__row${o.mine ? ' is-mine' : ''}`}>
-                <div className="versus__head">
-                  <span className="versus__name">{o.name}</span>
-                  <span className="versus__amount">
-                    {o.prefix}
-                    {euros(o.total)}
-                    {o.suffix}
-                  </span>
-                </div>
-                <span className="versus__track" aria-hidden="true">
-                  <motion.span
-                    className="versus__bar"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: o.total / max }}
-                    viewport={{ once: true, margin: '0px 0px -10% 0px' }}
-                    transition={{ duration: 1, delay: 0.12 * i, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                </span>
-                <p className="versus__tag">
-                  {o.mine && <CheckCircle size={18} weight="fill" aria-hidden="true" />}
-                  {o.tag}
-                </p>
-              </li>
-            ))}
-          </ul>
+        <Reveal className="quad">
+          <table>
+            <caption className="sr-only">Les façons d’avoir un site, selon le prix et qui fait le travail</caption>
+            <thead>
+              <tr>
+                <td />
+                {grid.columns.map((c) => (
+                  <th key={c} scope="col">
+                    {c}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {grid.rows.map((row, r) => (
+                <tr key={row.label}>
+                  <th scope="row">
+                    <span>{row.label}</span>
+                  </th>
+                  {row.cells.map((cell, c) => (
+                    <td key={c} className={r === 0 && c === 0 ? 'is-best' : undefined}>
+                      {cell.length > 0 ? (
+                        <ul>
+                          {cell.map((choice) => (
+                            <ChoiceCard key={choice.name} choice={choice} />
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="quad__empty">Personne. Et on comprend pourquoi.</p>
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </Reveal>
 
         <p className="versus__takeaway">
-          Face à une agence : <strong>{euros(agencySavings)} de plus en poche</strong>. De quoi s’offrir beaucoup de
-          croissants.
+          Face à une agence : <strong>{euros(agencySavings)} de plus en poche</strong> sur {MONTHS / 12} ans, avec la
+          formule Pro. De quoi s’offrir beaucoup de croissants.
         </p>
 
         <div className="compare-cta">
