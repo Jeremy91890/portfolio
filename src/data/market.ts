@@ -17,34 +17,34 @@ const agencyTotal = agency.setup + agency.monthly * MONTHS;
 
 export type Option = {
   id: string;
-  /** Nom court, lisible dans une colonne étroite sur téléphone */
   name: string;
   mine?: boolean;
   /** Coût sur 3 ans : montant affiché et longueur de la barre */
   total: number;
   prefix?: string;
-  note?: string;
+  suffix?: string;
+  /** L'essentiel à retenir, en une ligne */
+  tag: string;
 };
 
 export const options: Option[] = [
-  { id: "nappage", name: "Nappage", mine: true, total: proTotal, note: "formule Pro" },
-  { id: "diy", name: "Faire soi-même", total: diy.monthlyMax * MONTHS, prefix: "jusqu'à ", note: "+ votre temps" },
-  { id: "turnkey", name: "Clé en main national", total: turnkey.setup + turnkey.monthly * MONTHS, prefix: "≈ ", note: "HT" },
-  { id: "agency", name: "Agence web", total: agencyTotal, prefix: "≈ " },
-];
-
-// oui : fait pour vous / inclus · partiel : selon la formule ou en supplément · non : à votre charge ou absent
-export type Mark = "yes" | "partial" | "no";
-
-/** Une ligne par critère, une valeur par option (dans l'ordre de `options`) */
-export const rows: { label: string; marks: Mark[] }[] = [
-  { label: `${euros(pricing.setupFee)} pour démarrer`, marks: ["yes", "yes", "no", "no"] },
-  { label: "Site créé pour vous", marks: ["yes", "no", "yes", "yes"] },
-  { label: "Textes rédigés", marks: ["yes", "no", "no", "partial"] },
-  { label: "Fiche Google soignée", marks: ["yes", "no", "partial", "partial"] },
-  { label: "Le développeur en direct", marks: ["yes", "no", "no", "no"] },
-  { label: `En ligne en ${pricing.launchDays} jours`, marks: ["yes", "partial", "no", "no"] },
-  { label: "Modifications faites", marks: ["yes", "no", "partial", "partial"] },
+  {
+    id: "nappage",
+    name: "Nappage, formule Pro",
+    mine: true,
+    total: proTotal,
+    tag: `${euros(pricing.setupFee)} au départ, tout est fait pour vous`,
+  },
+  { id: "diy", name: "Faire soi-même", total: diy.monthlyMax * MONTHS, prefix: "jusqu'à ", tag: "Vous faites tout, sur votre temps" },
+  {
+    id: "turnkey",
+    name: "Clé en main national",
+    total: turnkey.setup + turnkey.monthly * MONTHS,
+    prefix: "≈ ",
+    suffix: " HT",
+    tag: `${euros(turnkey.setup)} HT au départ, textes à fournir`,
+  },
+  { id: "agency", name: "Agence web", total: agencyTotal, prefix: "≈ ", tag: `${euros(agency.setup)} au départ, 5 à 8 semaines` },
 ];
 
 export const agencySavings = agencyTotal - proTotal;
