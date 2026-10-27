@@ -103,6 +103,7 @@ const faq = [
     b: `<ul>
           <li>Modifier votre site vous-même (Essentiel) : <strong>+${options.backofficePerMonth}&nbsp;€/mois</strong></li>
           <li>Adresse e-mail pro (Essentiel) : <strong>+${options.emailPerMonth}&nbsp;€/mois</strong></li>
+          <li>Newsletter (Essentiel, Pro) : <strong>+${options.newsletterPerMonth}&nbsp;€/mois</strong> — incluse en Premium</li>
           <li>Outil sur mesure (réservation sans commission, devis et factures, carte de fidélité, assistant clients) : <strong>sur devis</strong>, avec n’importe quelle formule</li>
           <li>Modification au-delà du quota : <strong>${eur(options.extraModification)}</strong></li>
         </ul>`,
