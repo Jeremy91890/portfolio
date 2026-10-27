@@ -152,6 +152,7 @@
     },
     {
       "label": "Newsletter",
+      "hint": "(1 e-mail par mois, rédigé par moi, envoyé à vos clients pour les faire revenir : nouveautés, offres, horaires)",
       "essentiel": {
         "text": "En option (+{newsletterPerMonth} €/mois)"
       },
