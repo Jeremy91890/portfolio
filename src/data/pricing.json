@@ -31,7 +31,8 @@
   "options": {
     "backofficePerMonth": 10,
     "emailPerMonth": 5,
-    "extraModification": 40
+    "extraModification": 40,
+    "newsletterPerMonth": 15
   },
   "plans": [
     {
@@ -144,6 +145,18 @@
       },
       "pro": {
         "included": true
+      },
+      "premium": {
+        "included": true
+      }
+    },
+    {
+      "label": "Newsletter",
+      "essentiel": {
+        "text": "En option (+{newsletterPerMonth} €/mois)"
+      },
+      "pro": {
+        "text": "En option (+{newsletterPerMonth} €/mois)"
       },
       "premium": {
         "included": true
