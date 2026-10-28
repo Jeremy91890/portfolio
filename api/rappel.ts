@@ -61,7 +61,13 @@ export async function handle(request: Request, env: Record<string, string | unde
   if (missing) return json(400, { error: 'invalid', field: missing });
   if (!PHONE.test(fields.telephone)) return json(400, { error: 'invalid', field: 'telephone' });
 
-  if (!env.BREVO_API_KEY || !env.MAIL_FROM) return json(500, { error: 'not_configured' });
+  // Seuls les noms des variables manquantes sont renvoyés, jamais leurs valeurs
+  const apiKey = env.BREVO_API_KEY?.trim();
+  const from = env.MAIL_FROM?.trim();
+  if (!apiKey || !from) {
+    const missing = [!apiKey && 'BREVO_API_KEY', !from && 'MAIL_FROM'].filter(Boolean);
+    return json(500, { error: 'not_configured', missing });
+  }
 
   const text = (Object.keys(LABELS) as CallbackField[])
     .filter((k) => fields[k])
@@ -70,9 +76,9 @@ export async function handle(request: Request, env: Record<string, string | unde
 
   const res = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
-    headers: { 'api-key': env.BREVO_API_KEY, 'Content-Type': 'application/json', Accept: 'application/json' },
+    headers: { 'api-key': apiKey, 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({
-      sender: { email: env.MAIL_FROM, name: 'nappage.fr' },
+      sender: { email: from, name: 'nappage.fr' },
       to: [{ email: env.MAIL_TO || 'contact@nappage.fr' }],
       subject: `Rappel demandé : ${fields.prenom}, ${fields.commerce}`,
       textContent: `${text}\n\nDemande envoyée depuis le formulaire « Être rappelé » de nappage.fr.`,
