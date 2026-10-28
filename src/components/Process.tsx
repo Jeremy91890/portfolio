@@ -13,7 +13,7 @@ const steps = [
   {
     icon: PencilRuler,
     title: 'Je conçois votre site',
-    text: 'Vous validez chaque étape, même au dixième « un peu plus de bleu ».',
+    text: 'Vous validez chaque étape. « Un peu plus de bleu », « un peu moins », « finalement, celui d’avant » : je connais la chanson, et elle me va très bien.',
   },
   {
     icon: RocketLaunch,
