@@ -3,7 +3,7 @@
 //   BREVO_API_KEY  clé API Brevo (obligatoire)
 //   MAIL_FROM      expéditeur validé dans Brevo, ex. site@nappage.fr (obligatoire)
 //   MAIL_TO        destinataire, contact@nappage.fr par défaut
-import { FR_PHONE, HONEYPOT, LIMITS, REQUIRED, type CallbackField } from '../src/data/callback';
+import { FR_PHONE, HONEYPOT, LIMITS, REQUIRED, type CallbackField } from '../src/data/callback.js';
 
 // Fourni par Node.js sur Vercel (évite d'ajouter @types/node pour une seule variable)
 declare const process: { env: Record<string, string | undefined> };
