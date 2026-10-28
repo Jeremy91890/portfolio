@@ -24,7 +24,7 @@ const hellos: Hello[] = [
     link: { href: "#contact", label: "Demander un devis" },
   },
   {
-    text: "Mes formules vous attendent un peu plus bas.",
+    text: "Vous avez sauté les formules ? Elles sont un peu plus haut.",
     link: { href: "#tarifs", label: "Voir les formules" },
   },
 ];
@@ -230,23 +230,21 @@ export default function About() {
             eyebrow="En quelques mots"
             title={
               <>
-                Bonjour, moi c’est {site.firstName}.{" "}
-                <span className="accent">10 ans de code</span> au service des
-                commerçants.
+                Bonjour, moi c’est {site.firstName},{" "}
+                <span className="accent">développeur depuis 10 ans.</span>
               </>
             }
           />
           <Reveal className="about__text">
             <p>
-              Depuis <strong>10 ans</strong>, je suis{" "}
-              <strong>développeur web et mobile en entreprise</strong>, et
-              j’ai été mentor chez OpenClassrooms : j’aime expliquer simplement
-              les choses techniques.
+              J’ai passé ces années comme développeur web et mobile en
+              entreprise. J’ai aussi été mentor chez OpenClassrooms, et j’aime
+              expliquer les choses techniques avec des mots simples.
             </p>
             <p>
-              Aujourd’hui, je crée les sites des{" "}
-              <strong>commerçants et indépendants</strong>, partout en France,
-              sans jargon et sans facture à plusieurs milliers d’euros.
+              Aujourd’hui, je crée les sites des commerçants et des
+              indépendants, partout en France, sans jargon et sans facture à
+              plusieurs milliers d’euros.
             </p>
           </Reveal>
           <Reveal className="about__actions" delay={0.1}>

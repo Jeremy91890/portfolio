@@ -31,10 +31,9 @@ export const duel = {
   mine: {
     name: "Nappage",
     price: `Dès ${price(fromPrice)} €/mois, ${euros(pricing.setupFee)} au départ`,
-    // Essentiel : vos textes corrigés ; Pro et Premium : rédigés pour vous
-    tasks: ["Je crée le site", "J'écris ou je corrige vos textes", "Je fais les mises à jour"],
+    tasks: ["Je crée le site", "J'écris vos textes", "Je fais les mises à jour"],
   },
-  // Les autres offres où tout est fait pour vous, en une ligne
+  // Les autres offres clé en main, en une ligne
   elsewhere: `${price(turnkey.monthly)} € HT/mois + ${euros(turnkey.setup)} HT au départ`,
 };
 

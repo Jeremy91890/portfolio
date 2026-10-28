@@ -18,12 +18,12 @@ const steps = [
   {
     icon: RocketLaunch,
     title: 'Mise en ligne',
-    text: `En ligne en ${pricing.launchDays} jours, pour ${pricing.setupFee} €.`,
+    text: `Votre site est en ligne en ${pricing.launchDays} jours. Mise en place : ${pricing.setupFee} €.`,
   },
   {
     icon: Lifebuoy,
-    title: 'Je reste à vos côtés',
-    text: 'Mises à jour, modifications et suivi en visio, selon votre formule.',
+    title: 'Et ensuite ?',
+    text: 'Je m’occupe des mises à jour, des modifications et du suivi en visio, selon votre formule.',
   },
 ];
 

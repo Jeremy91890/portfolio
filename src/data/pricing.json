@@ -2,7 +2,7 @@
   "header": {
     "eyebrow": "Tarifs",
     "title": "Un abonnement, tout compris",
-    "subtitle": "Je crée, j'héberge, je mets à jour.",
+    "subtitle": "Le site, l'hébergement, le nom de domaine et les mises à jour, pour un prix fixe chaque mois.",
     "badges": [
       {
         "value": "{setupFee} €",
@@ -63,7 +63,7 @@
       "name": "Premium",
       "price": 99,
       "period": "€/mois",
-      "promise": "Je fais vivre votre présence en ligne",
+      "promise": "Je m'occupe de tout, chaque mois",
       "tagline": "Jusqu'à 5 pages, fiche Google suivie et bilan chaque mois",
       "commitment": "{minCommitmentMonths} mois minimum, puis sans engagement",
       "featured": false,
@@ -97,7 +97,7 @@
     {
       "label": "Vos textes",
       "essentiel": {
-        "text": "Vos textes, corrigés et mis en forme"
+        "text": "Rédigés pour vous"
       },
       "pro": {
         "text": "Rédigés pour vous"

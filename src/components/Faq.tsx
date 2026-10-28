@@ -23,8 +23,8 @@ const questions: { q: string; a: ReactNode }[] = [
     q: "Comment se passe le paiement ?",
     a: (
       <p>
-        Par <strong>prélèvement SEPA</strong>, chaque mois. En payant à
-        l’année, vous avez <strong>{annualFreeMonths} mois offerts</strong>.
+        Par prélèvement SEPA, chaque mois. Si vous payez à l’année, vous
+        avez <strong>{annualFreeMonths} mois offerts</strong>.
       </p>
     ),
   },
@@ -32,8 +32,8 @@ const questions: { q: string; a: ReactNode }[] = [
     q: "Je ne suis pas à l’aise avec l’informatique, est-ce un problème ?",
     a: (
       <p>
-        Pas du tout, c’est pour vous que j’ai pensé ces formules : je
-        m’occupe de toute la partie technique, sans jargon.
+        Pas du tout, j’ai pensé ces formules pour vous. Je m’occupe de toute
+        la partie technique, et je vous parle sans jargon.
       </p>
     ),
   },
@@ -41,9 +41,9 @@ const questions: { q: string; a: ReactNode }[] = [
     q: "Vous travaillez à distance, comment ça se passe ?",
     a: (
       <p>
-        Tout se fait en visio, par e-mail et par SMS. Pas besoin de
-        compétences techniques : un simple lien suffit pour rejoindre l’appel,
-        depuis un téléphone ou un ordinateur.
+        Tout se fait en visio, par e-mail et par SMS. Pour la visio, vous
+        cliquez sur un lien depuis votre téléphone ou votre ordinateur, et
+        c’est tout.
       </p>
     ),
   },
@@ -61,8 +61,7 @@ const questions: { q: string; a: ReactNode }[] = [
     q: "Qui s’occupe des textes et des photos ?",
     a: (
       <p>
-        Vos textes sont rédigés pour vous en Pro et Premium ; en Essentiel,
-        vous me les fournissez et je les corrige. Photos : les vôtres, ou des
+        Je rédige vos textes, quelle que soit la formule. Photos : les vôtres, ou des
         photos libres de droits. Le site est en ligne{" "}
         <strong>{launchDays} jours</strong> après validation de vos contenus.
       </p>
@@ -72,22 +71,34 @@ const questions: { q: string; a: ReactNode }[] = [
     q: "Que se passe-t-il si j’arrête ?",
     a: (
       <p>
-        Vous gardez votre <strong>nom de domaine</strong>, vos textes et vos
-        photos. Vous pouvez aussi racheter le site complet :{" "}
+        Vous gardez votre nom de domaine, vos textes et vos photos. Vous
+        pouvez aussi racheter le site complet :{" "}
         {plan("essentiel").buyoutPrice} € pour Essentiel,{" "}
         {plan("pro").buyoutPrice} € pour Pro, sur devis pour Premium. Et si
-        c’est moi qui arrête, je vous le remets <strong>gratuitement</strong>.
+        c’est moi qui arrête, je vous le remets gratuitement.
       </p>
     ),
   },
   {
     q: "Mon site sera-t-il visible sur Google ?",
     a: (
-      <p>
-        Oui : vos pages sont rapides et déclarées à Google. En Pro et
-        Premium, je mets aussi votre fiche Google Maps au propre, et en
-        Premium je la suis chaque mois.
-      </p>
+      <>
+        <p>
+          Oui. Toutes les formules comprennent le{" "}
+          <strong>référencement Google de base</strong>, c’est-à-dire ce qui
+          permet à Google de trouver votre site et de comprendre ce que vous
+          faites : un titre et une description pour chaque page, un site
+          rapide et lisible sur mobile, votre adresse et vos horaires dans un
+          format que Google sait lire, et un plan du site envoyé à Google pour
+          qu’il le repère vite.
+        </p>
+        <p>
+          Personne ne peut garantir la première place, mais c’est la base pour
+          apparaître quand on cherche votre commerce. En Pro et Premium, je
+          mets aussi votre fiche Google Maps au propre, et en Premium je la
+          suis chaque mois.
+        </p>
+      </>
     ),
   },
 ];
@@ -133,7 +144,7 @@ export default function Faq() {
             eyebrow="Questions fréquentes"
             title={
               <>
-                Vous vous posez <span className="accent">sûrement la question.</span>
+                Ce qu’on me demande <span className="accent">le plus souvent.</span>
               </>
             }
           />

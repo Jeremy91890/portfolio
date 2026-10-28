@@ -193,8 +193,8 @@ export default function Pricing() {
         {/* Paiement unique et besoins hors formules : un seul encart, sur devis */}
         <Reveal className="quote-banner on-dark">
           <div>
-            <h3>Payer une seule fois, ou un besoin hors formules ?</h3>
-            <p>Devis sur mesure sous {once.quoteMaxDays} jours.</p>
+            <h3>Vous préférez payer en une fois, ou votre besoin sort des formules ?</h3>
+            <p>Je vous envoie un devis sur mesure sous {once.quoteMaxDays} jours.</p>
           </div>
           <a className="btn" href="#rappel">
             Demander un devis

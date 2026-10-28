@@ -16,10 +16,9 @@ export default function Compare() {
           eyebrow="Comparer"
           title={
             <>
-              Tout est fait pour vous. <span className="accent">Sans frais de départ.</span>
+              Le prix d’un site à faire soi-même. <span className="accent">Sauf que c’est moi qui fais tout.</span>
             </>
           }
-          lead="Le prix d’un site à faire soi-même, sans rien avoir à faire."
         />
 
         <Reveal className="duel">
@@ -47,7 +46,7 @@ export default function Compare() {
             viewport={{ once: true, margin: '0px 0px -10% 0px' }}
             transition={{ duration: 0.6, delay: 0.25, ease }}
           >
-            <span className="duel__badge">Tout est fait pour vous</span>
+            <span className="duel__badge">Clé en main</span>
             <h3 className="duel__name">{duel.mine.name}</h3>
             <p className="duel__price">{duel.mine.price}</p>
             <ul>
@@ -62,12 +61,12 @@ export default function Compare() {
         </Reveal>
 
         <p className="duel__elsewhere">
-          Ailleurs, quand tout est fait pour vous : <strong>{duel.elsewhere}</strong>.
+          Chez les autres services clé en main, comptez <strong>{duel.elsewhere}</strong>.
         </p>
 
         <p className="versus__takeaway">
-          Face à une agence : <strong>{euros(agencySavings)} de plus en poche</strong> sur {MONTHS / 12} ans, avec la
-          formule Pro. De quoi s’offrir beaucoup de croissants.
+          Avec la formule Pro, vous gardez <strong>{euros(agencySavings)}</strong> de plus qu’avec une agence sur{' '}
+          {MONTHS / 12} ans. De quoi s’offrir beaucoup de croissants.
         </p>
 
         <div className="compare-cta">

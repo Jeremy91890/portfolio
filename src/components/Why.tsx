@@ -22,7 +22,7 @@ const stats = [
   },
   {
     value: 54,
-    title: 'Convertir le bouche-à-oreille',
+    title: 'Transformer les avis en visites',
     text: 'des consommateurs visitent le site d’un commerce après avoir lu des avis positifs.',
     source: 'BrightLocal, Local Consumer Review Survey 2026',
     url: 'https://www.brightlocal.com/resources/local-seo-statistics/',
@@ -42,7 +42,7 @@ export default function Why() {
           eyebrow="Pourquoi un site ?"
           title={
             <>
-              Vos clients vous cherchent en ligne. <span className="accent">Soyez là quand ils le font.</span>
+              Avant de pousser votre porte, <span className="accent">vos clients vous cherchent en ligne.</span>
             </>
           }
         />

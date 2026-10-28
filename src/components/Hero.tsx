@@ -80,8 +80,8 @@ export default function Hero() {
           </h1>
 
           <motion.p className="hero__lead" variants={appear(0.8)}>
-            Je crée, héberge et fais vivre le site de votre commerce.{' '}
-            <strong>Vous n’avez rien à faire, et vous ne payez rien pour démarrer.</strong>
+            Je crée le site de votre commerce, je l’héberge et je le mets à jour.{' '}
+            <strong>Vous n’avez rien à faire, et rien à payer pour démarrer.</strong>
           </motion.p>
 
           <motion.div className="hero__ctas" variants={appear(0.95)}>
