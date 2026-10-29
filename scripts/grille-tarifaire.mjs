@@ -21,10 +21,11 @@ const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const OUT = join(root, 'grille-tarifaire.pdf');
 
 const { header, plans, features, includedInAll, oneTimePurchase: once, options } = pricing;
-const { annualFreeMonths, launchDays, minCommitmentMonths, criticalResponseHours } = pricing;
+const { setupFee, annualFreeMonths, launchDays, criticalResponseHours, callbackHours } = pricing;
 const font = (w) => pathToFileURL(join(root, `node_modules/@fontsource/poppins/files/poppins-latin-${w}-normal.woff2`)).href;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const eur = (n) => `${n.toLocaleString("fr-FR")}&nbsp;€`;
+const siteHost = site.url.replace(/^https?:\/\//, '');
 const today = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const check = `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -79,7 +80,7 @@ const table = `
 const faq = [
   {
     t: 'Prix et paiement',
-    b: `<p>Les prix indiqués sont <strong>ceux que vous payez</strong> : aucune TVA ne s’ajoute. Mise en place : <strong>0 €</strong>.</p>
+    b: `<p>Les prix indiqués sont <strong>ceux que vous payez</strong> : aucune TVA ne s’ajoute. Mise en place : <strong>${eur(setupFee)}</strong>.</p>
         <p>Paiement par <strong>prélèvement SEPA</strong>, chaque mois.</p>
         <p class="small">TVA non applicable, art. 293 B du CGI (micro-entreprise).</p>`,
   },
@@ -95,7 +96,7 @@ const faq = [
   },
   {
     t: 'Engagement et changement de formule',
-    b: `<p>Toutes les formules : <strong>${minCommitmentMonths} mois minimum</strong>, puis résiliation par simple e-mail, effective à la fin du mois en cours.</p>
+    b: `<p>Toutes les formules sont <strong>sans engagement</strong> : résiliation par simple e-mail, effective à la fin du mois en cours.</p>
         <p>Changer de formule est possible en cours de route.</p>`,
   },
   {
@@ -104,14 +105,14 @@ const faq = [
           <li>Modifier votre site vous-même (Essentiel) : <strong>+${options.backofficePerMonth}&nbsp;€/mois</strong></li>
           <li>Adresse e-mail pro (Essentiel) : <strong>+${options.emailPerMonth}&nbsp;€/mois</strong></li>
           <li>Newsletter (Essentiel, Pro) : <strong>+${options.newsletterPerMonth}&nbsp;€/mois</strong> — incluse en Premium</li>
-          <li>Outil sur mesure (réservation sans commission, devis et factures, carte de fidélité, assistant clients) : <strong>sur devis</strong>, avec n’importe quelle formule</li>
+          <li>Outil sur mesure (réservation, devis et factures, fidélité…) : <strong>sur devis</strong>, avec n’importe quelle formule</li>
           <li>Modification au-delà du quota : <strong>${eur(options.extraModification)}</strong></li>
         </ul>`,
   },
   {
     t: `Mise en ligne en ${launchDays} jours`,
-    b: `<p>Textes rédigés pour vous en Pro et Premium ; en Essentiel, vous les fournissez et je les corrige. Photos : les vôtres, ou des photos libres de droits (séance photo non incluse).</p>
-        <p>Votre site est en ligne <strong>${launchDays} jours</strong> après la validation de vos contenus.</p>`,
+    b: `<p>Je rédige vos textes, <strong>quelle que soit la formule</strong>. Photos : les vôtres, ou des photos libres de droits (séance photo non incluse).</p>
+        <p>Votre site est en ligne <strong>${launchDays} jours</strong> après la validation de vos contenus. Tout se fait à distance : visio, e-mail et SMS.</p>`,
   },
   {
     t: 'Bug ou modification ?',
@@ -120,14 +121,15 @@ const faq = [
   },
   {
     t: 'Si vous arrêtez',
-    b: `<p>Je vous transfère votre <strong>nom de domaine</strong> et vous remets vos textes et photos.</p>
-        <p>Rachat du site complet : ${plans
+    b: `<p>Vous gardez votre <strong>nom de domaine</strong>, vos textes et vos photos. Rachat du site complet : ${plans
           .map((p) => `${esc(p.name)} ${p.buyoutPrice ? eur(p.buyoutPrice) : 'sur devis'}`)
-          .join(', ')}.</p>`,
+          .join(', ')}.</p>
+        <p>Si c’est moi qui arrête, je vous le remets <strong>gratuitement</strong>.</p>`,
   },
   {
-    t: 'Si j’arrête mon activité',
-    b: `<p>Je vous remets <strong>gratuitement</strong> votre site complet, prêt à être repris par un autre prestataire.</p>`,
+    t: 'Visible sur Google ?',
+    b: `<p>Oui : le <strong>référencement Google de base</strong> est inclus dans toutes les formules.</p>
+        <p>En Pro et Premium, je mets aussi votre fiche Google Maps au propre ; en Premium, je la suis chaque mois.</p>`,
   },
   {
     t: 'Payer une seule fois ?',
@@ -140,7 +142,7 @@ const html = `<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Grille tarifaire – ${esc(site.name)}</title>
+<title>Grille tarifaire – ${esc(site.brand)}</title>
 <style>
   @font-face { font-family: Poppins; font-weight: 400; src: url(${font(400)}) format('woff2'); }
   @font-face { font-family: Poppins; font-weight: 500; src: url(${font(500)}) format('woff2'); }
@@ -218,10 +220,10 @@ const html = `<!doctype html>
   .foot { padding: 2.5mm 12mm 4.5mm; display: flex; justify-content: space-between; font-size: 7pt; color: var(--gray); border-top: 1px solid var(--border); margin: 0 12mm; padding-left: 0; padding-right: 0; }
 
   /* Page 2 */
-  .top--slim { padding-top: 7mm; padding-bottom: 6mm; align-items: flex-end; }
+  .top--slim { padding-top: 5mm; padding-bottom: 4.5mm; align-items: flex-end; }
   .top--slim h1 { font-size: 17pt; }
-  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3.5mm; }
-  .card { border: 1px solid var(--border); border-radius: 8px; padding: 3mm 4mm; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+  .card { border: 1px solid var(--border); border-radius: 8px; padding: 2.6mm 4mm; }
   .card h3 { font-size: 9.4pt; font-weight: 700; margin-bottom: 1.4mm; display: flex; align-items: center; gap: 2mm; }
   .card h3::before { content: ''; width: 1.6mm; height: 3.6mm; border-radius: 2px; background: var(--orange); }
   .card p + p, .card p + ul, .card ul + p, .card table + p { margin-top: 1.2mm; }
@@ -233,8 +235,8 @@ const html = `<!doctype html>
   .mini td { padding: .5mm 0; border-top: 1px solid var(--border); text-align: right; }
   .mini td:first-child { text-align: left; font-weight: 600; }
 
-  .cta { margin-top: 4mm; display: flex; gap: 4mm; align-items: stretch; }
-  .cta > div { border-radius: 8px; padding: 3.5mm 5mm; }
+  .cta { margin-top: 3mm; display: flex; gap: 4mm; align-items: stretch; }
+  .cta > div { border-radius: 8px; padding: 3mm 5mm; }
   .cta .quote { flex: 1.3; background: var(--orange-soft); }
   .cta .contact { flex: 1; background: var(--navy); color: #fff; }
   .cta h3 { font-size: 10pt; font-weight: 700; margin-bottom: 1mm; }
@@ -247,7 +249,7 @@ const html = `<!doctype html>
 <section class="page">
   <header class="top">
     <div>
-      <p class="eyebrow">${esc(header.eyebrow)} · GRILLE TARIFAIRE</p>
+      <p class="eyebrow">${esc(site.brand.toUpperCase())} · GRILLE TARIFAIRE</p>
       <h1>${esc(header.title)}</h1>
       <p class="sub">${esc(header.subtitle)}</p>
     </div>
@@ -262,7 +264,7 @@ const html = `<!doctype html>
   </div>
 
   <footer class="foot">
-    <span><strong>${esc(site.name)}</strong> · ${esc(site.role)} · ${esc(site.phone)} · ${esc(site.email)}</span>
+    <span><strong>${esc(site.brand)}</strong> · ${esc(site.name)} · ${esc(site.phone)} · ${esc(site.email)} · ${esc(siteHost)}</span>
     <span>Prix nets, TVA non applicable, art. 293 B du CGI · Tarifs en vigueur au ${today}</span>
     <span>1 / 2</span>
   </footer>
@@ -275,8 +277,8 @@ const html = `<!doctype html>
       <h1>Tout ce que vous vous demandez avant de vous lancer</h1>
     </div>
     <div class="who">
-      <strong>${esc(site.name)}</strong>
-      ${esc(site.phone)} · ${esc(site.email)}
+      <strong>${esc(site.brand)}</strong>
+      ${esc(site.phone)} · ${esc(site.email)} · ${esc(siteHost)}
     </div>
   </header>
 
@@ -288,20 +290,19 @@ const html = `<!doctype html>
     <div class="cta">
       <div class="quote">
         <h3>Votre besoin ne rentre dans aucune formule ?</h3>
-        <p>Click &amp; collect, application mobile, outil métier… Je vous fais un
-        <strong>devis personnalisé</strong>, adapté à votre budget et à votre façon de travailler.
-        Vous avez déjà un site ? Je le modernise en préservant votre place sur Google.</p>
+        <p>Click &amp; collect, application mobile, outil métier, reprise de votre site actuel…
+        Je vous fais un <strong>devis personnalisé</strong>, adapté à votre budget.</p>
       </div>
       <div class="contact">
         <h3>Une question ? Je vous réponds personnellement.</h3>
         <p><strong>${esc(site.phone)}</strong> · <strong>${esc(site.email)}</strong></p>
-        <p>${esc(site.name)}</p>
+        <p>Ou demandez à être rappelé sur ${esc(siteHost)} : sous ${callbackHours}&nbsp;h ouvrées.</p>
       </div>
     </div>
   </div>
 
   <footer class="foot">
-    <span>${esc(site.name)} · ${esc(legal.status)} · SIRET ${esc(legal.siret)} · ${esc(legal.address)} · TVA non applicable, art. 293 B du CGI</span>
+    <span>${esc(site.brand)} · ${esc(site.name)} · ${esc(legal.status)} · SIRET ${esc(legal.siret)} · ${esc(legal.address)} · TVA non applicable, art. 293 B du CGI</span>
     <span>2 / 2</span>
   </footer>
 </section>

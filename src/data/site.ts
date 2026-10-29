@@ -15,6 +15,7 @@ export const site = {
   // Lien vers l'outil de prise de rendez-vous visio (à choisir, sans cookie si possible). Vide : bouton masqué.
   bookingUrl: "",
   linkedin: "https://www.linkedin.com/in/j%C3%A9r%C3%A9my-debelleix-35191811a/",
+  instagram: "https://www.instagram.com/nappagestudio/",
   photo: {
     webp: "/jeremy-debelleix.webp",
     jpg: "/jeremy-debelleix.jpg",

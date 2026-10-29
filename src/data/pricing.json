@@ -1,6 +1,6 @@
 {
   "header": {
-    "eyebrow": "Tarifs",
+    "eyebrow": "Prix d'un site vitrine",
     "title": "Un abonnement, tout compris",
     "subtitle": "Le site, l'hébergement, le nom de domaine et les mises à jour, pour un prix fixe chaque mois.",
     "badges": [
@@ -13,8 +13,8 @@
         "label": "pour être en ligne"
       },
       {
-        "value": "{minCommitmentMonths} mois",
-        "label": "minimum, puis libre"
+        "value": "Sans engagement",
+        "label": "résiliable chaque mois"
       },
       {
         "value": "2 mois offerts",
@@ -25,7 +25,6 @@
   "setupFee": 0,
   "annualFreeMonths": 2,
   "launchDays": 7,
-  "minCommitmentMonths": 6,
   "criticalResponseHours": 24,
   "callbackHours": 48,
   "options": {
@@ -42,7 +41,7 @@
       "period": "€/mois",
       "promise": "Votre commerce existe en ligne",
       "tagline": "Une page claire, hébergement et nom de domaine inclus",
-      "commitment": "{minCommitmentMonths} mois minimum, puis sans engagement",
+      "commitment": "Sans engagement, résiliable chaque mois",
       "featured": false,
       "buyoutPrice": 290
     },
@@ -53,7 +52,7 @@
       "period": "€/mois",
       "promise": "Vos clients vous trouvent sur Google",
       "tagline": "3 pages rédigées pour vous, fiche Google et suivi en visio",
-      "commitment": "{minCommitmentMonths} mois minimum, puis sans engagement",
+      "commitment": "Sans engagement, résiliable chaque mois",
       "featured": true,
       "ribbon": "RECOMMANDÉ",
       "buyoutPrice": 490
@@ -65,7 +64,7 @@
       "period": "€/mois",
       "promise": "Je m'occupe de tout, chaque mois",
       "tagline": "Jusqu'à 5 pages, fiche Google suivie et bilan chaque mois",
-      "commitment": "{minCommitmentMonths} mois minimum, puis sans engagement",
+      "commitment": "Sans engagement, résiliable chaque mois",
       "featured": false,
       "buyoutPrice": null
     }
@@ -213,6 +212,6 @@
   },
   "notes": [
     "Un bug est corrigé gratuitement. Une modification (un changement que vous demandez, ou une liste envoyée en une fois) est décomptée de votre quota ; au-delà, {extraModification} € l'unité.",
-    "Prélèvement SEPA. {minCommitmentMonths} mois minimum, puis résiliation par simple e-mail, effective à la fin du mois en cours."
+    "Prélèvement SEPA, sans engagement : résiliation par simple e-mail, effective à la fin du mois en cours."
   ]
 }

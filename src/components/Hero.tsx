@@ -80,7 +80,8 @@ export default function Hero() {
           </h1>
 
           <motion.p className="hero__lead" variants={appear(0.8)}>
-            Je crée le site de votre commerce, je l’héberge et je le mets à jour.{' '}
+            Boulangerie, salon de coiffure, boutique ou artisan : je crée le site de votre commerce, je l’héberge et
+            je le mets à jour.{' '}
             <strong>Vous n’avez rien à faire, et rien à payer pour démarrer.</strong>
           </motion.p>
 

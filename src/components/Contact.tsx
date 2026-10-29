@@ -5,6 +5,7 @@ import {
   ChatText,
   CheckCircle,
   EnvelopeSimple,
+  InstagramLogo,
   LinkedinLogo,
   Phone,
   VideoCamera,
@@ -13,6 +14,7 @@ import { Reveal } from "./Reveal";
 import { site } from "../data/site";
 import pricing from "../data/pricing";
 import { LEGAL_HASH } from "./Legal";
+import { GUIDES_PATH } from "../data/guides";
 import { FR_PHONE, HONEYPOT, LIMITS, MOMENTS, UNDECIDED } from "../data/callback";
 
 const PLAN_EVENT = "nappage:formule";
@@ -235,6 +237,12 @@ export default function Contact() {
                 LinkedIn<span className="sr-only"> (nouvel onglet)</span>
               </a>
             </li>
+            <li>
+              <InstagramLogo size={18} aria-hidden="true" />
+              <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+                Instagram<span className="sr-only"> (nouvel onglet)</span>
+              </a>
+            </li>
           </ul>
         </Reveal>
         <Reveal delay={0.15} className="contact__form" as="div">
@@ -254,9 +262,13 @@ export function Footer() {
         </p>
         <p>TVA non applicable, art. 293 B du CGI.</p>
         <p className="footer__links">
+          <a href={GUIDES_PATH}>Guides</a>
           <a href={LEGAL_HASH}>Mentions légales</a>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn<span className="sr-only"> (nouvel onglet)</span>
+          </a>
+          <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+            Instagram<span className="sr-only"> (nouvel onglet)</span>
           </a>
         </p>
       </div>

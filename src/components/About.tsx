@@ -242,9 +242,9 @@ export default function About() {
               expliquer les choses techniques avec des mots simples.
             </p>
             <p>
-              Aujourd’hui, je crée les sites des commerçants et des
-              indépendants, partout en France, sans jargon et sans facture à
-              plusieurs milliers d’euros.
+              Aujourd’hui développeur web indépendant, je crée les sites des
+              commerçants et des artisans, partout en France, sans jargon et
+              sans facture à plusieurs milliers d’euros.
             </p>
           </Reveal>
           <Reveal className="about__actions" delay={0.1}>

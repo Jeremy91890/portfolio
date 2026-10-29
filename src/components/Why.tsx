@@ -45,6 +45,7 @@ export default function Why() {
               Avant de pousser votre porte, <span className="accent">vos clients vous cherchent en ligne.</span>
             </>
           }
+          lead="Un site web, c’est la présence en ligne de votre commerce local : vos horaires, votre adresse et vos services, trouvés sur Google en quelques secondes."
         />
 
         <Stagger as="ul" className="why" step={0.08}>

@@ -15,7 +15,7 @@ const app = (
   <StrictMode>
     {/* "user" : les transformations sont désactivées si prefers-reduced-motion est actif */}
     <MotionConfig reducedMotion="user">
-      <App />
+      <App path={window.location.pathname} />
     </MotionConfig>
   </StrictMode>
 );
