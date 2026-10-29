@@ -5,6 +5,7 @@ import App from './App';
 import { questions } from './components/Faq';
 import { GUIDES_PATH, guidePath, guides, guidesIndex } from './data/guides';
 import { site } from './data/site';
+import { breadcrumb, home, ids, siteGraph } from './data/schema';
 
 // Rendu HTML au build (scripts/prerender.mjs) : le contenu est lisible par Google sans exécuter le JavaScript
 export function render(path: string) {
@@ -43,13 +44,6 @@ export function faqSchema() {
   };
 }
 
-const home = `${site.url}/`;
-
-const breadcrumb = (items: { name: string; url: string }[]) => ({
-  '@type': 'BreadcrumbList',
-  itemListElement: items.map((item, i) => ({ '@type': 'ListItem', position: i + 1, name: item.name, item: item.url })),
-});
-
 /** Pages autres que l'accueil, avec ce qui change dans le <head> (l'accueil garde celui de index.html) */
 export function pages() {
   const indexUrl = `${site.url}${GUIDES_PATH}`;
@@ -63,12 +57,15 @@ export function pages() {
       schema: {
         '@context': 'https://schema.org',
         '@graph': [
+          ...siteGraph,
           {
             '@type': 'CollectionPage',
             '@id': indexUrl,
+            url: indexUrl,
             name: guidesIndex.title,
             description: guidesIndex.description,
             inLanguage: 'fr-FR',
+            isPartOf: { '@id': ids.website },
             hasPart: guides.map((g) => ({ '@type': 'Article', headline: g.title, url: `${site.url}${guidePath(g.slug)}` })),
           },
           breadcrumb([
@@ -86,9 +83,12 @@ export function pages() {
         title: g.metaTitle,
         description: g.description,
         type: 'article',
+        published: g.published,
+        updated: g.updated,
         schema: {
           '@context': 'https://schema.org',
           '@graph': [
+            ...siteGraph,
             {
               '@type': 'Article',
               '@id': `${url}#article`,
@@ -98,15 +98,13 @@ export function pages() {
               datePublished: g.published,
               dateModified: g.updated,
               mainEntityOfPage: url,
+              isPartOf: { '@id': ids.website },
+              articleSection: 'Guides',
               image: `${site.url}${site.photo.jpg}`,
               keywords: g.keywords.join(', '),
-              author: { '@type': 'Person', '@id': `${home}#personne`, name: site.name, url: home },
-              publisher: {
-                '@type': 'Organization',
-                '@id': `${home}#entreprise`,
-                name: site.brand,
-                logo: { '@type': 'ImageObject', url: `${site.url}/logo-nappage.png` },
-              },
+              // Entités complètes dans siteGraph, reliées par @id ; le nom est répété pour les lecteurs qui ne suivent pas les @id
+              author: { '@type': 'Person', '@id': ids.person, name: site.name, url: home },
+              publisher: { '@id': ids.business, name: site.brand },
             },
             breadcrumb([
               { name: 'Accueil', url: home },

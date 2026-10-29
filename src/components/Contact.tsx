@@ -5,6 +5,7 @@ import {
   ChatText,
   CheckCircle,
   EnvelopeSimple,
+  InstagramLogo,
   LinkedinLogo,
   Phone,
   VideoCamera,
@@ -236,6 +237,12 @@ export default function Contact() {
                 LinkedIn<span className="sr-only"> (nouvel onglet)</span>
               </a>
             </li>
+            <li>
+              <InstagramLogo size={18} aria-hidden="true" />
+              <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+                Instagram<span className="sr-only"> (nouvel onglet)</span>
+              </a>
+            </li>
           </ul>
         </Reveal>
         <Reveal delay={0.15} className="contact__form" as="div">
@@ -259,6 +266,9 @@ export function Footer() {
           <a href={LEGAL_HASH}>Mentions légales</a>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn<span className="sr-only"> (nouvel onglet)</span>
+          </a>
+          <a href={site.instagram} target="_blank" rel="noopener noreferrer">
+            Instagram<span className="sr-only"> (nouvel onglet)</span>
           </a>
         </p>
       </div>

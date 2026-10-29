@@ -12,6 +12,7 @@ const links = [
   { id: "comparer", label: "Comparer" },
   { id: "a-propos", label: "À propos" },
   { id: "faq", label: "FAQ" },
+  { id: "guides", label: "Guides" },
 ];
 
 /** `home` : liens vers les sections de la page ; ailleurs, vers les sections de l'accueil */

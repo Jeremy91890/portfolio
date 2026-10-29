@@ -34,8 +34,14 @@ for (const page of pages()) {
   html = setMeta(html, 'property', 'og:url', page.url);
   html = setMeta(html, 'property', 'og:title', page.title);
   html = setMeta(html, 'property', 'og:description', page.description);
-  // Les données structurées de l'entreprise restent sur l'accueil : chaque page a les siennes
+  // Chaque page a son propre graphe (entreprise et auteur repris de src/data/schema.ts, plus la page elle-même)
   html = replaceOnce(html, /<script type="application\/ld\+json">[\s\S]*?<\/script>/, ldJson(page.schema));
+  // Guides : dates de publication et de mise à jour lues par les réseaux sociaux et les moteurs
+  if (page.published) {
+    html = html.replace('</head>', () =>
+      `  <meta property="article:published_time" content="${page.published}">\n    <meta property="article:modified_time" content="${page.updated}">\n  </head>`,
+    );
+  }
   html = html.replace(APP, () => render(page.path));
 
   const dir = `${root}dist${page.path}`;

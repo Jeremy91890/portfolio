@@ -1508,7 +1508,9 @@ button { font: inherit; color: inherit; }
 /* ---------- Contact ---------- */
 .contact {
   position: relative;
+  /* clip et non hidden : une boîte hidden reste défilable, et l'ancre #rappel y décalait le contenu de la marge haute */
   overflow: hidden;
+  overflow: clip;
   background: var(--navy-3);
   isolation: isolate;
 }

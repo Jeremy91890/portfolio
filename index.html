@@ -11,6 +11,8 @@
     <title>Création de site web clé en main pour commerçants et artisans | Nappage</title>
     <meta name="description" content="Site vitrine clé en main pour commerce local et artisan, partout en France, dès %FROM_PRICE% €/mois : hébergement, nom de domaine, référencement local et mises à jour inclus." />
     <!-- Canonical, Open Graph et données structurées : générés dans vite.config.ts à partir de src/data -->
+    <!-- Sans JavaScript, les animations d'apparition ne se lancent pas : le contenu pré-rendu reste visible -->
+    <noscript><style>#root [style*="opacity:0"], #root .word > span { opacity: 1 !important; transform: none !important; }</style></noscript>
   </head>
   <body>
     <div id="root"><!--app-html--></div>
