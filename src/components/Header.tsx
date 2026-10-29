@@ -14,7 +14,9 @@ const links = [
   { id: "faq", label: "FAQ" },
 ];
 
-export default function Header() {
+/** `home` : liens vers les sections de la page ; ailleurs, vers les sections de l'accueil */
+export default function Header({ home }: { home: boolean }) {
+  const base = home ? "" : "/";
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string | null>(null);
@@ -67,8 +69,8 @@ export default function Header() {
       <div className="container header__inner">
         <a
           className="logo"
-          href="#top"
-          aria-label={`${site.brand}, retour en haut de page`}
+          href={home ? "#top" : "/"}
+          aria-label={`${site.brand}, ${home ? "retour en haut de page" : "retour à l’accueil"}`}
         >
           <NappageLogo className="logo__mark" />
           <span className="logo__text" aria-hidden="true">
@@ -83,7 +85,7 @@ export default function Header() {
               <li key={id}>
                 <a
                   className="nav__link"
-                  href={`#${id}`}
+                  href={`${base}#${id}`}
                   aria-current={active === id ? "true" : undefined}
                 >
                   {active === id && (
@@ -146,7 +148,7 @@ export default function Header() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 + i * 0.04 }}
                 >
-                  <a href={`#${id}`} onClick={() => setOpen(false)}>
+                  <a href={`${base}#${id}`} onClick={() => setOpen(false)}>
                     {label}
                     <ArrowRight size={22} aria-hidden="true" />
                   </a>

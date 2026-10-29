@@ -1,55 +1,58 @@
-# Grille tarifaire – Site web vitrine clé en main
+# Grille tarifaire – Nappage Studio
 
-**Votre commerce, enfin visible en ligne**  
-Un site à votre image, hébergé et mis à jour pour vous. Vous gérez vos clients, on s'occupe du reste.
+**Un abonnement, tout compris**  
+Le site, l'hébergement, le nom de domaine et les mises à jour, pour un prix fixe chaque mois.
 
-**0 €** de mise en place · **0 mois** d'engagement, résiliable à tout moment
+**0 €** de mise en place · **7 jours** pour être en ligne · **6 mois** minimum, puis libre · **2 mois offerts** en payant à l'année
 
 ## Inclus dans toutes les formules
 
-- Nom de domaine
-- Hébergement
-- Correction des bugs
-- Support par email
+- Nom de domaine et hébergement
+- Sécurité, sauvegardes et mises à jour
+- Panne prise en charge sous 24 h ouvrées
+- Référencement Google de base
+- Lien vers votre outil de réservation
+- Mentions légales et RGPD
 
 ## Les formules
 
-| Formule                  | Prix      | En bref                                                   |
-| ------------------------ | --------- | --------------------------------------------------------- |
-| **Essentiel**            | 29 €/mois | Une page claire, hébergement et nom de domaine inclus     |
-| **Pro** (le plus choisi) | 49 €/mois | Plusieurs pages, espace de gestion et statistiques inclus |
-| **Premium**              | 89 €/mois | Site complet, IA sur mesure et 3 modifications par mois   |
+| Formule                  | Par mois  | Par an (2 mois offerts) | En bref                                                   |
+| ------------------------ | --------- | ----------------------- | --------------------------------------------------------- |
+| **Essentiel**            | 29 €/mois | 290 €                   | Une page claire, hébergement et nom de domaine inclus     |
+| **Pro** (recommandé)     | 59 €/mois | 590 €                   | 3 pages rédigées pour vous, fiche Google et suivi en visio |
+| **Premium**              | 99 €/mois | 990 €                   | Jusqu'à 5 pages, fiche Google suivie et bilan chaque mois |
+
+Toutes les formules : 6 mois minimum, puis sans engagement.
 
 ## Comparatif détaillé
 
-|                                           | **Essentiel**                                       | **Pro**                                                                   | **Premium**                                                                  |
-| ----------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Votre site                                | 1 page : présentation, horaires, plan, contact      | Plusieurs pages : services, carte ou tarifs, galerie photos               | Plusieurs pages + une page dédiée à chaque service                           |
-| Espace de gestion (back-office)           | En option (+10 €/mois) : horaires, textes et images | Inclus : horaires, textes, images, carte ou tarifs                        | Inclus : tout le contenu, images et nouvelles pages                          |
-| Statistiques de consultation _(nouveau)_  | —                                                   | Tableau de bord : visites, pages vues, provenance des visiteurs           | Tableau de bord + bilan mensuel commenté                                     |
-| Animations modernes _(nouveau)_           | —                                                   | Inclus : apparitions au défilement, effets au survol, transitions fluides | Inclus                                                                       |
-| Réservation & contact                     | Bouton vers votre plateforme (Planity, TheFork…)    | Bouton de réservation + formulaire de contact                             | Bouton, formulaire de contact + formulaire de demande sur mesure             |
-| Fiche Google Maps                         | —                                                   | Mise au propre lors de la mise en ligne                                   | Mise au propre + mise à jour chaque mois                                     |
-| Bonus                                     | —                                                   | QR code pour récolter des avis                                            | QR code avis + référencement local                                           |
-| Fonctionnalités IA sur mesure _(nouveau)_ | —                                                   | —                                                                         | Prise de rendez-vous, chatbot, relances par email… adaptés à votre activité  |
-| Modifications faites pour vous            | 1 par trimestre                                     | 1 par mois                                                                | 3 par mois                                                                   |
-| Support                                   | Email, réponse sous 72 h ouvrées                    | Email et SMS, réponse sous 48 h ouvrées                                   | Email, SMS et téléphone, réponse sous 24 h ouvrées, bugs traités en priorité |
+|                                | **Essentiel**                    | **Pro**                                 | **Premium**                                                                                    |
+| ------------------------------ | -------------------------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Votre site                     | 1 page                           | 3 pages                                 | Jusqu'à 5 pages                                                                                |
+| Vos textes                     | Rédigés pour vous                | Rédigés pour vous                       | Rédigés pour vous                                                                              |
+| QR code pour vos avis Google   | —                                | Inclus                                  | Inclus                                                                                         |
+| Fiche Google Maps              | —                                | Mise au propre à la mise en ligne       | Mise au propre, puis suivie chaque mois (horaires spéciaux, photos, 1 publication Google par mois) |
+| Modifier votre site vous-même  | En option (+10 €/mois)           | Inclus                                  | Inclus                                                                                         |
+| Adresse e-mail pro             | En option (+5 €/mois)            | Inclus                                  | Inclus                                                                                         |
+| Newsletter _(1 e-mail par mois, rédigé par moi)_ | En option (+15 €/mois) | En option (+15 €/mois)          | Inclus                                                                                         |
+| Statistiques de visites        | —                                | Tableau de bord                         | Tableau de bord + bilan mensuel commenté                                                       |
+| Point de suivi en visio        | —                                | 1 par trimestre (20 min)                | 1 par mois (30 min)                                                                            |
+| Modifications faites pour vous | 1 par trimestre                  | 1 par mois                              | 3 par mois                                                                                     |
+| Support                        | E-mail, réponse sous 72 h ouvrées | E-mail et SMS, réponse sous 48 h ouvrées | E-mail et SMS, rappel téléphonique sous 24 h ouvrées                                          |
 
-Un bug (quelque chose qui ne fonctionne plus comme prévu) est corrigé gratuitement ; une modification est un changement que vous demandez, décompté de votre quota.
+Un bug est corrigé gratuitement. Une modification (un changement que vous demandez, ou une liste envoyée en une fois) est décomptée de votre quota ; au-delà, 40 € l'unité.
 
-## Vous préférez payer une seule fois ?
+Prélèvement SEPA. 6 mois minimum, puis résiliation par simple e-mail, effective à la fin du mois en cours.
 
-**490 €** pour le site, puis **15 €/mois** pour l’hébergement et le nom de domaine.
+## Si vous arrêtez
 
-- Garantie bugs : 3 mois
-- Back-office : +10 €/mois
-- Modification : 40 € l’unité
-- Support : facturé à l'intervention
+Vous gardez votre nom de domaine, vos textes et vos photos. Rachat du site complet : Essentiel 290 €, Pro 490 €, Premium sur devis. Si c'est moi qui arrête, je vous remets votre site gratuitement.
 
-## Sur mesure
+## Paiement en une fois ou besoin hors formules
 
-Ces formules sont indicatives. Un besoin particulier (outil métier, IA, application mobile…) ? Un devis sur mesure est possible, en dehors des formules.
+Sur devis, envoyé sous 7 jours. Outils sur mesure (réservation sans commission, devis et factures, carte de fidélité, assistant clients, click & collect, application mobile, reprise de votre site actuel) en complément de n'importe quelle formule.
 
 ---
 
-Jérémy Debelleix · 06 30 38 69 83 · jeremy?debelleix@gmail.com
+Nappage Studio · Jérémy Debelleix · 06 30 38 69 83 · contact@nappage.fr · www.nappage.fr  
+Prix nets, TVA non applicable, art. 293 B du CGI.

@@ -2,6 +2,7 @@ import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { site } from './src/data/site';
 import pricing from './src/data/pricing';
+import { GUIDES_PATH, guidePath, guides } from './src/data/guides';
 
 const home = `${site.url}/`;
 const fromPrice = Math.min(...pricing.plans.map((p) => p.price));
@@ -16,7 +17,7 @@ const structuredData = {
       name: site.brand,
       alternateName: `${site.brand} – ${site.name}, ${site.role.toLowerCase()}`,
       logo: `${site.url}/logo-nappage.png`,
-      description: `Création, hébergement et maintenance de sites web pour commerçants, dès ${fromPrice} €/mois.`,
+      description: `Création, hébergement et maintenance de sites vitrines pour commerçants et artisans, avec référencement local, dès ${fromPrice} €/mois.`,
       url: home,
       image: `${site.url}${site.photo.jpg}`,
       telephone: site.phoneHref,
@@ -99,6 +100,12 @@ function seo(): Plugin {
     generateBundle() {
       if (this.meta.watchMode || ssr) return;
       const today = new Date().toISOString().slice(0, 10);
+      const lastGuideUpdate = guides.map((g) => g.updated).reduce((a, b) => (b > a ? b : a));
+      const urls = [
+        { loc: home, lastmod: today },
+        { loc: `${site.url}${GUIDES_PATH}`, lastmod: lastGuideUpdate },
+        ...guides.map((g) => ({ loc: `${site.url}${guidePath(g.slug)}`, lastmod: g.updated })),
+      ];
       this.emitFile({
         type: 'asset',
         fileName: 'robots.txt',
@@ -109,10 +116,7 @@ function seo(): Plugin {
         fileName: 'sitemap.xml',
         source: `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${home}</loc>
-    <lastmod>${today}</lastmod>
-  </url>
+${urls.map((u) => `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n  </url>`).join('\n')}
 </urlset>
 `,
       });

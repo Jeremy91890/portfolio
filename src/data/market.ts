@@ -10,7 +10,7 @@ export const euros = (n: number) => `${Math.round(n).toLocaleString("fr-FR").rep
 // Aucune marque citée dans le texte affiché : seulement des catégories.
 const diy = { monthlyMin: 16.8, monthlyMax: 30 }; // independant.io (outil à faire soi-même), TTC
 const turnkey = { setup: 400, monthly: 60 }; // independant.io (service clé en main pour TPE), HT
-const agency = { setup: 2000, monthly: 150 }; // Fenxi (création) + Kolonell (maintenance)
+export const agency = { setup: 2000, monthly: 150, weeks: "5 à 8" }; // Fenxi (création) + Kolonell (maintenance, délai)
 
 const proTotal = planPrice("pro") * MONTHS;
 const agencyTotal = agency.setup + agency.monthly * MONTHS;

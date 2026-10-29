@@ -3,11 +3,26 @@ import { motion } from "motion/react";
 import { Plus } from "@phosphor-icons/react";
 import { Reveal, SectionHead, Stagger, fadeUp } from "./Reveal";
 import pricing from "../data/pricing";
+import { agency, duel, euros } from "../data/market";
 
 const { options, plans, annualFreeMonths, launchDays, minCommitmentMonths, setupFee } = pricing;
 const plan = (id: string) => plans.find((p) => p.id === id)!;
 
-const questions: { q: string; a: ReactNode }[] = [
+// Exporté pour les données structurées FAQPage (entry-server.tsx)
+export const questions: { q: string; a: ReactNode }[] = [
+  {
+    q: "Combien coûte un site web pour un commerçant ?",
+    a: (
+      <p>
+        Chez moi, de <strong>{plan("essentiel").price} à {plan("premium").price} €/mois</strong>{" "}
+        selon la formule, avec {setupFee} € de mise en place : hébergement, nom
+        de domaine, textes et mises à jour compris. Pour comparer, un site à
+        faire soi-même coûte {duel.diy.price}, et une agence demande souvent{" "}
+        {euros(agency.setup)} pour la création, puis {agency.monthly} €/mois
+        de maintenance.
+      </p>
+    ),
+  },
   {
     q: "Y a-t-il un engagement ou des frais de départ ?",
     a: (
@@ -25,6 +40,114 @@ const questions: { q: string; a: ReactNode }[] = [
       <p>
         Par prélèvement SEPA, chaque mois. Si vous payez à l’année, vous
         avez <strong>{annualFreeMonths} mois offerts</strong>.
+      </p>
+    ),
+  },
+  {
+    q: "En combien de temps mon site est-il en ligne ?",
+    a: (
+      <p>
+        En <strong>{launchDays} jours</strong> après validation de vos
+        contenus. Il suffit d’une visio de 20 minutes pour démarrer : vous
+        m’expliquez votre commerce, je m’occupe du reste.
+      </p>
+    ),
+  },
+  {
+    q: "Vous faites aussi des sites pour les artisans ?",
+    a: (
+      <p>
+        Oui : boulangers, coiffeurs, fleuristes, restaurateurs, plombiers,
+        esthéticiennes… Le site est pensé pour votre métier : vos horaires et
+        votre adresse pour une boutique, vos prestations et vos tarifs pour un
+        salon, votre zone d’intervention pour un artisan.
+      </p>
+    ),
+  },
+  {
+    q: "Mon site sera-t-il visible sur Google ?",
+    a: (
+      <>
+        <p>
+          Oui. Toutes les formules comprennent le{" "}
+          <strong>référencement Google de base</strong>, c’est-à-dire ce qui
+          permet à Google de trouver votre site et de comprendre ce que vous
+          faites : un titre et une description pour chaque page, un site
+          rapide et lisible sur mobile, votre adresse et vos horaires dans un
+          format que Google sait lire, et un plan du site envoyé à Google pour
+          qu’il le repère vite.
+        </p>
+        <p>
+          Pour un commerce, le plus important est le{" "}
+          <strong>référencement local</strong> : apparaître quand on cherche
+          « boulangerie » ou « coiffeur » près de chez soi. Il passe surtout
+          par votre <strong>fiche Google Maps</strong>. En Pro et Premium, je
+          la mets au propre, et en Premium je la suis chaque mois. Personne ne
+          peut garantir la première place, mais c’est la base pour apparaître
+          quand on cherche votre commerce.
+        </p>
+      </>
+    ),
+  },
+  {
+    q: "Comment avoir plus d’avis Google pour mon commerce ?",
+    a: (
+      <p>
+        Le plus efficace est de les demander à tous vos clients, juste après
+        leur passage, et de leur rendre ça facile. En Pro et Premium, je vous
+        fournis un <strong>QR code pour vos avis Google</strong>, à poser près
+        de la caisse : vos clients le scannent et arrivent directement sur la
+        page pour laisser leur avis. Plus vous avez d’avis, plus votre fiche
+        ressort sur Google Maps.
+      </p>
+    ),
+  },
+  {
+    q: "J’ai déjà Instagram ou Facebook, ai-je besoin d’un site ?",
+    a: (
+      <p>
+        Les réseaux sociaux sont parfaits pour montrer votre quotidien, mais
+        ils ne vous appartiennent pas : c’est l’algorithme qui décide qui voit
+        vos publications, et une partie de vos clients n’y est pas. Un site
+        ressort sur Google et donne toutes les infos d’un coup : horaires,
+        adresse, tarifs. Les deux se complètent, et je mets des liens vers vos
+        réseaux sur votre site.
+      </p>
+    ),
+  },
+  {
+    q: "Agence web ou développeur freelance : que choisir ?",
+    a: (
+      <p>
+        En agence, comptez souvent {euros(agency.setup)} pour la création,{" "}
+        {agency.monthly} €/mois de maintenance et {agency.weeks} semaines de
+        délai. Un développeur web indépendant coûte moins cher et vous parlez
+        toujours à la même personne. Le risque, c’est qu’il disparaisse :
+        c’est pour ça que je m’engage à vous remettre votre site gratuitement
+        si j’arrête.
+      </p>
+    ),
+  },
+  {
+    q: "Et WordPress, ce n’est pas plus simple pour un commerce ?",
+    a: (
+      <p>
+        WordPress est gratuit et très répandu, mais il faut choisir un
+        hébergement, un thème, des extensions, et surtout faire les mises à
+        jour régulièrement pour éviter les failles. Si vous aimez bricoler,
+        c’est une bonne option. Si vous préférez vous occuper de votre
+        commerce, je fais tout ça pour vous, dans l’abonnement.
+      </p>
+    ),
+  },
+  {
+    q: "Une newsletter, ça vaut le coup pour un commerce local ?",
+    a: (
+      <p>
+        Oui, c’est le moyen le plus simple de faire revenir vos clients. Une
+        fois par mois, j’écris et j’envoie un e-mail à vos clients : nouveautés,
+        offres, horaires de fêtes. C’est en option (+{options.newsletterPerMonth}{" "}
+        €/mois) en Essentiel et Pro, et inclus en Premium.
       </p>
     ),
   },
@@ -77,28 +200,6 @@ const questions: { q: string; a: ReactNode }[] = [
         {plan("pro").buyoutPrice} € pour Pro, sur devis pour Premium. Et si
         c’est moi qui arrête, je vous le remets gratuitement.
       </p>
-    ),
-  },
-  {
-    q: "Mon site sera-t-il visible sur Google ?",
-    a: (
-      <>
-        <p>
-          Oui. Toutes les formules comprennent le{" "}
-          <strong>référencement Google de base</strong>, c’est-à-dire ce qui
-          permet à Google de trouver votre site et de comprendre ce que vous
-          faites : un titre et une description pour chaque page, un site
-          rapide et lisible sur mobile, votre adresse et vos horaires dans un
-          format que Google sait lire, et un plan du site envoyé à Google pour
-          qu’il le repère vite.
-        </p>
-        <p>
-          Personne ne peut garantir la première place, mais c’est la base pour
-          apparaître quand on cherche votre commerce. En Pro et Premium, je
-          mets aussi votre fiche Google Maps au propre, et en Premium je la
-          suis chaque mois.
-        </p>
-      </>
     ),
   },
 ];

@@ -13,6 +13,7 @@ import { Reveal } from "./Reveal";
 import { site } from "../data/site";
 import pricing from "../data/pricing";
 import { LEGAL_HASH } from "./Legal";
+import { GUIDES_PATH } from "../data/guides";
 import { FR_PHONE, HONEYPOT, LIMITS, MOMENTS, UNDECIDED } from "../data/callback";
 
 const PLAN_EVENT = "nappage:formule";
@@ -254,6 +255,7 @@ export function Footer() {
         </p>
         <p>TVA non applicable, art. 293 B du CGI.</p>
         <p className="footer__links">
+          <a href={GUIDES_PATH}>Guides</a>
           <a href={LEGAL_HASH}>Mentions légales</a>
           <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn<span className="sr-only"> (nouvel onglet)</span>
