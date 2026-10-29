@@ -7,9 +7,17 @@ export const MONTHS = 36;
 export const euros = (n: number) => `${Math.round(n).toLocaleString("fr-FR").replace(/\u202f/g, "\u00a0")}\u00a0€`;
 
 // Chiffres des autres options, repris tels quels des sources ci-dessous (bas des fourchettes).
-// Aucune marque citée dans le texte affiché : seulement des catégories.
-const diy = { monthlyMin: 16.8, monthlyMax: 30 }; // independant.io (outil à faire soi-même), TTC
-const turnkey = { setup: 400, monthly: 60 }; // independant.io (service clé en main pour TPE), HT
+// Concurrents nommés : uniquement des chiffres sourcés, à revérifier avant de les changer.
+const diy = { brand: "Wix", monthlyMin: 16.8, monthlyMax: 30 }; // independant.io, TTC
+const turnkey = { brand: "Simplébo", setup: 400, monthly: 60 }; // independant.io (formule Crédibilité), HT
+// CGAS Solocal gamme MyConnect : 12, 24 ou 48 mois, reconduits par périodes de 12 mois
+const solocalMonths = [12, 24, 48];
+export const solocal = {
+  brand: "Solocal (PagesJaunes)",
+  // « 12, 24 ou 48 mois »
+  commitment: `${solocalMonths.slice(0, -1).join(", ")} ou ${solocalMonths[solocalMonths.length - 1]} mois`,
+  renewalMonths: 12,
+};
 export const agency = { setup: 2000, monthly: 150, weeks: "5 à 8" }; // Fenxi (création) + Kolonell (maintenance, délai)
 
 const proTotal = planPrice("pro") * MONTHS;
@@ -24,7 +32,7 @@ const price = (n: number) =>
 // Face-à-face : même prix qu'un outil à faire soi-même, mais tout est fait pour vous.
 export const duel = {
   diy: {
-    name: "Faire soi-même",
+    name: `Faire soi-même (${diy.brand})`,
     price: `${price(diy.monthlyMin)} à ${price(diy.monthlyMax)} € TTC/mois`,
     tasks: ["Vous créez le site", "Vous écrivez vos textes", "Vous faites les mises à jour"],
   },
@@ -33,20 +41,27 @@ export const duel = {
     price: `Dès ${price(fromPrice)} €/mois, ${euros(pricing.setupFee)} au départ`,
     tasks: ["Je crée le site", "J'écris vos textes", "Je fais les mises à jour"],
   },
-  // Les autres offres clé en main, en une ligne
-  elsewhere: `${price(turnkey.monthly)} € HT/mois + ${euros(turnkey.setup)} HT au départ`,
+  // Le service clé en main le plus proche, en une ligne
+  elsewhere: {
+    brand: turnkey.brand,
+    price: `${price(turnkey.monthly)} € HT/mois + ${euros(turnkey.setup)} HT au départ`,
+  },
 };
 
 export type Source = { label: string; url: string };
 
 export const sources: Source[] = [
   {
-    label: "Faire soi-même : 16,80 à 30 € TTC/mois (independant.io)",
+    label: "Wix : 16,80 à 30 € TTC/mois (independant.io)",
     url: "https://independant.io/avis/avis-wix",
   },
   {
-    label: "Clé en main : 400 € HT + 60 € HT/mois, textes fournis par le client (independant.io)",
+    label: "Simplébo : 400 € HT + 60 € HT/mois, textes fournis par le client (independant.io, mis à jour le 30/09/2026)",
     url: "https://independant.io/avis/simplebo/",
+  },
+  {
+    label: "Solocal : engagement de 12, 24 ou 48 mois, reconduit par périodes de 12 mois (conditions générales MyConnect, mai 2025)",
+    url: "https://inscription.pagesjaunes.fr/sites/default/storage/files/2025-06/CGAS_SOLOCAL_GAMME_MYCONNECT_MAI_2025.pdf",
   },
   {
     label: "Agence : création dès 2 000 € (Fenxi, 2026)",

@@ -21,7 +21,7 @@ const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const OUT = join(root, 'grille-tarifaire.pdf');
 
 const { header, plans, features, includedInAll, oneTimePurchase: once, options } = pricing;
-const { setupFee, annualFreeMonths, launchDays, minCommitmentMonths, criticalResponseHours, callbackHours } = pricing;
+const { setupFee, annualFreeMonths, launchDays, criticalResponseHours, callbackHours } = pricing;
 const font = (w) => pathToFileURL(join(root, `node_modules/@fontsource/poppins/files/poppins-latin-${w}-normal.woff2`)).href;
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const eur = (n) => `${n.toLocaleString("fr-FR")}&nbsp;€`;
@@ -96,7 +96,7 @@ const faq = [
   },
   {
     t: 'Engagement et changement de formule',
-    b: `<p>Toutes les formules : <strong>${minCommitmentMonths} mois minimum</strong>, puis résiliation par simple e-mail, effective à la fin du mois en cours.</p>
+    b: `<p>Toutes les formules sont <strong>sans engagement</strong> : résiliation par simple e-mail, effective à la fin du mois en cours.</p>
         <p>Changer de formule est possible en cours de route.</p>`,
   },
   {

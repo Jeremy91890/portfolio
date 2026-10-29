@@ -10,7 +10,6 @@ const {
   plans,
   annualFreeMonths,
   launchDays,
-  minCommitmentMonths,
   setupFee,
 } = pricing;
 const plan = (id: string) => plans.find((p) => p.id === id)!;
@@ -22,10 +21,10 @@ export const questions: { q: string; a: ReactNode; guide?: string }[] = [
     q: "Y a-t-il un engagement ou des frais de départ ?",
     a: (
       <p>
-        La mise en place est à <strong>{setupFee} €</strong>. Toutes les
-        formules demandent <strong>{minCommitmentMonths} mois minimum</strong>,
-        puis vous résiliez par simple e-mail, effectif à la fin du mois en
-        cours. Vous pouvez changer de formule en cours de route.
+        La mise en place est à <strong>{setupFee} €</strong>, et toutes les
+        formules sont <strong>sans engagement</strong> : vous résiliez par
+        simple e-mail, effectif à la fin du mois en cours. Vous pouvez changer
+        de formule en cours de route.
       </p>
     ),
   },

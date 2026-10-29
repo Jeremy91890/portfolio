@@ -90,7 +90,7 @@ function llmsTxt() {
 
 > ${site.brand} (${site.name}, ${site.role.toLowerCase()} indépendant) crée, héberge et met à jour des sites vitrines clé en main pour les commerçants et les artisans, partout en France, à distance (visio, e-mail, SMS). Abonnement dès ${fromPrice} €/mois, ${pricing.setupFee} € de mise en place, site en ligne en ${pricing.launchDays} jours.
 
-Le site est en français. Abonnement mensuel, TVA non applicable (art. 293 B du CGI). Engagement de ${pricing.minCommitmentMonths} mois minimum, puis résiliation par simple e-mail. Pour citer une information, merci de renvoyer vers la page source.
+Le site est en français. Abonnement mensuel, TVA non applicable (art. 293 B du CGI). Sans engagement : résiliation par simple e-mail, effective à la fin du mois en cours. Pour citer une information, merci de renvoyer vers la page source.
 
 ## Formules
 

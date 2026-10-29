@@ -1,5 +1,5 @@
 import { GuideLink, Source, lcFirst, plan, pricing } from './shared';
-import { agency, duel, euros, sources } from '../data/market';
+import { agency, duel, euros, solocal, sources } from '../data/market';
 
 export default function Body() {
   return (
@@ -44,14 +44,14 @@ export default function Body() {
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Outil à faire soi-même</th>
+              <th scope="row">{duel.diy.name}</th>
               <td>{duel.diy.price}</td>
               <td>Vous : création, textes, mises à jour</td>
             </tr>
             <tr>
-              <th scope="row">Autres services clé en main</th>
-              <td>{duel.elsewhere}</td>
-              <td>Le prestataire, mais les textes sont souvent à fournir</td>
+              <th scope="row">Clé en main ({duel.elsewhere.brand})</th>
+              <td>{duel.elsewhere.price}</td>
+              <td>{duel.elsewhere.brand}, mais vos textes sont à fournir</td>
             </tr>
             <tr>
               <th scope="row">Agence web</th>
@@ -89,8 +89,8 @@ export default function Body() {
       </ul>
       <p>
         Les trois comprennent {pricing.setupFee} € de mise en place, le nom de domaine et l’hébergement, la sécurité, les
-        sauvegardes et les mises à jour, le référencement Google de base, et des textes rédigés pour vous. Vous vous engagez{' '}
-        {pricing.minCommitmentMonths} mois, puis vous arrêtez quand vous voulez. Tout le détail est dans le{' '}
+        sauvegardes et les mises à jour, le référencement Google de base, et des textes rédigés pour vous. C’est sans
+        engagement : vous arrêtez quand vous voulez. Tout le détail est dans le{' '}
         <a href="/#tarifs">tableau des formules</a>.
       </p>
 
@@ -98,7 +98,11 @@ export default function Body() {
       <ul>
         <li>Le nom de domaine est-il à votre nom ? Sinon, vous perdez votre adresse en changeant de prestataire.</li>
         <li>Les modifications sont-elles comprises ? Changer des horaires ne devrait pas demander un devis.</li>
-        <li>Combien de temps êtes-vous engagé ? Méfiez-vous des contrats sur plusieurs années.</li>
+        <li>
+          Combien de temps êtes-vous engagé ? Méfiez-vous des contrats sur plusieurs années : chez {solocal.brand}, par
+          exemple, l’engagement est de {solocal.commitment}, puis se renouvelle par périodes de {solocal.renewalMonths}{' '}
+          mois.
+        </li>
         <li>Que se passe-t-il si vous arrêtez ? Vous devez pouvoir récupérer votre site, ou au moins vos textes et vos photos.</li>
       </ul>
       <p>

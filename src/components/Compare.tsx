@@ -1,7 +1,14 @@
-import { motion } from 'motion/react';
-import { ArrowRight, CheckCircle, UserCircle } from '@phosphor-icons/react';
-import { Reveal, SectionHead } from './Reveal';
-import { MONTHS, agencySavings, duel, euros, sources } from '../data/market';
+import { motion } from "motion/react";
+import { ArrowRight, CheckCircle, UserCircle } from "@phosphor-icons/react";
+import { Reveal, SectionHead } from "./Reveal";
+import {
+  MONTHS,
+  agencySavings,
+  duel,
+  euros,
+  solocal,
+  sources,
+} from "../data/market";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -16,7 +23,8 @@ export default function Compare() {
           eyebrow="Comparer"
           title={
             <>
-              Le prix d’un site à faire soi-même. <span className="accent">Sauf que c’est moi qui fais tout.</span>
+              Le prix d’un site à faire soi-même.{" "}
+              <span className="accent">Sauf que c’est moi qui fais tout.</span>
             </>
           }
         />
@@ -43,7 +51,7 @@ export default function Compare() {
             className="duel__card is-mine"
             initial={{ scale: 0.94 }}
             whileInView={{ scale: 1 }}
-            viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+            viewport={{ once: true, margin: "0px 0px -10% 0px" }}
             transition={{ duration: 0.6, delay: 0.25, ease }}
           >
             <span className="duel__badge">Clé en main</span>
@@ -61,11 +69,16 @@ export default function Compare() {
         </Reveal>
 
         <p className="duel__elsewhere">
-          Chez les autres services clé en main, comptez <strong>{duel.elsewhere}</strong>.
+          Chez {duel.elsewhere.brand}, le service clé en main le plus proche,
+          comptez <strong>{duel.elsewhere.price}</strong>, et vos textes restent
+          à écrire. Chez {solocal.brand}, le contrat vous engage{" "}
+          {solocal.commitment}. Chez Nappage Studio,{" "}
+          <strong>rien au départ et sans engagement</strong>.
         </p>
 
         <p className="versus__takeaway">
-          Avec la formule Pro, vous gardez <strong>{euros(agencySavings)}</strong> de plus qu’avec une agence sur{' '}
+          Avec la formule Pro, vous gardez{" "}
+          <strong>{euros(agencySavings)}</strong> de plus qu’avec une agence sur{" "}
           {MONTHS / 12} ans. De quoi s’offrir beaucoup de croissants.
         </p>
 
