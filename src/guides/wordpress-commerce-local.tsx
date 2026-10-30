@@ -1,4 +1,16 @@
-import { GuideLink, plan, pricing } from './shared';
+import { GuideLink, plan, pricing, questions } from './shared';
+
+const { Summary, Question } = questions(
+  {
+    definition: 'WordPress, c’est quoi ?',
+    cout: 'Ce que WordPress coûte vraiment',
+    'mises-a-jour': 'Les mises à jour et la sécurité',
+    'bon-choix': 'Quand WordPress est un bon choix',
+    'mauvais-choix': 'Quand ce n’est pas le cas',
+    comparaison: 'WordPress ou Nappage ?',
+  },
+  { title: 'Au sommaire' },
+);
 
 export default function Body() {
   return (
@@ -8,14 +20,17 @@ export default function Body() {
         tu le fais toi-même ». C’est vrai, et c’est un bon outil. Il y a pourtant des frais à côté, et surtout du travail.
       </p>
 
-      <h2>WordPress, c’est quoi ?</h2>
+      <Summary />
+
+
+      <Question id="definition" />
       <p>
         Un logiciel libre qui permet de créer et de gérer un site. On l’installe sur un hébergement, on choisit un thème
         (l’apparence), et on ajoute des extensions pour les fonctions en plus : formulaire de contact, réservation, galerie
         photo, référencement…
       </p>
 
-      <h2>Ce que WordPress coûte vraiment</h2>
+      <Question id="cout" />
       <ul>
         <li>un hébergement et un nom de domaine, à payer chaque année ;</li>
         <li>un thème : il en existe des gratuits, mais les plus aboutis sont souvent payants ;</li>
@@ -26,7 +41,7 @@ export default function Body() {
         </li>
       </ul>
 
-      <h2>Les mises à jour et la sécurité</h2>
+      <Question id="mises-a-jour" />
       <p>
         WordPress, le thème et chaque extension reçoivent régulièrement des mises à jour, souvent pour corriger des failles
         de sécurité. Un site WordPress qu’on ne met pas à jour devient une cible, et une mise à jour peut parfois casser une
@@ -40,7 +55,7 @@ export default function Body() {
         <li>savoir quoi faire si le site affiche une page blanche un dimanche soir.</li>
       </ul>
 
-      <h2>Quand WordPress est un bon choix</h2>
+      <Question id="bon-choix" />
       <ul>
         <li>vous aimez bricoler et vous avez du temps ;</li>
         <li>vous publiez souvent des articles, comme un blog ;</li>
@@ -48,13 +63,13 @@ export default function Body() {
         <li>un prestataire s’occupe de la maintenance pour vous.</li>
       </ul>
 
-      <h2>Quand ce n’est pas le cas</h2>
+      <Question id="mauvais-choix" />
       <p>
         Un site vitrine de commerce doit surtout être exact, à jour et visible sur Google. Pour ça, WordPress demande
         souvent plus d’entretien que nécessaire, à moins que quelqu’un s’en charge pour vous.
       </p>
 
-      <h2>WordPress ou Nappage ?</h2>
+      <Question id="comparaison" />
       <p>
         Avec Nappage, vous n’installez rien et vous ne mettez rien à jour. Hébergement, nom de domaine, sécurité,
         sauvegardes et mises à jour sont inclus dans toutes les formules, et je rédige vos textes. Si vous voulez quand même

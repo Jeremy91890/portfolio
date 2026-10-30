@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { nbsp } from '../typography';
 
 type Crumb = { href?: string; label: string };
 
@@ -31,8 +32,8 @@ export default function PageHero({
           </ol>
         </nav>
         <p className="eyebrow">{eyebrow}</p>
-        <h1 id="page-title" className="page-hero__title">{title}</h1>
-        <p className="page-hero__lead">{lead}</p>
+        <h1 id="page-title" className="page-hero__title">{nbsp(title)}</h1>
+        <p className="page-hero__lead">{nbsp(lead)}</p>
         {children}
       </div>
     </header>

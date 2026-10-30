@@ -1,4 +1,14 @@
-import { GuideLink, Source } from './shared';
+import { GuideLink, Source, questions } from './shared';
+
+const { Summary, Question } = questions(
+  {
+    forces: 'Ce que les réseaux sociaux font bien',
+    limites: 'Ce qu’ils font mal',
+    adresse: 'Un site, c’est votre adresse sur internet',
+    combinaison: 'La bonne combinaison pour votre présence en ligne',
+  },
+  { title: 'Au sommaire' },
+);
 
 export default function Body() {
   return (
@@ -8,7 +18,10 @@ export default function Body() {
         légitime. Les réseaux sociaux font certaines choses très bien, et d’autres beaucoup moins.
       </p>
 
-      <h2>Ce que les réseaux sociaux font bien</h2>
+      <Summary />
+
+
+      <Question id="forces" />
       <ul>
         <li>montrer votre quotidien : la fournée du matin, la nouvelle collection, l’équipe ;</li>
         <li>garder le lien avec vos habitués, qui likent et commentent ;</li>
@@ -17,7 +30,7 @@ export default function Body() {
       </ul>
       <p>Si vous aimez publier, gardez-les : ils complètent très bien un site.</p>
 
-      <h2>Ce qu’ils font mal</h2>
+      <Question id="limites" />
       <p>
         Ils vous font rarement trouver sur Google. Quand quelqu’un cherche « fleuriste » et sa ville, Google montre des
         fiches et des sites, rarement un compte Instagram.
@@ -32,7 +45,7 @@ export default function Body() {
         prévenir, et un compte piraté ou suspendu peut emporter des années de travail.
       </p>
 
-      <h2>Un site, c’est votre adresse sur internet</h2>
+      <Question id="adresse" />
       <p>
         Avant de pousser la porte, 76 % des Français cherchent des informations en ligne (
         <Source href="https://www.ecommerce-nation.fr/etude-shopfully-2025-priorites-achat-francais/">
@@ -42,7 +55,7 @@ export default function Body() {
         combien ça coûte, comment venir. Il est à votre nom, et personne ne peut le fermer à votre place.
       </p>
 
-      <h2>La bonne combinaison pour votre présence en ligne</h2>
+      <Question id="combinaison" />
       <ol>
         <li>Un site comme base, avec vos infos pratiques toujours à jour.</li>
         <li>

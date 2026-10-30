@@ -1,4 +1,16 @@
-import { GuideLink, Source } from './shared';
+import { Callout, GuideLink, Source, questions } from './shared';
+
+const { Summary, Question } = questions(
+  {
+    criteres: 'Comment Google choisit les commerces qu’il affiche',
+    fiche: 'Soigner votre fiche Google Maps',
+    avis: 'Récolter des avis, et y répondre',
+    site: 'Avoir un site qui confirme tout ça',
+    promesses: 'Ce qu’on ne peut pas vous promettre',
+    offre: 'Ce que j’inclus dans mes formules',
+  },
+  { title: 'Au sommaire' },
+);
 
 export default function Body() {
   return (
@@ -9,7 +21,10 @@ export default function Body() {
         de quartier, c’est bien plus accessible que de ressortir sur toute la France.
       </p>
 
-      <h2>Comment Google choisit les commerces qu’il affiche</h2>
+      <Summary />
+
+
+      <Question id="criteres" />
       <p>
         Google l’explique lui-même (
         <Source href="https://support.google.com/business/answer/7091?hl=fr">
@@ -21,7 +36,7 @@ export default function Body() {
       </p>
       <p>Vous ne pouvez rien changer à la distance. Les deux autres critères, eux, dépendent beaucoup de vous.</p>
 
-      <h2>1. Soigner votre fiche Google Maps</h2>
+      <Question id="fiche" />
       <p>
         La fiche d’établissement Google est gratuite, et c’est elle qui apparaît sur la carte. Si vous ne l’avez jamais
         réclamée, elle existe peut-être déjà, créée sans vous et avec des infos fausses.
@@ -35,14 +50,14 @@ export default function Body() {
         <li>publiez de temps en temps une actualité : nouveauté, événement, offre.</li>
       </ul>
 
-      <h2>2. Récolter des avis, et y répondre</h2>
+      <Question id="avis" />
       <p>
         Le nombre d’avis, leur note et leur fraîcheur comptent dans l’importance que Google vous accorde, et vos futurs
         clients les regardent aussi. Toutes les astuces sont dans le guide{' '}
         <GuideLink slug="avis-google-commerce-local">avis Google pour commerce local</GuideLink>.
       </p>
 
-      <h2>3. Avoir un site qui confirme tout ça</h2>
+      <Question id="site" />
       <p>Votre site aide Google à comprendre ce que vous faites. Pour le référencement local, il doit :</p>
       <ul>
         <li>indiquer votre métier et votre ville dans le titre et les textes, avec des mots simples ;</li>
@@ -56,13 +71,18 @@ export default function Body() {
         croire.
       </p>
 
-      <h2>Ce qu’on ne peut pas vous promettre</h2>
+      <Question id="promesses" />
+      <Callout tone="warning" title="Méfiez-vous des promesses">
+        <p>
+          Personne ne peut garantir la première place sur Google, et un prestataire qui vous la promet vous raconte des
+          histoires.
+        </p>
+      </Callout>
       <p>
-        Personne ne peut garantir la première place sur Google, et un prestataire qui vous la promet vous raconte des
-        histoires. On peut en revanche mettre toutes les chances de votre côté, puis entretenir votre fiche dans la durée.
+        On peut en revanche mettre toutes les chances de votre côté, puis entretenir votre fiche dans la durée.
       </p>
 
-      <h2>Ce que j’inclus dans mes formules</h2>
+      <Question id="offre" />
       <ul>
         <li>
           Dans toutes les formules, le référencement Google de base sur votre site : titres, descriptions, données

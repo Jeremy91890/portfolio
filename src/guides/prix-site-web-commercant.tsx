@@ -1,5 +1,16 @@
-import { GuideLink, Source, lcFirst, plan, pricing } from './shared';
+import { GuideLink, Source, lcFirst, plan, pricing, questions } from './shared';
 import { agency, duel, euros, solocal, sources } from '../data/market';
+
+const { Summary, Question } = questions(
+  {
+    postes: 'Ce que vous payez, poste par poste',
+    vitrine: 'Site vitrine ou boutique en ligne ?',
+    solutions: 'Le tarif d’un site vitrine selon la solution',
+    formules: 'Mes formules',
+    'couts-caches': 'Les coûts cachés à vérifier avant de signer',
+  },
+  { title: 'Au sommaire' },
+);
 
 export default function Body() {
   return (
@@ -9,7 +20,10 @@ export default function Body() {
         travail. Voici ce que vous payez, poste par poste, et ce qu’il faut vérifier avant de signer.
       </p>
 
-      <h2>Ce que vous payez, poste par poste</h2>
+      <Summary />
+
+
+      <Question id="postes" />
       <ul>
         <li>Le nom de domaine (votre-commerce.fr), à renouveler chaque année. Il doit être à votre nom.</li>
         <li>L’hébergement, c’est-à-dire le serveur qui fait tourner votre site, payé au mois ou à l’année.</li>
@@ -24,7 +38,7 @@ export default function Body() {
         <li>Le référencement, pour que Google vous trouve et vous montre aux bonnes personnes.</li>
       </ul>
 
-      <h2>Site vitrine ou boutique en ligne ?</h2>
+      <Question id="vitrine" />
       <p>
         Un <strong>site vitrine</strong> présente votre commerce : qui vous êtes, ce que vous proposez, où et quand vous
         trouver. C’est ce dont la plupart des commerces de proximité ont besoin. Une boutique en ligne, avec paiement et
@@ -32,7 +46,7 @@ export default function Body() {
         commandent avant de passer, un click & collect suffit souvent.
       </p>
 
-      <h2>Le tarif d’un site vitrine selon la solution</h2>
+      <Question id="solutions" />
       <div className="prose__table">
         <table>
           <thead>
@@ -73,7 +87,7 @@ export default function Body() {
         l’outil, écrire, choisir les photos et revenir faire les mises à jour, en général le soir après la fermeture.
       </p>
 
-      <h2>Mes formules</h2>
+      <Question id="formules" />
       <ul>
         <li>
           <strong>Essentiel, {plan('essentiel').price} €/mois</strong> : {lcFirst(plan('essentiel').tagline)}.
@@ -94,7 +108,7 @@ export default function Body() {
         <a href="/#tarifs">tableau des formules</a>.
       </p>
 
-      <h2>Les coûts cachés à vérifier avant de signer</h2>
+      <Question id="couts-caches" />
       <ul>
         <li>Le nom de domaine est-il à votre nom ? Sinon, vous perdez votre adresse en changeant de prestataire.</li>
         <li>Les modifications sont-elles comprises ? Changer des horaires ne devrait pas demander un devis.</li>

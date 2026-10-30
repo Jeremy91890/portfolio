@@ -1,4 +1,14 @@
-import { GuideLink, pricing } from './shared';
+import { GuideLink, pricing, questions } from './shared';
+
+const { Summary, Question } = questions(
+  {
+    preparer: 'Ce qu’il faut préparer',
+    etapes: 'Les étapes, jour après jour',
+    verifier: 'Ce qu’il faut vérifier, même pressé',
+    presence: 'Et si je veux juste être présent tout de suite ?',
+  },
+  { title: 'Au sommaire' },
+);
 
 export default function Body() {
   return (
@@ -9,7 +19,10 @@ export default function Body() {
         vite.
       </p>
 
-      <h2>Ce qu’il faut préparer</h2>
+      <Summary />
+
+
+      <Question id="preparer" />
       <p>Plus ces éléments sont prêts, plus tout va vite :</p>
       <ul>
         <li>votre logo, si vous en avez un (sinon, votre nom bien écrit suffit pour commencer) ;</li>
@@ -25,7 +38,7 @@ export default function Body() {
         les rédige à partir d’un simple échange avec vous.
       </p>
 
-      <h2>Les étapes, jour après jour</h2>
+      <Question id="etapes" />
       <ol>
         <li>On fait connaissance en visio (20 minutes) : vous me parlez de votre commerce, on choisit la formule.</li>
         <li>
@@ -39,7 +52,7 @@ export default function Body() {
         <li>Ensuite, je m’occupe des mises à jour et des modifications selon votre formule.</li>
       </ol>
 
-      <h2>Ce qu’il faut vérifier, même pressé</h2>
+      <Question id="verifier" />
       <ul>
         <li>
           un vrai nom de domaine à votre nom, plutôt qu’une adresse du type votre-commerce.outil-gratuit.com qui fait
@@ -56,7 +69,7 @@ export default function Body() {
         ).
       </p>
 
-      <h2>Et si je veux juste être présent tout de suite ?</h2>
+      <Question id="presence" />
       <p>
         Une seule page claire suffit pour démarrer : c’est la formule Essentiel. Vous pourrez passer à une formule plus
         complète plus tard, sans tout refaire. Pour comparer, lisez{' '}

@@ -1,4 +1,17 @@
-import { GuideLink, plan, pricing } from "./shared";
+import { GuideLink, plan, pricing, questions } from "./shared";
+
+const { Summary, Question } = questions(
+  {
+    boulangerie: 'Boulangerie, pâtisserie',
+    coiffure: 'Salon de coiffure, institut de beauté',
+    restaurant: 'Restaurant, café, traiteur',
+    batiment: 'Artisan du bâtiment : plombier, électricien, menuisier…',
+    boutique: 'Boutique, fleuriste, commerce de proximité',
+    commun: 'Ce qui compte pour tous les métiers',
+    'cle-en-main': 'Un site clé en main pour artisan, ça veut dire quoi ?',
+  },
+  { title: 'Au sommaire' },
+);
 
 export default function Body() {
   return (
@@ -9,7 +22,10 @@ export default function Body() {
         change d’un métier à l’autre.
       </p>
 
-      <h2>Boulangerie, pâtisserie</h2>
+      <Summary />
+
+
+      <Question id="boulangerie" />
       <ul>
         <li>
           vos horaires et vos jours de fermeture, bien visibles et toujours à
@@ -24,8 +40,15 @@ export default function Body() {
           vos horaires spéciaux pour les fêtes, là où les clients les cherchent.
         </li>
       </ul>
+      <p>
+        Le détail, avec les périodes de fêtes et les commandes, est dans{" "}
+        <GuideLink slug="site-internet-boulangerie">
+          site internet pour boulangerie
+        </GuideLink>
+        .
+      </p>
 
-      <h2>Salon de coiffure, institut de beauté</h2>
+      <Question id="coiffure" />
       <ul>
         <li>vos prestations et vos tarifs, clairement présentés ;</li>
         <li>
@@ -36,8 +59,19 @@ export default function Body() {
           votre équipe, pour que les clients sachent à qui ils auront affaire.
         </li>
       </ul>
+      <p>
+        Tout ce qui fait prendre rendez-vous est dans{" "}
+        <GuideLink slug="site-internet-coiffeur">
+          site internet pour salon de coiffure
+        </GuideLink>{" "}
+        et{" "}
+        <GuideLink slug="site-internet-institut-beaute">
+          site internet pour institut de beauté
+        </GuideLink>
+        .
+      </p>
 
-      <h2>Restaurant, café, traiteur</h2>
+      <Question id="restaurant" />
       <ul>
         <li>
           votre carte et vos menus à jour, lisibles sur téléphone (pas un PDF
@@ -46,8 +80,15 @@ export default function Body() {
         <li>la réservation, par téléphone ou en ligne ;</li>
         <li>l’accès : parking, transports, accessibilité.</li>
       </ul>
+      <p>
+        Le détail est dans{" "}
+        <GuideLink slug="site-internet-restaurant">
+          site internet pour restaurant
+        </GuideLink>
+        .
+      </p>
 
-      <h2>Artisan du bâtiment : plombier, électricien, menuisier…</h2>
+      <Question id="batiment" />
       <ul>
         <li>votre zone d’intervention, avec les communes que vous couvrez ;</li>
         <li>
@@ -61,8 +102,20 @@ export default function Body() {
           entrer quelqu’un chez soi.
         </li>
       </ul>
+      <p>
+        Pour le dépannage à domicile, l’affichage de vos tarifs sur le site est
+        obligatoire : voir{" "}
+        <GuideLink slug="site-internet-plombier">
+          site internet pour plombier
+        </GuideLink>{" "}
+        et{" "}
+        <GuideLink slug="site-internet-electricien">
+          site internet pour électricien
+        </GuideLink>
+        .
+      </p>
 
-      <h2>Boutique, fleuriste, commerce de proximité</h2>
+      <Question id="boutique" />
       <ul>
         <li>ce que l’on trouve chez vous, avec des photos de vos produits ;</li>
         <li>la livraison ou le retrait en boutique, si vous le proposez ;</li>
@@ -70,8 +123,24 @@ export default function Body() {
           vos événements : ventes privées, ateliers, nouvelles collections.
         </li>
       </ul>
+      <p>
+        Le détail par métier :{" "}
+        <GuideLink slug="site-internet-fleuriste">fleuriste</GuideLink>,{" "}
+        <GuideLink slug="site-internet-boutique-cadeaux">
+          boutique de cadeaux et de souvenirs
+        </GuideLink>
+        ,{" "}
+        <GuideLink slug="site-internet-boutique-jeux">
+          boutique de jeux et de jouets
+        </GuideLink>{" "}
+        et{" "}
+        <GuideLink slug="site-internet-boutique-vetements">
+          boutique de vêtements
+        </GuideLink>
+        .
+      </p>
 
-      <h2>Ce qui compte pour tous les métiers</h2>
+      <Question id="commun" />
       <p>
         Le site doit être rapide et lisible sur téléphone, puisque c’est là que
         la plupart de vos clients le consultent. Votre métier et votre ville
@@ -83,7 +152,7 @@ export default function Body() {
         de l’an dernier envoie des clients devant une porte fermée.
       </p>
 
-      <h2>Un site clé en main pour artisan, ça veut dire quoi ?</h2>
+      <Question id="cle-en-main" />
       <p>
         « Clé en main », c’est que vous n’avez rien à faire de technique. Chez
         Nappage Studio, je rédige vos textes, je crée le site, et je m’occupe du

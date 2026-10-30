@@ -1,9 +1,21 @@
-import { GuideLink, Source, plan } from './shared';
+import { GuideLink, Source, plan, questions } from './shared';
 import { agency, euros, sources } from '../data/market';
 import { site } from '../data/site';
 
 // Sources agence (création, maintenance, délai), reprises de market.ts
 const agencySources = sources.filter((s) => s.label.startsWith('Agence'));
+
+const { Summary, Question } = questions(
+  {
+    agence: 'L’agence web',
+    independant: 'Le développeur web indépendant',
+    chiffres: 'Les chiffres côte à côte',
+    choisir: 'Pour un commerce, que choisir ?',
+    questions: 'Les questions à poser à n’importe quel prestataire',
+    offre: 'Ce que je propose',
+  },
+  { title: 'Au sommaire' },
+);
 
 export default function Body() {
   return (
@@ -14,14 +26,17 @@ export default function Body() {
         de problème.
       </p>
 
-      <h2>L’agence web</h2>
+      <Summary />
+
+
+      <Question id="agence" />
       <p>
         Une agence, c’est une équipe : un chef de projet, un graphiste, un développeur, parfois un rédacteur. C’est
         rassurant, et adapté aux gros projets. Vous passez par le chef de projet, qui transmet à l’équipe, et il peut
         changer en cours de route.
       </p>
 
-      <h2>Le développeur web indépendant</h2>
+      <Question id="independant" />
       <p>
         Un freelance travaille seul et fait tout ou presque. Vous parlez toujours à la personne qui fait le travail, sans
         intermédiaire, ce qui raccourcit souvent les délais. Sans les frais de structure d’une agence, ses prix sont en
@@ -32,7 +47,7 @@ export default function Body() {
         signer.
       </p>
 
-      <h2>Les chiffres côte à côte</h2>
+      <Question id="chiffres" />
       <div className="prose__table">
         <table>
           <thead>
@@ -64,14 +79,14 @@ export default function Body() {
         </table>
       </div>
 
-      <h2>Pour un commerce, que choisir ?</h2>
+      <Question id="choisir" />
       <p>
         Pour un site vitrine de commerce ou d’artisan, une agence est souvent surdimensionnée : vous payez une équipe pour
         un projet qu’une personne expérimentée mène très bien seule. L’agence a du sens pour un projet complexe, comme une
         grosse boutique en ligne, plusieurs établissements ou une application sur mesure.
       </p>
 
-      <h2>Les questions à poser à n’importe quel prestataire</h2>
+      <Question id="questions" />
       <ul>
         <li>Le nom de domaine sera-t-il à mon nom ? (Il doit l’être.)</li>
         <li>Que comprend le prix mensuel : hébergement, mises à jour, combien de modifications par mois ?</li>
@@ -80,7 +95,7 @@ export default function Body() {
         <li>Avez-vous un numéro SIRET et des réalisations à montrer ?</li>
       </ul>
 
-      <h2>Ce que je propose</h2>
+      <Question id="offre" />
       <p>
         Je suis {site.name}, développeur web depuis 10 ans, aujourd’hui indépendant. Je crée les sites des commerçants et
         des artisans partout en France, avec un suivi en visio. Pour lever le « risque freelance », je m’engage par écrit :
