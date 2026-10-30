@@ -145,7 +145,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-boulangerie",
     trade: { sector: "alimentation", label: "Boulangerie, pâtisserie" },
-    title: "Site internet pour boulangerie : ce qu’il doit montrer à vos clients",
+    title: "Site internet pour boulangerie : que faut-il y mettre ?",
     metaTitle: "Site internet pour boulangerie et pâtisserie | Nappage",
     description:
       "Horaires, commandes de gâteaux, fêtes, spécialités : ce que le site d’une boulangerie-pâtisserie doit contenir, et comment ressortir sur Google près de chez vous.",
@@ -162,7 +162,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-coiffeur",
     trade: { sector: "beaute", label: "Salon de coiffure, barbier" },
-    title: "Site internet pour salon de coiffure : réservation, tarifs, photos",
+    title: "Site internet pour salon de coiffure : que faut-il y mettre ?",
     metaTitle: "Site internet pour salon de coiffure et barbier | Nappage",
     description:
       "Prise de rendez-vous, grille de tarifs, photos de réalisations, équipe : ce que le site d’un salon de coiffure doit montrer pour remplir l’agenda.",
@@ -179,7 +179,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-plombier",
     trade: { sector: "batiment", label: "Plombier, chauffagiste" },
-    title: "Site internet pour plombier : être appelé et inspirer confiance",
+    title: "Site internet pour plombier : que faut-il y afficher ?",
     metaTitle: "Site internet pour plombier et chauffagiste | Nappage",
     description:
       "Numéro d’urgence, tarifs de dépannage obligatoires, assurance, zone d’intervention : ce que le site d’un plombier doit afficher pour être appelé.",
@@ -196,7 +196,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-restaurant",
     trade: { sector: "alimentation", label: "Restaurant, café, traiteur" },
-    title: "Site internet pour restaurant : carte, réservation, infos pratiques",
+    title: "Site internet pour restaurant : que faut-il y mettre ?",
     metaTitle: "Site internet pour restaurant, café et traiteur | Nappage",
     description:
       "Carte lisible sur téléphone, bouton de réservation, photos, accès : ce que le site d’un restaurant doit montrer pour remplir les tables.",
@@ -213,7 +213,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-fleuriste",
     trade: { sector: "boutiques", label: "Fleuriste" },
-    title: "Site internet pour fleuriste : occasions, deuil, livraison",
+    title: "Site internet pour fleuriste : que faut-il y mettre ?",
     metaTitle: "Site internet pour fleuriste | Nappage",
     description:
       "Bouquets, mariages, deuil, livraison, fêtes : ce que le site d’un fleuriste doit montrer pour recevoir les commandes en direct.",
@@ -230,7 +230,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-institut-beaute",
     trade: { sector: "beaute", label: "Institut de beauté, esthéticienne" },
-    title: "Site internet pour institut de beauté : soins, tarifs, réservation",
+    title: "Site internet pour institut de beauté : que faut-il y mettre ?",
     metaTitle: "Site internet pour institut de beauté et esthéticienne | Nappage",
     description:
       "Carte des soins, prix et durées, réservation, cartes cadeaux, hygiène : ce que le site d’un institut de beauté doit montrer pour donner envie de réserver.",
@@ -247,7 +247,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-electricien",
     trade: { sector: "batiment", label: "Électricien" },
-    title: "Site internet pour électricien : dépannage, devis, confiance",
+    title: "Site internet pour électricien : que faut-il y afficher ?",
     metaTitle: "Site internet pour électricien | Nappage",
     description:
       "Numéro d’urgence, tarifs de dépannage obligatoires, prestations, assurance, zone d’intervention : ce que le site d’un électricien doit afficher.",
@@ -264,7 +264,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-garage-automobile",
     trade: { sector: "automobile", label: "Garage automobile" },
-    title: "Site internet pour garage automobile : prix, rendez-vous, confiance",
+    title: "Site internet pour garage automobile : que faut-il y mettre ?",
     metaTitle: "Site internet pour garage automobile indépendant | Nappage",
     description:
       "Prestations et prix de départ, prise de rendez-vous, avis : ce que le site d’un garage indépendant doit montrer pour que le client appelle.",
@@ -281,7 +281,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-boutique-cadeaux",
     trade: { sector: "boutiques", label: "Cadeaux et souvenirs" },
-    title: "Site internet pour boutique de cadeaux et de souvenirs",
+    title: "Site internet pour boutique de cadeaux et de souvenirs : que faut-il y mettre ?",
     metaTitle: "Site internet pour boutique de cadeaux et souvenirs | Nappage",
     description:
       "Produits, créateurs locaux, idées cadeaux, horaires de saison : ce que le site d’une boutique de cadeaux ou de souvenirs doit montrer aux habitants comme aux visiteurs.",
@@ -298,7 +298,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-boutique-jeux",
     trade: { sector: "boutiques", label: "Jeux de société et jouets" },
-    title: "Site internet pour boutique de jeux de société et de jouets",
+    title: "Site internet pour boutique de jeux et de jouets : que faut-il y mettre ?",
     metaTitle: "Site internet pour boutique de jeux et jouets | Nappage",
     description:
       "Conseil, sélections par âge, soirées jeux, services : ce que le site d’une boutique de jeux de société ou de jouets doit montrer face aux grandes surfaces.",
@@ -315,7 +315,7 @@ export const guides: Guide[] = [
   {
     slug: "site-internet-boutique-vetements",
     trade: { sector: "boutiques", label: "Vêtements, prêt-à-porter" },
-    title: "Site internet pour boutique de vêtements : style, marques, collections",
+    title: "Site internet pour boutique de vêtements : que faut-il y mettre ?",
     metaTitle: "Site internet pour boutique de vêtements | Nappage",
     description:
       "Photos, marques distribuées, tailles, prix, nouvelles collections : ce que le site d’une boutique de prêt-à-porter doit montrer pour faire venir en boutique.",

@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { ArrowRight } from '@phosphor-icons/react';
 import { Stagger, fadeUp } from './Reveal';
 import { guidePath, type Guide } from '../data/guides';
+import { nbsp } from '../typography';
 
 /** Liste de guides en cartes (accueil, page Guides, bas de chaque guide) */
 export default function GuideCards({ items }: { items: Guide[] }) {
@@ -10,8 +11,8 @@ export default function GuideCards({ items }: { items: Guide[] }) {
       {items.map((g) => (
         <motion.li key={g.slug} variants={fadeUp}>
           <a className="guide-card" href={guidePath(g.slug)}>
-            <h3>{g.title}</h3>
-            <p>{g.teaser}</p>
+            <h3>{nbsp(g.title)}</h3>
+            <p>{nbsp(g.teaser)}</p>
             <span className="guide-card__more" aria-hidden="true">
               Lire le guide
               <ArrowRight size={16} weight="bold" />
