@@ -24,6 +24,13 @@ export default function Body() {
           vos horaires spéciaux pour les fêtes, là où les clients les cherchent.
         </li>
       </ul>
+      <p>
+        Le détail, avec les périodes de fêtes et les commandes, est dans{" "}
+        <GuideLink slug="site-internet-boulangerie">
+          site internet pour boulangerie
+        </GuideLink>
+        .
+      </p>
 
       <h2>Salon de coiffure, institut de beauté</h2>
       <ul>
@@ -36,6 +43,17 @@ export default function Body() {
           votre équipe, pour que les clients sachent à qui ils auront affaire.
         </li>
       </ul>
+      <p>
+        Tout ce qui fait prendre rendez-vous est dans{" "}
+        <GuideLink slug="site-internet-coiffeur">
+          site internet pour salon de coiffure
+        </GuideLink>{" "}
+        et{" "}
+        <GuideLink slug="site-internet-institut-beaute">
+          site internet pour institut de beauté
+        </GuideLink>
+        .
+      </p>
 
       <h2>Restaurant, café, traiteur</h2>
       <ul>
@@ -46,6 +64,13 @@ export default function Body() {
         <li>la réservation, par téléphone ou en ligne ;</li>
         <li>l’accès : parking, transports, accessibilité.</li>
       </ul>
+      <p>
+        Le détail est dans{" "}
+        <GuideLink slug="site-internet-restaurant">
+          site internet pour restaurant
+        </GuideLink>
+        .
+      </p>
 
       <h2>Artisan du bâtiment : plombier, électricien, menuisier…</h2>
       <ul>
@@ -61,6 +86,18 @@ export default function Body() {
           entrer quelqu’un chez soi.
         </li>
       </ul>
+      <p>
+        Pour le dépannage à domicile, l’affichage de vos tarifs sur le site est
+        obligatoire : voir{" "}
+        <GuideLink slug="site-internet-plombier">
+          site internet pour plombier
+        </GuideLink>{" "}
+        et{" "}
+        <GuideLink slug="site-internet-electricien">
+          site internet pour électricien
+        </GuideLink>
+        .
+      </p>
 
       <h2>Boutique, fleuriste, commerce de proximité</h2>
       <ul>
@@ -70,6 +107,22 @@ export default function Body() {
           vos événements : ventes privées, ateliers, nouvelles collections.
         </li>
       </ul>
+      <p>
+        Le détail par métier :{" "}
+        <GuideLink slug="site-internet-fleuriste">fleuriste</GuideLink>,{" "}
+        <GuideLink slug="site-internet-boutique-cadeaux">
+          boutique de cadeaux et de souvenirs
+        </GuideLink>
+        ,{" "}
+        <GuideLink slug="site-internet-boutique-jeux">
+          boutique de jeux et de jouets
+        </GuideLink>{" "}
+        et{" "}
+        <GuideLink slug="site-internet-boutique-vetements">
+          boutique de vêtements
+        </GuideLink>
+        .
+      </p>
 
       <h2>Ce qui compte pour tous les métiers</h2>
       <p>

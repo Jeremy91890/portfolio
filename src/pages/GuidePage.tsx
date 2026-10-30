@@ -3,7 +3,7 @@ import PageHero from '../components/PageHero';
 import GuideCards from '../components/GuideCards';
 import Contact from '../components/Contact';
 import { Reveal } from '../components/Reveal';
-import { GUIDES_PATH, guides, type Guide } from '../data/guides';
+import { GUIDES_PATH, relatedGuides, type Guide } from '../data/guides';
 import { bodies } from '../guides';
 import { site } from '../data/site';
 import pricing from '../data/pricing';
@@ -19,7 +19,7 @@ const dateFr = (iso: string) => {
 
 export default function GuidePage({ guide }: { guide: Guide }) {
   const Body = bodies[guide.slug];
-  const others = guides.filter((g) => g.slug !== guide.slug);
+  const others = relatedGuides(guide);
 
   return (
     <>
@@ -69,6 +69,9 @@ export default function GuidePage({ guide }: { guide: Guide }) {
             D’autres guides pour <span className="accent">votre commerce</span>
           </h2>
           <GuideCards items={others} />
+          <p className="guides__all">
+            <a href={GUIDES_PATH}>Voir tous les guides, par métier</a>
+          </p>
         </div>
       </section>
 
