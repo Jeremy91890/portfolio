@@ -1,4 +1,15 @@
-import { GuideLink, pricing } from './shared';
+import { Callout, GuideLink, pricing, questions } from './shared';
+
+const { Summary, Question } = questions(
+  {
+    pourquoi: 'Pourquoi une newsletter marche pour un commerce local',
+    contenu: 'Quoi mettre dans votre newsletter',
+    rythme: 'À quel rythme l’envoyer ?',
+    adresses: 'Collecter les adresses, dans les règles',
+    offre: 'Ce que je propose',
+  },
+  { title: 'Au sommaire' },
+);
 
 export default function Body() {
   return (
@@ -8,14 +19,17 @@ export default function Body() {
         moyen simple et peu cher d’y arriver.
       </p>
 
-      <h2>Pourquoi une newsletter marche pour un commerce local</h2>
+      <Summary />
+
+
+      <Question id="pourquoi" />
       <p>
         Elle arrive directement dans la boîte mail de vos clients, sans algorithme qui décide qui la verra, comme sur les
         réseaux sociaux. Elle s’adresse à des gens qui vous connaissent déjà et ont choisi de recevoir de vos nouvelles. Et
         elle tombe au moment que vous choisissez : avant les fêtes, au début des soldes, à l’arrivée de la nouvelle saison.
       </p>
 
-      <h2>Quoi mettre dans votre newsletter</h2>
+      <Question id="contenu" />
       <ul>
         <li>vos nouveautés : produits, prestations, carte de saison ;</li>
         <li>une offre réservée aux abonnés, de temps en temps ;</li>
@@ -28,13 +42,13 @@ export default function Body() {
         en trente secondes.
       </p>
 
-      <h2>À quel rythme l’envoyer ?</h2>
+      <Question id="rythme" />
       <p>
         Une fois par mois suffit largement pour un commerce de proximité : on pense à vous sans se lasser. Comptez surtout
         sur la régularité. Une newsletter tous les mois vaut mieux que trois en janvier, puis plus rien.
       </p>
 
-      <h2>Collecter les adresses, dans les règles</h2>
+      <Question id="adresses" />
       <p>Où récolter les adresses e-mail :</p>
       <ul>
         <li>un formulaire d’inscription sur votre site ;</li>
@@ -42,13 +56,15 @@ export default function Body() {
         <li>un QR code près du comptoir qui mène au formulaire ;</li>
         <li>avec votre carte de fidélité.</li>
       </ul>
-      <p>
-        La CNIL fixe les règles. Vos clients doivent avoir accepté de recevoir vos e-mails, ou, pour un client qui vous a
+      <Callout tone="law" title="Ce que dit la CNIL">
+        <p>
+          Vos clients doivent avoir accepté de recevoir vos e-mails, ou, pour un client qui vous a
         déjà acheté quelque chose, avoir été informé et avoir pu refuser au moment où il vous a donné son adresse. Chaque
         e-mail doit contenir un lien pour se désinscrire facilement. Et n’achetez jamais de fichiers d’adresses.
-      </p>
+        </p>
+      </Callout>
 
-      <h2>Ce que je propose</h2>
+      <Question id="offre" />
       <p>
         Une fois par mois, j’écris et j’envoie un e-mail à vos clients pour les faire revenir : nouveautés, offres,
         horaires. Vous me dites simplement ce que vous voulez mettre en avant. C’est en option à{' '}

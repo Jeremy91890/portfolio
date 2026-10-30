@@ -1,4 +1,14 @@
-import { GuideLink, Source, plan, pricing } from './shared';
+import { GuideLink, Source, plan, pricing, questions } from './shared';
+
+const { Summary, Question } = questions(
+  {
+    recherche: 'Vos clients vous cherchent avant de venir',
+    apports: 'Ce qu’un site apporte à un commerce local',
+    contenu: 'Ce que le site d’un commerce doit contenir',
+    creation: 'Comment créer le site de votre commerce',
+  },
+  { title: 'Au sommaire' },
+);
 
 export default function Body() {
   return (
@@ -8,7 +18,10 @@ export default function Body() {
         quand on vous recommande à quelqu’un, il y a de bonnes chances qu’il tape votre nom sur Google avant de venir.
       </p>
 
-      <h2>Vos clients vous cherchent avant de venir</h2>
+      <Summary />
+
+
+      <Question id="recherche" />
       <p>
         <strong>76 % des Français</strong> cherchent des informations en ligne avant de se rendre en magasin (
         <Source href="https://www.ecommerce-nation.fr/etude-shopfully-2025-priorites-achat-francais/">
@@ -24,7 +37,7 @@ export default function Body() {
         ). Un commerce qui en a un part donc avec une longueur d’avance sur près de la moitié des indépendants.
       </p>
 
-      <h2>Ce qu’un site apporte à un commerce local</h2>
+      <Question id="apports" />
       <p>
         D’abord, Google. Quand quelqu’un tape « fleuriste » ou « coiffeur » suivi de sa ville, Google montre les commerces
         qu’il connaît, et un site lui en apprend beaucoup plus sur vous qu’une simple fiche. J’en parle dans le guide sur{' '}
@@ -47,7 +60,7 @@ export default function Body() {
         ). Sans site, ces curieux s’arrêtent à votre fiche Google.
       </p>
 
-      <h2>Ce que le site d’un commerce doit contenir</h2>
+      <Question id="contenu" />
       <p>Pas besoin de quinze pages. L’essentiel tient souvent sur une seule :</p>
       <ul>
         <li>ce que vous faites, en une phrase, tout en haut ;</li>
@@ -62,7 +75,7 @@ export default function Body() {
         <GuideLink slug="site-internet-artisan-commercant">site internet pour artisan</GuideLink>.
       </p>
 
-      <h2>Comment créer le site de votre commerce</h2>
+      <Question id="creation" />
       <p>
         Vous pouvez le faire vous-même avec un outil en ligne. C’est peu cher, mais c’est vous qui écrivez, montez les pages
         et faites les mises à jour, le soir après la fermeture. Une agence fait un travail sur mesure, pour plusieurs

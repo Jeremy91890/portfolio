@@ -1626,9 +1626,9 @@ button { font: inherit; color: inherit; }
 .prose .prose__q + p { font-size: 1.125rem; color: var(--navy); }
 
 /* Listes « ce qu'il faut mettre » : cases cochées au lieu de puces */
-.prose:has(> .prose__questions) ul { list-style: none; padding-left: 0; }
-.prose:has(> .prose__questions) ul > li { position: relative; padding-left: 34px; }
-.prose:has(> .prose__questions) ul > li::before {
+.prose:has(> .prose__questions) ul:not(.prose__sources) { list-style: none; padding-left: 0; }
+.prose:has(> .prose__questions) ul:not(.prose__sources) > li { position: relative; padding-left: 34px; }
+.prose:has(> .prose__questions) ul:not(.prose__sources) > li::before {
   content: '';
   position: absolute;
   left: 0;
@@ -1638,6 +1638,25 @@ button { font: inherit; color: inherit; }
   border-radius: 50%;
   /* Coche couleur --orange-text (#c2410c) */
   background: var(--orange-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c2410c' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center / 13px no-repeat;
+}
+
+/* Listes ordonnées : étapes en pastilles numérotées */
+.prose:has(> .prose__questions) > ol { list-style: none; padding-left: 0; gap: 14px; counter-reset: step; }
+.prose:has(> .prose__questions) > ol > li { position: relative; padding-left: 46px; counter-increment: step; }
+.prose:has(> .prose__questions) > ol > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: -0.05em;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.875rem;
+  font-weight: 700;
 }
 
 /* Encadrés : obligation légale (sombre), erreur à éviter (orange), conseil (gris) */
@@ -1662,6 +1681,13 @@ button { font: inherit; color: inherit; }
 .callout__body > * + * { margin-top: 10px; }
 .prose .callout__title { color: var(--navy); font-weight: 700; }
 .prose .callout ul { gap: 6px; }
+/* Même spécificité que les coches ci-dessus, déclarées avant : ces règles l'emportent */
+.prose:has(> .prose__questions) .callout ul > li::before { background-color: var(--white); }
+/* Dans un encadré « à éviter », une croix au lieu de la coche (couleur --orange-text) */
+.prose:has(> .prose__questions) .callout--warning ul > li::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c2410c' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M7 7l10 10M17 7L7 17'/%3E%3C/svg%3E");
+  background-size: 11px;
+}
 .callout--warning { background: var(--orange-soft); border-color: transparent; border-left: 4px solid var(--orange); }
 .callout--law { --focus: var(--orange); background: var(--navy); border-color: var(--navy); }
 .callout--law .callout__icon { background: rgb(255 255 255 / 0.08); color: var(--orange); }

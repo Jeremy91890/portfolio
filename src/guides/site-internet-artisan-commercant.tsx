@@ -1,4 +1,17 @@
-import { GuideLink, plan, pricing } from "./shared";
+import { GuideLink, plan, pricing, questions } from "./shared";
+
+const { Summary, Question } = questions(
+  {
+    boulangerie: 'Boulangerie, pâtisserie',
+    coiffure: 'Salon de coiffure, institut de beauté',
+    restaurant: 'Restaurant, café, traiteur',
+    batiment: 'Artisan du bâtiment : plombier, électricien, menuisier…',
+    boutique: 'Boutique, fleuriste, commerce de proximité',
+    commun: 'Ce qui compte pour tous les métiers',
+    'cle-en-main': 'Un site clé en main pour artisan, ça veut dire quoi ?',
+  },
+  { title: 'Au sommaire' },
+);
 
 export default function Body() {
   return (
@@ -9,7 +22,10 @@ export default function Body() {
         change d’un métier à l’autre.
       </p>
 
-      <h2>Boulangerie, pâtisserie</h2>
+      <Summary />
+
+
+      <Question id="boulangerie" />
       <ul>
         <li>
           vos horaires et vos jours de fermeture, bien visibles et toujours à
@@ -32,7 +48,7 @@ export default function Body() {
         .
       </p>
 
-      <h2>Salon de coiffure, institut de beauté</h2>
+      <Question id="coiffure" />
       <ul>
         <li>vos prestations et vos tarifs, clairement présentés ;</li>
         <li>
@@ -55,7 +71,7 @@ export default function Body() {
         .
       </p>
 
-      <h2>Restaurant, café, traiteur</h2>
+      <Question id="restaurant" />
       <ul>
         <li>
           votre carte et vos menus à jour, lisibles sur téléphone (pas un PDF
@@ -72,7 +88,7 @@ export default function Body() {
         .
       </p>
 
-      <h2>Artisan du bâtiment : plombier, électricien, menuisier…</h2>
+      <Question id="batiment" />
       <ul>
         <li>votre zone d’intervention, avec les communes que vous couvrez ;</li>
         <li>
@@ -99,7 +115,7 @@ export default function Body() {
         .
       </p>
 
-      <h2>Boutique, fleuriste, commerce de proximité</h2>
+      <Question id="boutique" />
       <ul>
         <li>ce que l’on trouve chez vous, avec des photos de vos produits ;</li>
         <li>la livraison ou le retrait en boutique, si vous le proposez ;</li>
@@ -124,7 +140,7 @@ export default function Body() {
         .
       </p>
 
-      <h2>Ce qui compte pour tous les métiers</h2>
+      <Question id="commun" />
       <p>
         Le site doit être rapide et lisible sur téléphone, puisque c’est là que
         la plupart de vos clients le consultent. Votre métier et votre ville
@@ -136,7 +152,7 @@ export default function Body() {
         de l’an dernier envoie des clients devant une porte fermée.
       </p>
 
-      <h2>Un site clé en main pour artisan, ça veut dire quoi ?</h2>
+      <Question id="cle-en-main" />
       <p>
         « Clé en main », c’est que vous n’avez rien à faire de technique. Chez
         Nappage Studio, je rédige vos textes, je crée le site, et je m’occupe du

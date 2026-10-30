@@ -24,11 +24,15 @@ export function Source({ href, children }: { href: string; children: ReactNode }
 }
 
 /**
- * Questions auxquelles répond un guide, dans l'ordre de la page : chaque section s'ouvre sur sa question numérotée
+ * Sections d'un guide, dans l'ordre de la page (des questions pour les guides métier, des titres pour les conseils) :
+ * chaque section s'ouvre sur son titre numéroté
  * (<Question>), et le sommaire (<Summary>) les reprend toutes avec un lien vers la réponse. Sur grand écran, le sommaire
  * reste à côté du texte et signale la question en cours de lecture (styles.css, « Guides métier »).
  */
-export function questions<K extends string>(items: Record<K, string>) {
+export function questions<K extends string>(
+  items: Record<K, string>,
+  { title = 'Les questions que vous vous posez' }: { title?: string } = {},
+) {
   const list = Object.entries(items) as [K, string][];
   // Préfixe : pas de collision avec les ancres du reste du site (#tarifs, #pourquoi…)
   const anchor = (id: K) => `q-${id}`;
@@ -64,7 +68,7 @@ export function questions<K extends string>(items: Record<K, string>) {
     return (
       <nav className="prose__questions" aria-labelledby="questions-title">
         <p id="questions-title" className="prose__questions-title">
-          Les questions que vous vous posez
+          {title}
         </p>
         <ol>
           {list.map(([id, q]) => (
