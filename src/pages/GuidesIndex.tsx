@@ -1,19 +1,12 @@
 import { motion } from 'motion/react';
-import type { Icon } from '@phosphor-icons/react';
-import { ArrowRight, Car, ForkKnife, Scissors, Storefront, Wrench } from '@phosphor-icons/react';
+import { ArrowRight } from '@phosphor-icons/react';
 import PageHero from '../components/PageHero';
 import GuideCards from '../components/GuideCards';
 import Contact from '../components/Contact';
 import { Reveal, SectionHead, Stagger, fadeUp } from '../components/Reveal';
-import { adviceGuides, guidePath, guidesIndex, sectorGuides, sectors, type SectorId } from '../data/guides';
+import { sectorIcons } from '../components/sectorIcons';
+import { adviceGuides, guidePath, guidesIndex, sectorGuides, sectors } from '../data/guides';
 
-const icons: Record<SectorId, Icon> = {
-  alimentation: ForkKnife,
-  beaute: Scissors,
-  batiment: Wrench,
-  boutiques: Storefront,
-  automobile: Car,
-};
 
 // Guide général, pour les métiers qui n'ont pas encore leur page
 const GENERAL = 'site-internet-artisan-commercant';
@@ -48,7 +41,7 @@ export default function GuidesIndex() {
 
           <Stagger as="ul" className="trades" step={0.06}>
             {sectors.map((s) => {
-              const SectorIcon = icons[s.id];
+              const SectorIcon = sectorIcons[s.id];
               const items = sectorGuides(s.id);
               if (items.length === 0) return null;
               return (

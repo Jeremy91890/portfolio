@@ -1,4 +1,4 @@
-import { StrictMode } from 'react';
+import { StrictMode, useEffect } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { MotionConfig } from 'motion/react';
 import '@fontsource/poppins/300.css';
@@ -20,6 +20,22 @@ const app = (
   </StrictMode>
 );
 
+// Sans pré-rendu (npm run dev), la page est vide au chargement : le navigateur ne trouve pas l'ancre de l'URL
+// (/#tarifs depuis un guide). On la rejoint une fois la page affichée.
+function ScrollToHash() {
+  useEffect(() => {
+    const id = decodeURIComponent(window.location.hash.slice(1));
+    if (id) document.getElementById(id)?.scrollIntoView({ behavior: 'instant' });
+  }, []);
+  return null;
+}
+
 // En production, le HTML est pré-rendu au build : on l'hydrate au lieu de le recréer
 if (container.firstElementChild) hydrateRoot(container, app);
-else createRoot(container).render(app);
+else
+  createRoot(container).render(
+    <>
+      {app}
+      <ScrollToHash />
+    </>,
+  );
