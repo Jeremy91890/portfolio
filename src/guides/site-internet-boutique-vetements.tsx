@@ -1,4 +1,4 @@
-import { GuideLink, plan, questions } from './shared';
+import { Callout, GuideLink, plan, questions } from './shared';
 
 const { Summary, Question } = questions({
   pourquoi: 'Pourquoi un site quand on a déjà Instagram ?',
@@ -58,9 +58,13 @@ export default function Body() {
       <Question id="vente" />
       <p>
         Pas forcément. Pour la plupart des boutiques de quartier, un site vitrine suffit à faire venir en boutique, où l’on
-        essaie et où vous conseillez. Une boutique en ligne demande de photographier chaque article, de gérer les stocks,
-        les envois et les retours (le client qui achète à distance dispose de 14 jours pour se rétracter). Pour commencer
-        plus simplement, vous pouvez proposer de réserver un article pour l’essayer en boutique.
+        essaie et où vous conseillez. Une boutique en ligne demande de photographier chaque article, de gérer les stocks, les envois et les retours.
+      </p>
+      <Callout tone="law" title="Ce que dit la loi : 14 jours pour se rétracter">
+        <p>Le client qui achète à distance dispose de 14 jours pour se rétracter.</p>
+      </Callout>
+      <p>
+        Pour commencer plus simplement, vous pouvez proposer de réserver un article pour l’essayer en boutique.
       </p>
 
       <Question id="google" />

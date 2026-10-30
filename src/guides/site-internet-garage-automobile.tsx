@@ -1,4 +1,4 @@
-import { GuideLink, plan, questions } from './shared';
+import { Callout, GuideLink, plan, questions } from './shared';
 
 const { Summary, Question } = questions({
   pourquoi: 'Pourquoi un garage indépendant a-t-il besoin d’un site ?',
@@ -39,10 +39,12 @@ export default function Body() {
         <li>diagnostic électronique, préparation au contrôle technique ;</li>
         <li>carrosserie et pare-brise, si vous les faites.</li>
       </ul>
-      <p>
-        Précisez votre taux horaire et si le devis est gratuit. Un prix écrit rassure davantage qu’une promesse de « tarifs
-        compétitifs ».
-      </p>
+      <Callout tone="tip" title="À préciser aussi">
+        <p>
+          Votre taux horaire, et si le devis est gratuit. Un prix écrit rassure davantage qu’une promesse de « tarifs
+          compétitifs ».
+        </p>
+      </Callout>
 
       <Question id="rdv" />
       <ul>

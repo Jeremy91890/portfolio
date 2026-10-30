@@ -3,7 +3,7 @@ import PageHero from '../components/PageHero';
 import GuideCards from '../components/GuideCards';
 import Contact from '../components/Contact';
 import { Reveal } from '../components/Reveal';
-import { GUIDES_PATH, relatedGuides, type Guide } from '../data/guides';
+import { GUIDES_PATH, relatedGuides, sectors, type Guide } from '../data/guides';
 import { bodies } from '../guides';
 import { site } from '../data/site';
 import pricing from '../data/pricing';
@@ -20,13 +20,15 @@ const dateFr = (iso: string) => {
 export default function GuidePage({ guide }: { guide: Guide }) {
   const Body = bodies[guide.slug];
   const others = relatedGuides(guide);
+  // Guide métier : son secteur dans le surtitre (« Guide métier · Boutiques »)
+  const sector = guide.trade && sectors.find((s) => s.id === guide.trade!.sector);
 
   return (
     <>
       <article aria-labelledby="page-title">
         <PageHero
           crumbs={[{ href: '/', label: 'Accueil' }, { href: GUIDES_PATH, label: 'Guides' }, { label: guide.title }]}
-          eyebrow="Guide"
+          eyebrow={sector ? `Guide métier · ${sector.label}` : 'Guide'}
           title={guide.title}
           lead={guide.description}
         >

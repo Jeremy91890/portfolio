@@ -1,4 +1,4 @@
-import { GuideLink, Source, plan, questions } from './shared';
+import { Callout, GuideLink, Source, plan, questions } from './shared';
 
 const { Summary, Question } = questions({
   pourquoi: 'Pourquoi un électricien a-t-il besoin d’un site ?',
@@ -40,15 +40,14 @@ export default function Body() {
       </ul>
 
       <Question id="tarifs" />
-      <p>
-        Oui, si vous faites du dépannage à domicile. Comme pour les plombiers, l’
-        <Source href="https://www.legifrance.gouv.fr/eli/arrete/2017/1/24/ECFC1701378A/jo/texte">
-          arrêté du 24 janvier 2017
-        </Source>{' '}
-        demande aux professionnels qui ont un site d’y afficher leurs taux horaires TTC, la façon dont le temps est décompté,
-        leurs forfaits, leurs frais de déplacement, et si le devis est payant. Les clients qui voient vos prix avant
-        d’appeler vous font aussi plus confiance.
-      </p>
+      <p>Oui, et si vous faites du dépannage à domicile, c’est obligatoire.</p>
+      <Callout tone="law" title="Obligation légale : vos prix sur votre site">
+        <p>
+          Comme pour les plombiers, l’<Source href="https://www.legifrance.gouv.fr/eli/arrete/2017/1/24/ECFC1701378A/jo/texte">arrêté du 24 janvier 2017</Source> demande aux professionnels qui ont un site d’y afficher leurs taux horaires
+          TTC, la façon dont le temps est décompté, leurs forfaits, leurs frais de déplacement, et si le devis est payant.
+        </p>
+      </Callout>
+      <p>Les clients qui voient vos prix avant d’appeler vous font aussi plus confiance.</p>
 
       <Question id="prestations" />
       <p>
@@ -75,9 +74,11 @@ export default function Body() {
       <Question id="zone" />
       <p>
         Sur une seule page, avec la liste des communes où vous vous déplacez : Google comprend où vous travaillez, et le
-        client voit tout de suite si vous venez chez lui. Évitez les dizaines de pages identiques où seul le nom de la ville
-        change, car Google les repère et elles peuvent faire baisser tout votre site.
+        client voit tout de suite si vous venez chez lui.
       </p>
+      <Callout tone="warning" title="À éviter : une page par commune">
+        <p>Des dizaines de pages identiques où seul le nom de la ville change sont repérées par Google, et elles peuvent faire baisser tout votre site.</p>
+      </Callout>
       <p>
         Pour la carte Google Maps, qui s’affiche avant les sites, tout est dans le guide{' '}
         <GuideLink slug="referencement-local-google-maps">référencement local</GuideLink>.

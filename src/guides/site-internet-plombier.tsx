@@ -1,4 +1,4 @@
-import { GuideLink, Source, plan, questions } from './shared';
+import { Callout, GuideLink, Source, plan, questions } from './shared';
 
 const { Summary, Question } = questions({
   pourquoi: 'Pourquoi un plombier a-t-il besoin d’un site ?',
@@ -39,21 +39,20 @@ export default function Body() {
       </ul>
 
       <Question id="tarifs" />
-      <p>
-        Oui, et c’est obligatoire pour le dépannage, la réparation et l’entretien à domicile. L’
-        <Source href="https://www.legifrance.gouv.fr/eli/arrete/2017/1/24/ECFC1701378A/jo/texte">
-          arrêté du 24 janvier 2017
-        </Source>{' '}
-        impose d’informer le client des prix avant toute intervention, et de les afficher sur votre site si vous en avez
-        un. Il faut y indiquer :
-      </p>
-      <ul>
+      <p>Oui, et pour le dépannage, la réparation et l’entretien à domicile, c’est obligatoire.</p>
+      <Callout tone="law" title="Obligation légale : vos prix sur votre site">
+        <p>
+          L’<Source href="https://www.legifrance.gouv.fr/eli/arrete/2017/1/24/ECFC1701378A/jo/texte">arrêté du 24 janvier 2017</Source> impose d’informer le client des prix avant toute intervention, et de les afficher sur votre site si
+          vous en avez un. Il faut y indiquer :
+        </p>
+        <ul>
         <li>votre ou vos taux horaires de main-d’œuvre, TTC ;</li>
         <li>la façon dont le temps est décompté ;</li>
         <li>le prix TTC de vos prestations au forfait, si vous en avez ;</li>
         <li>vos frais de déplacement, s’il y en a ;</li>
         <li>si le devis est gratuit ou payant, et son prix.</li>
-      </ul>
+        </ul>
+      </Callout>
       <p>
         Un client qui voit vos prix écrits vous fait aussi plus confiance qu’à un numéro d’urgence sans nom ni adresse.
       </p>
@@ -73,9 +72,11 @@ export default function Body() {
       <Question id="zone" />
       <p>
         On cherche « plombier » suivi du nom de sa ville. Listez sur votre site les communes où vous intervenez : Google
-        comprend où vous travaillez, et le client voit tout de suite si vous vous déplacez chez lui. Ne créez pas une page
-        par commune avec le même texte : Google les repère, et elles peuvent faire baisser tout votre site.
+        comprend où vous travaillez, et le client voit tout de suite si vous vous déplacez chez lui.
       </p>
+      <Callout tone="warning" title="À éviter : une page par commune">
+        <p>Des pages au texte identique où seul le nom de la ville change sont repérées par Google, et elles peuvent faire baisser tout votre site.</p>
+      </Callout>
 
       <Question id="prestations" />
       <p>

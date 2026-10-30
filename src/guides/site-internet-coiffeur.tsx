@@ -1,4 +1,4 @@
-import { GuideLink, plan, questions } from './shared';
+import { Callout, GuideLink, plan, questions } from './shared';
 
 const { Summary, Question } = questions({
   pourquoi: 'Pourquoi un site quand on a déjà une plateforme de réservation et Instagram ?',
@@ -52,10 +52,12 @@ export default function Body() {
 
       <Question id="photos" />
       <p>
-        Vos coupes, vos colorations et l’intérieur du salon : on choisit un coiffeur dont on aime le style. Demandez l’accord
-        de vos clients avant de publier une photo où on les reconnaît. Si vous publiez déjà sur Instagram, le site peut
-        reprendre vos meilleures photos et renvoyer vers votre compte.
+        Vos coupes, vos colorations et l’intérieur du salon : on choisit un coiffeur dont on aime le style. Si vous publiez déjà sur
+        Instagram, le site peut reprendre vos meilleures photos et renvoyer vers votre compte.
       </p>
+      <Callout tone="warning" title="Droit à l’image">
+        <p>Demandez l’accord de vos clients avant de publier une photo où on les reconnaît.</p>
+      </Callout>
 
       <Question id="equipe" />
       <p>

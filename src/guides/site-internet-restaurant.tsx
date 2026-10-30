@@ -1,4 +1,4 @@
-import { GuideLink, plan, questions } from './shared';
+import { Callout, GuideLink, plan, questions } from './shared';
 
 const { Summary, Question } = questions({
   pourquoi: 'Pourquoi un site quand on est déjà sur Google Maps et les plateformes de réservation ?',
@@ -38,10 +38,12 @@ export default function Body() {
         <li>les plats végétariens, sans gluten ou adaptés aux enfants, si vous en proposez ;</li>
         <li>une carte tenue à jour, parce qu’un plat qui n’existe plus déçoit dès la commande.</li>
       </ul>
-      <p>
-        La mention « fait maison » est encadrée par la loi : elle est réservée aux plats préparés sur place à partir de
-        produits bruts. Si vos plats y ont droit, reprenez-la sur votre carte en ligne.
-      </p>
+      <Callout tone="law" title="Ce que dit la loi : la mention « fait maison »">
+        <p>
+          Elle est réservée aux plats préparés sur place à partir de produits bruts. Si vos plats y ont droit, reprenez-la
+          sur votre carte en ligne.
+        </p>
+      </Callout>
 
       <Question id="reservation" />
       <ul>

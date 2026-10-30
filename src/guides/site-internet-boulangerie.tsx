@@ -1,4 +1,4 @@
-import { GuideLink, plan, questions } from './shared';
+import { Callout, GuideLink, plan, questions } from './shared';
 
 const { Summary, Question } = questions({
   pourquoi: 'Pourquoi une boulangerie a-t-elle besoin d’un site ?',
@@ -73,11 +73,13 @@ export default function Body() {
         vraies photos de vos spécialités, de la boutique et de l’équipe : les clients repèrent tout de suite les photos de
         banque d’images.
       </p>
-      <p>
-        La loi réserve le nom « boulangerie » aux professionnels qui pétrissent, façonnent et cuisent leur pain sur place.
-        Si c’est votre cas, dites-le avec vos mots : pain au levain, farines d’un moulin de la région, cuisson dans la
-        journée. C’est ce qui vous distingue des points chauds et des terminaux de cuisson.
-      </p>
+      <Callout tone="law" title="Ce que dit la loi : le nom « boulangerie »">
+        <p>
+          Il est réservé aux professionnels qui pétrissent, façonnent et cuisent leur pain sur place. Si c’est votre cas,
+          dites-le avec vos mots : pain au levain, farines d’un moulin de la région, cuisson dans la journée. C’est ce qui
+          vous distingue des points chauds et des terminaux de cuisson.
+        </p>
+      </Callout>
 
       <Question id="google" />
       <p>
