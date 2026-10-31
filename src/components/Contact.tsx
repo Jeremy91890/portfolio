@@ -8,10 +8,9 @@ import {
   InstagramLogo,
   LinkedinLogo,
   Phone,
-  VideoCamera,
 } from "@phosphor-icons/react";
 import { Reveal } from "./Reveal";
-import Booking, { openBooking } from "./Booking";
+import BookingButton from "./Booking";
 import { site } from "../data/site";
 import pricing from "../data/pricing";
 import { LEGAL_HASH } from "./Legal";
@@ -201,12 +200,7 @@ export default function Contact() {
             {site.firstName}, développeur web depuis 10 ans
           </p>
           <div className="contact__ctas">
-            {site.bookingUrl && (
-              <a className="btn btn--ghost" href="#rdv" onClick={openBooking}>
-                <VideoCamera size={18} aria-hidden="true" />
-                Réserver un appel visio
-              </a>
-            )}
+            <BookingButton />
             {/* Sur mobile : appel et SMS en un geste */}
             <a className="btn btn--ghost contact__mobile" href={`tel:${site.phoneHref}`}>
               <Phone size={18} aria-hidden="true" />
@@ -242,9 +236,6 @@ export default function Contact() {
         </Reveal>
         <Reveal delay={0.15} className="contact__form" as="div">
           <CallbackForm />
-        </Reveal>
-        <Reveal className="contact__booking" as="div">
-          <Booking />
         </Reveal>
       </div>
     </section>

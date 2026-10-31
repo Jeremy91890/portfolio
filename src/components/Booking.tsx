@@ -1,20 +1,13 @@
-import { useEffect, useState } from "react";
-import { ArrowSquareOut, CalendarCheck } from "@phosphor-icons/react";
-import { legal, site } from "../data/site";
-import { LEGAL_HASH } from "./Legal";
+import { useState, type MouseEvent } from "react";
+import { VideoCamera } from "@phosphor-icons/react";
+import { site } from "../data/site";
 
-// Calendrier cal.com intégré, chargé seulement au clic : tant que le visiteur ne le demande pas,
-// aucun script ni cookie tiers n'arrive sur le site (pas de bandeau cookies nécessaire).
+// Bouton « Réserver un appel visio » : ouvre le calendrier cal.com en fenêtre par-dessus la page.
+// Le script cal.com n'est chargé qu'au clic : avant, aucun script ni cookie tiers (pas de bandeau cookies).
+// Sans JavaScript, le bouton reste un lien vers cal.com (nouvel onglet).
 
 const EMBED_SRC = "https://app.cal.com/embed/embed.js";
 const NAMESPACE = "rdv";
-const CONTAINER_ID = "rdv-calendrier";
-const LOAD_EVENT = "nappage:rdv";
-// Si cal.com ne signale pas qu'il est prêt, on retire quand même le message de chargement
-const READY_FALLBACK_MS = 10000;
-
-/** Affiche le calendrier (bouton « Réserver un appel visio » de la section Contact) */
-export const openBooking = () => window.dispatchEvent(new Event(LOAD_EVENT));
 
 /** Lien cal.com sans le domaine : cal.com/jeremy.nappage → jeremy.nappage */
 const calLink = (url: string) => url.replace(/^https?:\/\/(app\.)?cal\.com\//, "");
@@ -65,95 +58,44 @@ function getCal(onError: () => void): CalApi {
   return Cal;
 }
 
-type Status = "idle" | "loading" | "ready" | "error";
+export default function BookingButton({ className = "btn btn--ghost" }: { className?: string }) {
+  const [failed, setFailed] = useState(false);
+  if (!site.bookingUrl) return null;
 
-export default function Booking() {
-  const [status, setStatus] = useState<Status>("idle");
-
-  useEffect(() => {
-    const onOpen = () => setStatus((s) => (s === "idle" ? "loading" : s));
-    window.addEventListener(LOAD_EVENT, onOpen);
-    return () => window.removeEventListener(LOAD_EVENT, onOpen);
-  }, []);
-
-  useEffect(() => {
-    if (status !== "loading") return;
-    const fail = () => setStatus("error");
-    const ready = () => setStatus((s) => (s === "loading" ? "ready" : s));
-    const Cal = getCal(fail);
-    Cal("init", NAMESPACE, { origin: "https://cal.com" });
+  const open = (e: MouseEvent<HTMLAnchorElement>) => {
+    // Le script cal.com n'a pas pu se charger : on laisse le lien ouvrir cal.com normalement
+    if (failed) return;
+    e.preventDefault();
+    const Cal = getCal(() => setFailed(true));
+    const firstOpen = !Cal.ns[NAMESPACE];
+    if (firstOpen) Cal("init", NAMESPACE, { origin: "https://cal.com" });
     const cal = Cal.ns[NAMESPACE];
-    cal("inline", {
-      elementOrSelector: `#${CONTAINER_ID}`,
+    if (firstOpen) {
+      cal("ui", {
+        theme: "light",
+        layout: "month_view",
+        hideEventTypeDetails: false,
+        cssVarsPerTheme: { light: { "cal-brand": "#14213d" } },
+      });
+    }
+    cal("modal", {
       calLink: calLink(site.bookingUrl),
       config: { layout: "month_view", theme: "light" },
     });
-    cal("ui", {
-      theme: "light",
-      layout: "month_view",
-      hideEventTypeDetails: false,
-      cssVarsPerTheme: { light: { "cal-brand": "#14213d" } },
-    });
-    cal("on", { action: "linkReady", callback: ready });
-    cal("on", { action: "linkFailed", callback: fail });
-    const timer = window.setTimeout(ready, READY_FALLBACK_MS);
-    return () => window.clearTimeout(timer);
-  }, [status]);
-
-  if (!site.bookingUrl) return null;
-
-  const external = (
-    <a href={site.bookingUrl} target="_blank" rel="noopener noreferrer">
-      réserver directement sur cal.com
-      <ArrowSquareOut size={14} aria-hidden="true" />
-      <span className="sr-only"> (nouvel onglet)</span>
-    </a>
-  );
+  };
 
   return (
-    <section id="rdv" className="booking" aria-labelledby="rdv-title">
-      <div className="booking__head">
-        <CalendarCheck className="booking__icon" size={36} weight="duotone" aria-hidden="true" />
-        <div>
-          <h3 id="rdv-title" className="booking__title">
-            Réserver un appel visio
-          </h3>
-          <p className="booking__lead">
-            Choisissez le créneau qui vous arrange : on fait connaissance et vous me parlez de votre commerce.
-          </p>
-        </div>
-      </div>
-
-      {status === "idle" && (
-        <div className="booking__gate">
-          <button className="btn" type="button" onClick={() => setStatus("loading")}>
-            Voir mes disponibilités
-          </button>
-          <p className="booking__note">
-            Le calendrier est fourni par {legal.booking.name} ({legal.booking.location}) et ne se charge que si vous
-            cliquez. Vous pouvez aussi {external}. <a href={LEGAL_HASH}>Mentions légales</a>
-          </p>
-        </div>
-      )}
-
-      {status === "error" && (
+    <>
+      <a className={className} href={site.bookingUrl} target="_blank" rel="noopener noreferrer" onClick={open}>
+        <VideoCamera size={18} aria-hidden="true" />
+        Réserver un appel visio
+        <span className="sr-only"> (calendrier de réservation)</span>
+      </a>
+      {failed && (
         <p className="booking__error" role="alert">
-          Le calendrier n’a pas pu s’afficher. Vous pouvez {external}, ou m’appeler au{" "}
-          <a href={`tel:${site.phoneHref}`}>{site.phone}</a>.
+          Le calendrier n’a pas pu s’ouvrir. Cliquez à nouveau sur le bouton pour réserver sur cal.com.
         </p>
       )}
-
-      {(status === "loading" || status === "ready") && (
-        <>
-          {status === "loading" && (
-            <p className="booking__loading" role="status">
-              Chargement du calendrier…
-            </p>
-          )}
-          <div id={CONTAINER_ID} className="booking__cal" />
-          <p className="booking__note">Le calendrier ne s’affiche pas bien ? Vous pouvez {external}.</p>
-        </>
-      )}
-    </section>
+    </>
   );
 }

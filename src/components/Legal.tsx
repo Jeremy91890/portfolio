@@ -108,7 +108,7 @@ export default function Legal() {
           <p>
             Si vous réservez un appel visio, la réservation passe par le
             calendrier de {legal.booking.name} ({legal.booking.location}),
-            affiché sur ce site ou sur le sien, qui recueille votre nom, votre
+            qui s’ouvre sur ce site ou sur le sien, qui recueille votre nom, votre
             adresse e-mail et les informations que vous choisissez d’indiquer,
             pour mon compte. Ces données servent
             uniquement à organiser et préparer notre échange, et sont
@@ -141,7 +141,7 @@ export default function Legal() {
           <p>
             Seule exception : le calendrier de réservation (
             {legal.booking.name}), qui ne se charge que si vous cliquez sur
-            « Voir mes disponibilités ». Il peut alors utiliser les cookies et le
+            « Réserver un appel visio ». Il peut alors utiliser les cookies et le
             stockage local nécessaires à son fonctionnement, sans mesure
             d’audience de ma part.
           </p>
