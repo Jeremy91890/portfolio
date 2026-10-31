@@ -139,9 +139,9 @@ export default function Legal() {
         </p>
         {site.bookingUrl && (
           <p>
-            Seule exception : le calendrier de réservation de{" "}
-            {legal.booking.name}. Il ne se charge que si vous cliquez sur « Voir
-            mes disponibilités ». Il peut alors utiliser les cookies et le
+            Seule exception : le calendrier de réservation (
+            {legal.booking.name}), qui ne se charge que si vous cliquez sur
+            « Voir mes disponibilités ». Il peut alors utiliser les cookies et le
             stockage local nécessaires à son fonctionnement, sans mesure
             d’audience de ma part.
           </p>
