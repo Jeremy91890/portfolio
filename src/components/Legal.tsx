@@ -104,6 +104,22 @@ export default function Legal() {
           utilisée un court instant pour limiter les envois abusifs, sans être
           conservée.
         </p>
+        {site.bookingUrl && (
+          <p>
+            Si vous réservez un appel visio, la réservation passe par le
+            calendrier de {legal.booking.name} ({legal.booking.location}),
+            qui s’ouvre sur ce site ou sur le sien, qui recueille votre nom, votre
+            adresse e-mail et les informations que vous choisissez d’indiquer,
+            pour mon compte. Ces données servent
+            uniquement à organiser et préparer notre échange, et sont
+            conservées dans les mêmes conditions. Voir sa{" "}
+            <a href={legal.booking.privacy} target="_blank" rel="noopener noreferrer">
+              politique de confidentialité
+              <span className="sr-only"> (nouvel onglet)</span>
+            </a>
+            .
+          </p>
+        )}
         <p>
           Conformément au RGPD, vous pouvez accéder à vos données, les corriger
           ou demander leur suppression en m’écrivant à{" "}
@@ -121,6 +137,15 @@ export default function Legal() {
           polices de caractères sont hébergées sur le site lui-même : aucune
           donnée n’est envoyée à un service tiers lors de votre visite.
         </p>
+        {site.bookingUrl && (
+          <p>
+            Seule exception : le calendrier de réservation (
+            {legal.booking.name}), qui ne se charge que si vous cliquez sur
+            « Réserver un appel visio ». Il peut alors utiliser les cookies et le
+            stockage local nécessaires à son fonctionnement, sans mesure
+            d’audience de ma part.
+          </p>
+        )}
 
         <p className="legal__updated">Dernière mise à jour : {legal.updated}</p>
       </div>

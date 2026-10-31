@@ -1792,6 +1792,9 @@ button { font: inherit; color: inherit; }
 .footer a { text-underline-offset: 3px; }
 .footer__links { display: flex; flex-wrap: wrap; gap: 8px 24px; }
 
+/* Bouton « Réserver un appel visio » : message si le calendrier cal.com ne s'ouvre pas */
+.booking__error { flex-basis: 100%; padding: 10px 14px; border-radius: var(--radius-sm); background: var(--orange-soft); color: var(--navy); font-size: 0.875rem; }
+
 /* Formulaire « Être rappelé » */
 .callback {
   padding: clamp(22px, 4vw, 36px);
