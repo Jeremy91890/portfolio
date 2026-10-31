@@ -12,8 +12,8 @@ export const site = {
   email: "contact@nappage.fr",
   phone: "06 30 38 69 83",
   phoneHref: "+33630386983",
-  // Lien vers l'outil de prise de rendez-vous visio (à choisir, sans cookie si possible). Vide : bouton masqué.
-  bookingUrl: "",
+  // Prise de rendez-vous visio : simple lien vers cal.com (nouvel onglet, aucun script ni cookie sur le site). Vide : bouton masqué.
+  bookingUrl: "https://cal.com/jeremy.nappage",
   linkedin: "https://www.linkedin.com/in/j%C3%A9r%C3%A9my-debelleix-35191811a/",
   instagram: "https://www.instagram.com/nappagestudio/",
   photo: {
@@ -38,6 +38,12 @@ export const legal = {
   mailer: {
     name: "Brevo (Sendinblue SAS)",
     location: "France, données hébergées dans l'Union européenne",
+  },
+  // Outil de prise de rendez-vous visio (site.bookingUrl)
+  booking: {
+    name: "Cal.com, Inc.",
+    location: "États-Unis",
+    privacy: "https://cal.com/privacy",
   },
   updated: "octobre 2026",
 };

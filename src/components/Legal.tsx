@@ -104,6 +104,21 @@ export default function Legal() {
           utilisée un court instant pour limiter les envois abusifs, sans être
           conservée.
         </p>
+        {site.bookingUrl && (
+          <p>
+            Si vous réservez un appel visio, la réservation se fait sur le site
+            de {legal.booking.name} ({legal.booking.location}), qui recueille
+            votre nom, votre adresse e-mail et les informations que vous
+            choisissez d’indiquer, pour mon compte. Ces données servent
+            uniquement à organiser et préparer notre échange, et sont
+            conservées dans les mêmes conditions. Voir sa{" "}
+            <a href={legal.booking.privacy} target="_blank" rel="noopener noreferrer">
+              politique de confidentialité
+              <span className="sr-only"> (nouvel onglet)</span>
+            </a>
+            .
+          </p>
+        )}
         <p>
           Conformément au RGPD, vous pouvez accéder à vos données, les corriger
           ou demander leur suppression en m’écrivant à{" "}
