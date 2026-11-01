@@ -3,7 +3,7 @@ export const site = {
   firstName: "Jérémy",
   brand: "Nappage Studio",
   baseline: "Sites web pour commerçants",
-  slogan: "La touche finale de votre commerce",
+  slogan: "Un peu de nappage, plus de clients",
   name: "Jérémy Debelleix",
   initials: "JD",
   role: "Développeur web & mobile",
