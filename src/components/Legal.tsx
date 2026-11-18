@@ -131,19 +131,28 @@ export default function Legal() {
           ).
         </p>
 
-        <h3>Cookies</h3>
+        <h3>Cookies et mesure d’audience</h3>
         <p>
-          Ce site n’utilise aucun cookie ni outil de mesure d’audience. Les
-          polices de caractères sont hébergées sur le site lui-même : aucune
-          donnée n’est envoyée à un service tiers lors de votre visite.
+          Ce site ne dépose aucun cookie. Les polices de caractères sont
+          hébergées sur le site lui-même.
+        </p>
+        <p>
+          Pour connaître la fréquentation du site, j’utilise GoatCounter (
+          <a href="https://www.goatcounter.com" target="_blank" rel="noopener noreferrer">
+            goatcounter.com<span className="sr-only"> (nouvel onglet)</span>
+          </a>
+          ), un outil de statistiques sans cookie qui ne vous suit pas d’un site
+          à l’autre. Il compte les pages vues et enregistre des informations
+          anonymes : page consultée, site d’origine, navigateur, système, taille
+          d’écran et pays. Votre adresse IP ne sert qu’à distinguer les visites
+          et n’est pas conservée.
         </p>
         {site.bookingUrl && (
           <p>
-            Seule exception : le calendrier de réservation (
-            {legal.booking.name}), qui ne se charge que si vous cliquez sur
+            Le calendrier de réservation (
+            {legal.booking.name}) ne se charge que si vous cliquez sur
             « Réserver un appel visio ». Il peut alors utiliser les cookies et le
-            stockage local nécessaires à son fonctionnement, sans mesure
-            d’audience de ma part.
+            stockage local nécessaires à son fonctionnement.
           </p>
         )}
 

@@ -45,7 +45,7 @@ export const legal = {
     location: "États-Unis",
     privacy: "https://cal.com/privacy",
   },
-  updated: "octobre 2026",
+  updated: "novembre 2026",
 };
 
 export const mailto = (subject: string) =>
